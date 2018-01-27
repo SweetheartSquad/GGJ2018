@@ -7,43 +7,43 @@ This page shows up when a passage failed to parse, or doesn't even exist. Try ch
 ::START
 CQ CQ anybody on the line?
 
-[[SOMETHING FRIENDLY]]
-[[SOMETHING CURIOUS]]
+[[BE FRIENDLY]]
+[[BE CURIOUS]]
 
-::SOMETHING FRIENDLY
+::BE FRIENDLY
 hello there! just a new ham, living life and looking for love.
 (this.autoRespond()){}
 
-::SOMETHING FRIENDLY-RESPONSE
+::BE FRIENDLY-RESPONSE
 hey there sonny, what's going on? how're ya feeling? actually, first things first, what do i call ya?
 
-[[SOMETHING SUGGESTIVE]]
-[[SOMETHING HOMEY]]
+[[BE SUGGESTIVE]]
+[[BE HOMEY]]
 
-::SOMETHING CURIOUS
+::BE CURIOUS
 oh, wow! didn't expect to hear anyone on here! picked this up at the gas station down the road from a little fella named Ronny along with a bottle of Dr. Pepper and three twizzlers.
 (this.autoRespond()){}
 
-::SOMETHING CURIOUS-RESPONSE
+::BE CURIOUS-RESPONSE
 oh well nice to meet ya, nice to hear someone else on the air today. you got yourself a callsign bud?
 
-[[SOMETHING SUGGESTIVE]]
-[[SOMETHING HOMEY]]
+[[BE SUGGESTIVE]]
+[[BE HOMEY]]
 
 
-::SOMETHING SUGGESTIVE
+::BE SUGGESTIVE
 well they call me big chicken. and let me tell you what, it's not cause i got feathers.
 (this.autoRespond()){}
 
-::SOMETHING SUGGESTIVE-RESPONSE
+::BE SUGGESTIVE-RESPONSE
 well big chicken, im no little chicken myself, but you can call me master ham.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 1")){}
 
-::SOMETHING HOMEY
+::BE HOMEY
 oh well you can call me little turkey. throw in some mashed potatoes and a side of green beans and you've got yourself a thanksgiving.
 (this.autoRespond()){}
 
-::SOMETHING HOMEY-RESPONSE
+::BE HOMEY-RESPONSE
 pleasure to meet ya, gobble gobble, heh heh! I do like me some stuffed bird, but im more of ham-boy myself. You could even say i'm... a master of ham. that's me, master ham, nice to meet ya.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 1")){}
 
@@ -64,6 +64,95 @@ i'll catch ya later <insert callsign here>, master ham signing off!
 
 ::??
 oh you're driving a truck? well that sure doesn't sounds safe.
+
+
+
+
+
+
+
+::BIG QUEEN
+calling all ham-lovers, anyone out there?
+(this.waitAndGoto("BIG QUEEN 2")){}
+
+::BIG QUEEN 2
+anyone got time to spare for big queen?
+
+[[BE EAGER]]
+[[BE RESERVED]]
+
+::BE EAGER
+oh i got more than enough time for you big queen.
+(this.autoRespond()){}
+
+::BE EAGER-RESPONSE
+BE eager response
+
+::BE RESERVED
+i can probably spare a moment or two; what's going on big queen?
+(this.autoRespond()){}
+
+::BE RESERVED-RESPONSE
+BE reserved response
+
+::??
+Johnathan you put that down! momma's talking to a real stud right now and if you dont shut your little yap im gonna shut it for ya!
+Hey squirt, what gets you choochin at night?
+
+[[BE CAREFREE]]
+[[BE PASSIONATE]]
+
+::BE CAREFREE
+ah you know, suck on a juice box, watch a little news. kick back, relax, take a shower. shave my pits, eat a couple cheetos, go to bed.
+(this.autoRespond()){}
+
+::BE CAREFREE-RESPONSE
+oh im sucking on a juice box right now; always keep my van loaded up for the boys. you got any kids yerself?
+
+[[BE EVASIVE]]
+[[BE DIRECT]]
+
+::BE PASSIONATE
+well big queen, i like to get down in my gitch, flex in front of the mirror and say 'hey'... you know, just practice talking to women like you.
+(this.waitAndGoto("BE PASSIONATE 2")){}
+
+::BE PASSIONATE 2
+"hey hot stuff, i like those thighs of yours".
+(this.waitAndGoto("BE PASSIONATE 3")){}
+
+::BE PASSIONATE 3
+though really, im more of a foot man myself; tell me, how does big queen feel about foot rubs?
+(this.waitAndGoto("BE PASSIONATE-RESPONSE")){}
+
+::BE PASSIONATE-RESPONSE
+ever since i had little Roger, aint no one wanna see these footsies. i gots myself a bad case of gout thanks to this bugger. you got any little monsters yerself?
+
+[[BE EVASIVE]]
+[[BE DIRECT]]
+
+::BE EVASIVE
+oh you know, never met a woman. least not a real one. funny how life works out.
+(this.autoRespond()){}
+
+::BE EVASIVE-RESPONSE
+tsk tsk tsk, no wonder you dont have any kids. cant even tell the sound of a real woman when its pounding right on those eardrums of yours. i pity you, you sad sad man. over and out."
+
+::BE DIRECT
+nah im sure you've heard the story before, always on the road. aint go no time for the little tykes, just me myself and i, all grown, all alone.
+(this.autoRespond()){}
+
+::BE DIRECT-RESPONSE
+well they aint worth it, these little arsewipes, they're just a pile of trouble. its too bad they're around, or maybe the two of us coulda spent a little more time together.
+(this.waitAndGoto("BE DIRECT-RESPONSE 2")){}
+
+::BE DIRECT-RESPONSE 2
+then again, aint no reason we cant chat some more. tell you what, you start feeling lonely, you just give your pal suzanne a call. over and out.
+
+
+
+
+
+
 
 ::ABOUT
 Made by Ian, Ryan, Sean & Michael for [[#GGJ2018|window.open('https://globalgamejam.org/')]] with [[Pixi.js|window.open('http://www.pixijs.com/')]].
