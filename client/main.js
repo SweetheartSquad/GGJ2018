@@ -89,11 +89,14 @@ function init(){
 	button.interactingHand = hand2;
 	button.hoverHand = hand3;
 
+	dash = new PIXI.Sprite(PIXI.loader.resources.dash.texture);
+
 
 	interactiveObjects = [
 		button
 	];
-	
+
+	scene.addChild(dash);
 	for(var i = 0; i < interactiveObjects.length; i++){
 		scene.addChild(interactiveObjects[i]);	
 	}
