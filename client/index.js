@@ -83,6 +83,7 @@ ready(function(){
 		.add("spritesheet","asset source files/assets/textures.json")
 		.add("script","assets/script.txt")
 		.add("font","assets/font/font.fnt")
+		.add("button", "assets/texture/button.png")
 		.add("arm", "assets/texture/arm.png")
 		.add("hand", "assets/texture/hand.png");
 

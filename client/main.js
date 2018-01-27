@@ -53,6 +53,20 @@ function init(){
 	arm.actualSprite.anchor.x = 0.5;
 	arm.actualSprite.anchor.y = 1;
 
+	button = new PIXI.Container();
+	button.actualSprite = new PIXI.Sprite(PIXI.loader.resources.button.texture);
+	button.addChild(button.actualSprite);
+	button.position.x = 200;
+	button.position.y = 200;
+	button.onInteraction = onButtonInteraction;
+	button.restoreState = restoreButtonState;
+
+	interactiveObjects = [
+		button
+	];
+	
+	game.stage.addChild(button);
+
 	game.stage.addChild(arm);
 	game.stage.addChild(hand);
 
@@ -69,9 +83,6 @@ function init(){
 	_resize();
 	game.ticker.update();
 }
-
-
-
 
 
 function startGame(){
@@ -133,6 +144,31 @@ function update(){
 		}
 	}
 
+	// Check interactive objects
+	for(var i = 0; i < interactiveObjects.length; i++){
+		obj = interactiveObjects[i];
+		if(intersect(scaledMouse, obj.getBounds(true))){
+			if(mouse.isJustDown(mouse.LEFT)){
+				if(obj.hasOwnProperty("onInteraction")){
+					if(!obj.hasOwnProperty("interacting") || !obj.interacting){
+						obj.onInteraction();
+						obj.interacting = true;
+					}
+				}
+			}else if(mouse.isJustUp(mouse.LEFT)){
+				if(obj.hasOwnProperty("restoreState")){
+					obj.restoreState();
+					obj.interacting = false;
+				}
+			}
+		}else if(obj.hasOwnProperty("restoreState")){
+			if(obj.hasOwnProperty("interacting") && obj.interacting){
+				obj.restoreState();
+				obj.interacting = false;
+			}
+		}
+	}
+	
 
 	// update input managers
 	gamepads.update();
@@ -213,4 +249,12 @@ function getInput(){
 	res.right |= gamepads.axisJustPast(gamepads.LSTICK_H, 0.5);
 
 	return res;
+}
+
+function onButtonInteraction(){
+	console.log("Button interaction");
+}
+
+function restoreButtonState(){
+	console.log("Restore buttton");
 }
