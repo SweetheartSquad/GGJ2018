@@ -192,22 +192,24 @@ function update(){
 		var activeLinks = activePassage.links;
 		for(var i = 0; i < activeLinks.length; ++i){
 			var link = activeLinks[i];
-			var p = link.toGlobal(PIXI.zero);
+			if(link.parent.visible){
+				var p = link.parent.toGlobal(PIXI.zero);
 
-			if(intersect(scaledMouse, {
-				x:p.x,
-				y:p.y,
-				width:link.width,
-				height:link.height
-			})){
-				link.tint = 0xBBBBBB;
-				anyHover = true;
+				if(intersect(scaledMouse, {
+					x:p.x-link.parent.width/2,
+					y:p.y-link.parent.height/2,
+					width:link.parent.width,
+					height:link.parent.height
+				})){
+					link.tint = 0xBBBBBB;
+					anyHover = true;
 
-				if(mouse.isJustDown(mouse.LEFT)){
-					links.push(link.onclick.bind(link));
+					if(mouse.isJustDown(mouse.LEFT)){
+						links.push(link.onclick.bind(link));
+					}
+				} else {
+					link.tint = 0x000000;
 				}
-			} else {
-				link.tint = 0x000000;
 			}
 		}
 		for(var i = 0; i < links.length; ++i){
