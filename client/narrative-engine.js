@@ -204,6 +204,8 @@ Game.prototype.displayPassage = function (__newPassage) {
 
 	this.log(this.currentPassage);
 
+	(sounds[this.currentPassage.title] || sounds.temp).play();
+
 
 	// remove existing passage
 	// var oldText = textContainer.removeChildren();
@@ -419,9 +421,24 @@ Game.prototype.onLinkClicked = function(__link){
 Game.prototype.autoRespond = function (timeout) {
 	return Promise.resolve()
 	.then(this.log.bind(this, 'autoRespond: start'))
-	.then(this.wait.bind(this, timeout || 1500)) // TODO: use length of audio clip
+	.then(this.wait.bind(this,100))
 	.then(function(){
-		this.goto(this.currentPassage.title + '-RESPONSE');
+		return this.wait((sounds[this.currentPassage.title] || sounds.temp)._duration*1000);
+	}.bind(this))
+	.then(function(){
+		return this.goto(this.currentPassage.title + '-RESPONSE');
 	}.bind(this))
 	.then(this.log.bind(this, 'autoRespond: complete'));
+};
+Game.prototype.waitAndGoto = function (__passage) {
+	return Promise.resolve()
+	.then(this.log.bind(this, 'waitAndGoto: start'))
+	.then(this.wait.bind(this,100))
+	.then(function(){
+		return this.wait((sounds[this.currentPassage.title] || sounds.temp)._duration*1000);
+	}.bind(this))
+	.then(function(){
+		return this.goto(__passage);
+	}.bind(this))
+	.then(this.log.bind(this, 'waitAndGoto: complete'));
 };

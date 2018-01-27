@@ -78,6 +78,12 @@ ready(function(){
 		loop:false,
 		volume:1
 	});
+	sounds["temp"] = new Howl({
+		urls:["assets/audio/temp.wav"],
+		autoplay:false,
+		loop:false,
+		volume:1
+	});
 
 	PIXI.loader
 		.add("spritesheet","asset source files/assets/textures.json")
