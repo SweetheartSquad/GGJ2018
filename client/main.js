@@ -203,6 +203,11 @@ function update(){
 				})){
 					link.tint = 0xBBBBBB;
 					anyHover = true;
+					if(mouse.isDown(mouse.LEFT)){
+						setHand(obj.interactingHand);
+					}else{
+						setHand(obj.hoverHand);
+					}
 
 					if(mouse.isJustDown(mouse.LEFT)){
 						links.push(link.onclick.bind(link));
@@ -217,35 +222,37 @@ function update(){
 		}
 	}
 
-	// Check interactive objects
-	for(var i = 0; i < interactiveObjects.length; i++){
-		obj = interactiveObjects[i];
-		if(intersect(scaledMouse, obj.getBounds(true))){
-			if(mouse.isJustDown(mouse.LEFT)){
-				if(obj.hasOwnProperty("onInteraction")){
-					if(!obj.hasOwnProperty("interacting") || !obj.interacting){
-						obj.onInteraction();
-						obj.interacting = true;
-						setHand(obj.interactingHand);
+	if(!anyHover){
+		// Check interactive objects
+		for(var i = 0; i < interactiveObjects.length; i++){
+			obj = interactiveObjects[i];
+			if(intersect(scaledMouse, obj.getBounds(true))){
+				if(mouse.isJustDown(mouse.LEFT)){
+					if(obj.hasOwnProperty("onInteraction")){
+						if(!obj.hasOwnProperty("interacting") || !obj.interacting){
+							obj.onInteraction();
+							obj.interacting = true;
+							setHand(obj.interactingHand);
+						}
 					}
+			 	}else if(mouse.isJustUp(mouse.LEFT)){
+					if(obj.hasOwnProperty("restoreState")){
+						obj.restoreState();
+						obj.interacting = false;
+						setHand(hand1);
+					}
+				}else if(!mouse.isDown(mouse.LEFT)){
+					setHand(obj.hoverHand);
 				}
-		 	}else if(mouse.isJustUp(mouse.LEFT)){
-				if(obj.hasOwnProperty("restoreState")){
-					obj.restoreState();
-					obj.interacting = false;
-					setHand(hand1);
+			}else{
+				if(obj.hasOwnProperty("restoreState") 
+					&& obj.hasOwnProperty("interacting") 
+					&& obj.interacting){
+						obj.restoreState();
+						obj.interacting = false;
 				}
-			}else if(!mouse.isDown(mouse.LEFT)){
-				setHand(obj.hoverHand);
+				setHand(hand1);
 			}
-		}else{
-			if(obj.hasOwnProperty("restoreState") 
-				&& obj.hasOwnProperty("interacting") 
-				&& obj.interacting){
-					obj.restoreState();
-					obj.interacting = false;
-			}
-			setHand(hand1);
 		}
 	}
 	
