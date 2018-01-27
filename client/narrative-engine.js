@@ -109,9 +109,10 @@ NarrativeEngine.prototype.__eval = function (__s) {
 };
 
 NarrativeEngine.prototype.eval = function (__script, __scope) {
-	return this.startAction()
-	.then(this.__eval.bind(__scope, __script))
-	.then(this.endAction.bind(this));
+	// return this.startAction()
+	// .then(this.__eval.bind(__scope, __script))
+	// .then(this.endAction.bind(this));
+	return this.__eval.call(__scope, __script);
 };
 
 // used for parser
@@ -185,11 +186,6 @@ Game.prototype.back = function () {
 	}
 };
 
-Game.prototype.onLinkClicked = function () {
-	this.log('Clicked link: ', this.text, '\n', 'Running: ', this.link);
-	this.narrativeEngine.eval(this.link);
-};
-
 Game.prototype.displayPassage = function (__newPassage) {
 	// history
 	if (this.currentPassage && this.currentPassage.title) {
@@ -251,6 +247,12 @@ Game.prototype.displayPassage = function (__newPassage) {
 	}
 	for(var i = 0; i < this.currentPassage.text.length; ++i){
 		scene.addChild(this.currentPassage.text[i]);
+	}
+	for(var i = 0; i < this.currentPassage.links.length; ++i){
+		scene.removeChild(this.currentPassage.links[i]);
+		this.currentPassage.links[i].y += 10;
+		this.currentPassage.links[i].tint = 0xFF0000;
+		scene.addChild(this.currentPassage.links[i]);
 	}
 	// video.passageContainer.bg.height = video.passageContainer.textContainer.height + border.outer*2;
 	// video.passageContainer.bg.width = textWidth + border.outer*2;
@@ -327,7 +329,7 @@ Game.prototype.passageToText = function (__passage, __maxWidth) {
 			temp.x = x;
 			temp.y = y;
 			temp.link = word.link;
-			temp.onclick = Game.onLinkClicked;
+			temp.onclick = this.onLinkClicked.bind(this, temp);
 			passage.text.push(temp);
 			x += temp.measureWidth(temp.text);
 
@@ -405,4 +407,8 @@ Game.prototype.wait = function (timeout) {
 			__resolve();
 		}.bind(this), timeout);
 	}.bind(this));
+};
+Game.prototype.onLinkClicked = function(__link){
+	this.log('Clicked link: ',__link.text,'\n','Running: ', __link.link);
+	this.narrativeEngine.eval(__link.link, this);
 };

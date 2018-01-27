@@ -1,6 +1,5 @@
 // main loop
 
-
 function init(){
 	// initialize input managers
 	gamepads.init();
@@ -50,13 +49,18 @@ function init(){
 
 	game.stage.addChild(pointer);
 
+	scaledMouse = {
+		x: 0,
+		y: 0
+	};
+
+	g = new Game();
+	g.goto("START");
+
 	// start the main loop
 	window.onresize = onResize;
 	_resize();
 	game.ticker.update();
-
-	g = new Game();
-	g.goto("START");
 }
 
 
@@ -89,6 +93,40 @@ function update(){
 
 	var input = getInput();
 
+
+
+
+	var links = [];
+	var activePassage = g.currentPassage;
+	var anyHover = false;
+	if(activePassage){
+		var activeLinks = activePassage.links;
+		for(var i = 0; i < activeLinks.length; ++i){
+			var link = activeLinks[i];
+			var p = link.toGlobal(PIXI.zero);
+
+			if(intersect(scaledMouse, {
+				x:p.x,
+				y:p.y,
+				width:link.width,
+				height:link.height
+			})){
+				link.tint = 0x00FF00;
+				anyHover = true;
+
+				if(mouse.isJustDown(mouse.LEFT)){
+					links.push(link.onclick.bind(link));
+				}
+			} else {
+				link.tint = 0xFF0000;
+			}
+		}
+		for(var i = 0; i < links.length; ++i){
+			links[i]();
+		}
+	}
+
+
 	// update input managers
 	gamepads.update();
 	keys.update();
@@ -97,6 +135,9 @@ function update(){
 	// keep mouse within screen
 	mouse.pos.x = clamp(0, mouse.pos.x, (size.x-2) * scaleMultiplier);
 	mouse.pos.y = clamp(0, mouse.pos.y, (size.y-2) * scaleMultiplier);
+
+	scaledMouse.x = mouse.pos.x / scaleMultiplier;
+	scaledMouse.y = mouse.pos.y / scaleMultiplier;
 	// update pointer
 	pointer.x = Math.round(mouse.pos.x/scaleMultiplier);
 	pointer.y = Math.round(mouse.pos.y/scaleMultiplier);
