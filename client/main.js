@@ -89,8 +89,29 @@ function init(){
 	button.interactingHand = hand2;
 	button.hoverHand = hand3;
 
-	dash = new PIXI.Sprite(PIXI.loader.resources.dash.texture);
+	callsignDisplay = new PIXI.Container();
+	callsignDisplay.position.x = 332;
+	callsignDisplay.position.y = 232;
+	
+	callsignHam = new PIXI.Sprite(PIXI.loader.resources.callsignHam.texture);
+	callsignHam.title = "MASTER_HAM";
+	callsignHam.visible = false;
+	callsignDisplay.addChild(callsignHam);
 
+	callsigns = [
+		callsignHam
+	];
+
+	callsignDisplay.width = 12;
+	callsignDisplay.height = 12;
+
+	for(var i = 0; i < callsigns.length; i++){
+		callsignDisplay.addChild(callsigns[i]);	
+	}
+
+    currentCallsign = null;
+
+	dash = new PIXI.Sprite(PIXI.loader.resources.dash.texture);
 
 	interactiveObjects = [
 		button
@@ -100,6 +121,11 @@ function init(){
 	for(var i = 0; i < interactiveObjects.length; i++){
 		dash.addChild(interactiveObjects[i]);	
 	}
+
+
+
+	dash.addChild(callsignDisplay);
+
 	scene.addChild(textContainer);
 
 	scaledMouse = {
@@ -143,9 +169,7 @@ function update(){
 
 	var input = getInput();
 
-
-
-
+	
 	var links = [];
 	var activePassage = g.currentPassage;
 	var anyHover = false;
@@ -208,6 +232,7 @@ function update(){
 		}
 	}
 	
+	updateCallsignDisplay();
 
 	// update input managers
 	gamepads.update();
@@ -235,6 +260,8 @@ function update(){
 	road_filter.uniforms.horizon = 0.25 + (scaledMouse.y/size.y-0.5)/32.0 + (Math.sin(game.ticker.lastTime/30.0+0.2)*0.003);
 	dash.y = -Math.floor((scaledMouse.y/size.y-0.5)*4.0 + Math.random()*Math.sin(game.ticker.lastTime/30.0));
 	dash.x = -Math.floor((scaledMouse.x/size.x-0.5)*4.0);
+
+
 }
 
 
@@ -293,6 +320,25 @@ function getInput(){
 	res.right |= gamepads.axisJustPast(gamepads.LSTICK_H, 0.5);
 
 	return res;
+}
+
+function updateCallsignDisplay(){
+	if(g.hasOwnProperty("currentCallsign")){
+		var callsign = g.currentCallsign;
+		if(currentCallsign){
+			currentCallsign.visible = false;
+		}
+		for(i = 0; i < callsigns.length; i++){
+			if(callsigns[i].title == callsign){
+				currentCallsign = callsigns[i];
+				currentCallsign.visible = true;
+			}
+		}
+	}else{
+		if(currentCallsign){
+			currentCallsign.visible = false;
+		}
+	}
 }
 
 function makeHand(resource){

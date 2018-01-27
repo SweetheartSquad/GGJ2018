@@ -11,20 +11,24 @@ CQ CQ anybody on the line?
 [[SOMETHING CURIOUS]]
 
 ::SOMETHING FRIENDLY
+(this.setCallsign("YOU")){}
 hello there! just a new ham, living life and looking for love.
 (this.autoRespond()){}
 
 ::SOMETHING FRIENDLY-RESPONSE
+(this.setCallsign("MASTER_HAM")){}
 hey there sonny, what's going on? how're ya feeling? actually, first things first, what do i call ya?
 
 [[SOMETHING SUGGESTIVE]]
 [[SOMETHING HOMEY]]
 
 ::SOMETHING CURIOUS
+(this.setCallsign("YOU")){}
 oh, wow! didn't expect to hear anyone on here! picked this up at the gas station down the road from a little fella named Ronny along with a bottle of Dr. Pepper and three twizzlers.
 (this.autoRespond()){}
 
 ::SOMETHING CURIOUS-RESPONSE
+(this.setCallsign("MASTER_HAM")){}
 oh well nice to meet ya, nice to hear someone else on the air today. you got yourself a callsign bud?
 
 [[SOMETHING SUGGESTIVE]]
@@ -32,22 +36,27 @@ oh well nice to meet ya, nice to hear someone else on the air today. you got you
 
 
 ::SOMETHING SUGGESTIVE
+(this.setCallsign("YOU")){}
 well they call me big chicken. and let me tell you what, it's not cause i got feathers.
 (this.autoRespond()){}
 
 ::SOMETHING SUGGESTIVE-RESPONSE
+(this.setCallsign("MASTER_HAM")){}
 well big chicken, im no little chicken myself, but you can call me master ham.
 (true;this.wait(1500).then(this.goto.bind(this,"MASTER HAM SIGN-OFF"))){}
 
 ::SOMETHING HOMEY
+(this.setCallsign("YOU")){}
 oh well you can call me little turkey. throw in some mashed potatoes and a side of green beans and you've got yourself a thanksgiving.
 (this.autoRespond()){}
 
 ::SOMETHING HOMEY-RESPONSE
+(this.setCallsign("MASTER_HAM")){}
 pleasure to meet ya, gobble gobble, heh heh! I do like me some stuffed bird, but im more of ham-boy myself. You could even say i'm... a master of ham. that's me, master ham, nice to meet ya.
 (true;this.wait(1500).then(this.goto.bind(this,"MASTER HAM SIGN-OFF"))){}
 
 ::MASTER HAM SIGN-OFF
+(this.setCallsign("MASTER_HAM")){}
 sounds like you're pretty new here. im sure you know by now that if you twist that knob over there, it changes the frequency of your radio. you can find all sorts of folks on the hamverse. oh yeah, all sorts of... interesting folks. tell you what, how about you twist that there knob to <insert station number here>. It sounds like you're gonna need yourself some contacts; if you head on over there, i bet you'll find yourself some good'uns. i'll catch ya later <insert callsign here>, master ham signing off!
 
 ::??
