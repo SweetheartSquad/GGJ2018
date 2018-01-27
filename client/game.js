@@ -7,6 +7,7 @@ PIXI.extras.BitmapText.prototype.measureWidth = function(__text){
 	return w;
 };
 function Game() {
+	this.glyphs = [];
 	this.font = {
 		fontFamily: "font",
 		fontSize: 24,
@@ -95,7 +96,7 @@ Game.prototype.displayPassage = function (__newPassage) {
 
 	this.log(this.currentPassage);
 
-	this.getSound(this.currentPassage.title).play();
+	this.activeSound = this.getSound(this.currentPassage.title).play();
 
 
 	// remove existing passage
@@ -142,6 +143,7 @@ Game.prototype.displayPassage = function (__newPassage) {
 	for(var i = 0; i < oldText.length; ++i) {
 		oldText[i].destroy();
 	}
+
 	for(var i = 0; i < this.currentPassage.text.length; ++i){
 		textContainer.addChild(this.currentPassage.text[i]);
 	}
@@ -150,6 +152,16 @@ Game.prototype.displayPassage = function (__newPassage) {
 		this.currentPassage.links[i].y += 10;
 		this.currentPassage.links[i].tint = 0xFF0000;
 		textContainer.addChild(this.currentPassage.links[i]);
+	}
+	this.glyphs = [];
+	for(var i = 0; i < textContainer.children.length; ++i){
+		if(this.currentPassage.links.indexOf(textContainer.children[i]) < 0){
+			this.glyphs = this.glyphs.concat(textContainer.children[i]._glyphs);
+		}
+	}
+
+	for(var i = 0; i < this.glyphs.length; ++i){
+		this.glyphs[i].visible = false;
 	}
 	// video.passageContainer.bg.height = video.passageContainer.textContainer.height + border.outer*2;
 	// video.passageContainer.bg.width = textWidth + border.outer*2;
@@ -168,6 +180,16 @@ Game.prototype.displayPassage = function (__newPassage) {
 	// video.passageContainer.y = Math.floor(size.y*3/4 - video.passageContainer.height/2);
 	// }
 	return;
+};
+
+Game.prototype.update = function(){
+	if(this.activeSound && this.activeSound.pos() !== 0){
+		for(var i = 0; i < this.glyphs.length; ++i){
+			if(i/this.glyphs.length < this.activeSound.pos()/(this.activeSound._duration-1)){
+				this.glyphs[i].visible = true;
+			}
+		}
+	}
 };
 
 // go through passage contents and convert to text objects

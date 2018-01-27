@@ -143,7 +143,7 @@ function update(){
 
 	var input = getInput();
 
-
+	g.update();
 
 
 	var links = [];
