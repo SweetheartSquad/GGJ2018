@@ -38,6 +38,8 @@ function init(){
 	scene = new PIXI.Container();
 
 	textContainer = new PIXI.Container();
+	link1 = new PIXI.Container();
+	link2 = new PIXI.Container();
 
     // hand
 	hand=new PIXI.Container();
@@ -90,6 +92,7 @@ function init(){
 	button.hoverHand = hand3;
 
 	dash = new PIXI.Sprite(PIXI.loader.resources.dash.texture);
+	speech = new PIXI.Sprite(PIXI.loader.resources.speech.texture);
 
 
 	interactiveObjects = [
@@ -100,7 +103,16 @@ function init(){
 	for(var i = 0; i < interactiveObjects.length; i++){
 		dash.addChild(interactiveObjects[i]);	
 	}
+	scene.addChild(speech);
+	textContainer.x = size.x*0.2;
+	textContainer.y = size.y*0.2;
+	link1.x = 535;
+	link1.y = 203;
+	link2.x = 535;
+	link2.y = 253;
 	scene.addChild(textContainer);
+	scene.addChild(link1);
+	scene.addChild(link2);
 
 	scaledMouse = {
 		x: 0,

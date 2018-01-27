@@ -92,6 +92,7 @@ ready(function(){
 		.add("road_shader","assets/road_shader.frag")
 		.add("font","assets/font/font.fnt")
 		.add("dash", "assets/texture/dash.png")
+		.add("speech", "assets/texture/speech.png")
 		.add("button", "assets/texture/button.png")
 		.add("arm", "assets/texture/arm.png")
 		.add("hand2", "assets/texture/hand2.png")

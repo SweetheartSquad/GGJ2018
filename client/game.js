@@ -140,6 +140,8 @@ Game.prototype.displayPassage = function (__newPassage) {
 
 	// add parsed passage
 	var oldText = textContainer.removeChildren();
+	oldText = oldText.concat(link1.removeChildren());
+	oldText = oldText.concat(link2.removeChildren());
 	for(var i = 0; i < oldText.length; ++i) {
 		oldText[i].destroy();
 	}
@@ -149,9 +151,14 @@ Game.prototype.displayPassage = function (__newPassage) {
 	}
 	for(var i = 0; i < this.currentPassage.links.length; ++i){
 		textContainer.removeChild(this.currentPassage.links[i]);
-		this.currentPassage.links[i].y += 10;
+		this.currentPassage.links[i].y = 0;
+		this.currentPassage.links[i].x -= this.currentPassage.links[i].width/2;
 		this.currentPassage.links[i].tint = 0xFF0000;
-		textContainer.addChild(this.currentPassage.links[i]);
+		if(i == 0){
+			link1.addChild(this.currentPassage.links[i]);
+		}else{
+			link2.addChild(this.currentPassage.links[i]);
+		}
 	}
 	this.glyphs = [];
 	for(var i = 0; i < textContainer.children.length; ++i){
