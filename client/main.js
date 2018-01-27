@@ -92,6 +92,7 @@ function init(){
 	button.hoverHand = hand3;
 
 	dash = new PIXI.Sprite(PIXI.loader.resources.dash.texture);
+	dash.anchor.x = dash.anchor.y = 0.5;
 	speech = new PIXI.Sprite(PIXI.loader.resources.speech.texture);
 
 
@@ -245,8 +246,8 @@ function update(){
 	road_filter.uniforms.uTime = game.ticker.lastTime/1000;
 	road_filter.uniforms.angle = 0.5 + (scaledMouse.x/size.x-0.5)/16.0;
 	road_filter.uniforms.horizon = 0.25 + (scaledMouse.y/size.y-0.5)/32.0 + (Math.sin(game.ticker.lastTime/30.0+0.2)*0.003);
-	dash.y = -Math.floor((scaledMouse.y/size.y-0.5)*4.0 + Math.random()*Math.sin(game.ticker.lastTime/30.0));
-	dash.x = -Math.floor((scaledMouse.x/size.x-0.5)*4.0);
+	dash.y = size.y/2 -Math.floor((scaledMouse.y/size.y-0.5)*4.0 + Math.random()*Math.sin(game.ticker.lastTime/30.0));
+	dash.x = size.x/2 -Math.floor((scaledMouse.x/size.x-0.5)*4.0);
 }
 
 
