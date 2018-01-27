@@ -36,7 +36,6 @@ function init(){
 	}());
 
 	scene = new PIXI.Container();
-	game.stage.addChild(scene);
 
     // hand
 	hand=new PIXI.Container();
@@ -73,6 +72,7 @@ function init(){
 	road.filters = [road_filter];
 
 	game.stage.addChild(road);
+	game.stage.addChild(scene);
 	game.stage.addChild(arm);
 	game.stage.addChild(hand);
 
@@ -176,6 +176,8 @@ function update(){
 	arm.rotation = Math.atan2(size.y + 50 - arm.y, size.x/2 - arm.x) + Math.PI/2;
 
 	road_filter.uniforms.uTime = game.ticker.lastTime/1000;
+	road_filter.uniforms.angle = 0.5 + (scaledMouse.x/size.x-0.5)/2.0;
+	road_filter.uniforms.horizon = 0.5 + (scaledMouse.y/size.y-0.5)/2.0;
 }
 
 
