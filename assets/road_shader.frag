@@ -28,6 +28,7 @@ void main(void){
     
     uv.y -= horizon;
     uv.y /= (1.0 - horizon);
+    uv.x += -0.25 + uv.y*0.25;
 
     vec3 skyCol = vec3(0.5,0.5,1.0);
     vec3 groundCol = vec3(0);
@@ -36,10 +37,11 @@ void main(void){
     vec3 sideCol = vec3(0.5,1.0,0.5);
 
     float a = angle;
-    float roadPersp = uv.y * distance(uv.x,angle);
+    float roadPersp = uv.y;// * mix(distance(uv.x,angle),1.0,0.25) * 10.0;
     float roadAngle = abs(uv.x-mix(0.5,angle,0.5)) - roadPersp;
-    groundCol = mix(sideCol, roadCol, step(roadAngle, 0.1));
-    groundCol = mix(groundCol, stripeCol, step((roadAngle+roadPersp) * 20.0 - roadPersp, 0.1) * step(fract(pow(1.0-uv.y, 3.0)*2.0+uTime*4.0), 0.5)-0.1);
+    float far = 0.01;
+    groundCol = mix(sideCol, roadCol, step(roadAngle, far));
+    groundCol = mix(groundCol, stripeCol, step((roadAngle+roadPersp) * 20.0 - roadPersp, far) * step(fract(pow(1.0-uv.y, 3.0)*2.0+uTime*4.0), 0.5)-0.1);
     col.rgb = mix(groundCol, skyCol, sky);
     // col.rgb += 1.0-distance(uv, vec2(angle,horizon));
     // col.rgb = vec3(uv.x-angle, -(uv.x-angle), 0);

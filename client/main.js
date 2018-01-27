@@ -98,7 +98,7 @@ function init(){
 
 	scene.addChild(dash);
 	for(var i = 0; i < interactiveObjects.length; i++){
-		scene.addChild(interactiveObjects[i]);	
+		dash.addChild(interactiveObjects[i]);	
 	}
 	scene.addChild(textContainer);
 
@@ -231,8 +231,10 @@ function update(){
 	arm.rotation = Math.atan2(size.y + 50 - arm.y, size.x/2 - arm.x) + Math.PI/2;
 
 	road_filter.uniforms.uTime = game.ticker.lastTime/1000;
-	road_filter.uniforms.angle = 0.5 + (scaledMouse.x/size.x-0.5)/2.0;
-	road_filter.uniforms.horizon = 0.5 + (scaledMouse.y/size.y-0.5)/2.0;
+	road_filter.uniforms.angle = 0.5 + (scaledMouse.x/size.x-0.5)/16.0;
+	road_filter.uniforms.horizon = 0.25 + (scaledMouse.y/size.y-0.5)/32.0 + (Math.sin(game.ticker.lastTime/30.0+0.2)*0.003);
+	dash.y = -Math.floor((scaledMouse.y/size.y-0.5)*4.0) + Math.random()*Math.sin(game.ticker.lastTime/30.0);
+	dash.x = -Math.floor((scaledMouse.x/size.x-0.5)*4.0);
 }
 
 
