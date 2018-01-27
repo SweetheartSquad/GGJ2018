@@ -53,6 +53,26 @@ function init(){
 	arm.actualSprite.anchor.x = 0.5;
 	arm.actualSprite.anchor.y = 1;
 
+	// setup screen filter
+	road_filter = new CustomFilter(PIXI.loader.resources.road_shader.data);
+	road_filter.padding = 0;
+	road_filter.uniforms["uTime"] = 0;
+
+	(function(){
+		var graphics = new PIXI.Graphics();
+		graphics.beginFill(0,0);
+		graphics.drawRect(0,0,1,1);
+		graphics.endFill();
+		emptyTexture = graphics.generateTexture();
+		graphics.destroy();
+	}());
+	road = new PIXI.Sprite(emptyTexture);
+	road.width = size.x;
+	road.height = size.y;
+	road.filterArea = new PIXI.Rectangle(0,0,size.x,size.y);
+	road.filters = [road_filter];
+
+	game.stage.addChild(road);
 	game.stage.addChild(arm);
 	game.stage.addChild(hand);
 
@@ -155,6 +175,7 @@ function update(){
 
 	arm.rotation = Math.atan2(size.y + 50 - arm.y, size.x/2 - arm.x) + Math.PI/2;
 
+	road_filter.uniforms.uTime = game.ticker.lastTime/1000;
 }
 
 

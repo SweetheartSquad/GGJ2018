@@ -82,6 +82,8 @@ ready(function(){
 	PIXI.loader
 		.add("spritesheet","asset source files/assets/textures.json")
 		.add("script","assets/script.txt")
+		.add('vert','assets/passthrough.vert')
+		.add("road_shader","assets/road_shader.frag")
 		.add("font","assets/font/font.fnt")
 		.add("arm", "assets/texture/arm.png")
 		.add("hand", "assets/texture/hand.png");
@@ -158,6 +160,9 @@ function _resize(){
 
 	game.view.style.width=aw+'px';
 	game.view.style.height=ah+'px';
+
+	road_filter.uniforms["uScreenSize"] = [size.x,size.y];
+	road_filter.uniforms["uBufferSize"] = [nextPowerOfTwo(size.x),nextPowerOfTwo(size.y)];
 }
 
 PIXI.zero=new PIXI.Point(0,0);
