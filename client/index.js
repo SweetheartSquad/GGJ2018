@@ -82,7 +82,9 @@ ready(function(){
 	PIXI.loader
 		.add("spritesheet","asset source files/assets/textures.json")
 		.add("script","assets/script.txt")
-		.add("font","assets/font/font.fnt");
+		.add("font","assets/font/font.fnt")
+		.add("arm", "assets/texture/arm.png")
+		.add("hand", "assets/texture/hand.png");
 
 	PIXI.loader
 		.on("progress", loadProgressHandler)

@@ -39,16 +39,23 @@ function init(){
 	scene = new PIXI.Container();
 	game.stage.addChild(scene);
 
-    // pointer
-	pointer=new PIXI.Container();
-	pointer.actualSprite=new PIXI.Sprite(PIXI.Texture.fromFrame("pointer.png"));
-	pointer.actualSprite.anchor.x=1/8;
-	pointer.actualSprite.anchor.y=1/8;
-	pointer.addChild(pointer.actualSprite);
-	pointer.position.x=10;
-	pointer.position.y=10;
+    // hand
+	hand=new PIXI.Container();
+	hand.actualSprite=new PIXI.Sprite(PIXI.loader.resources.hand.texture);
+	hand.actualSprite.anchor.x=0.5;
+	hand.actualSprite.anchor.y=0.5;
+	hand.addChild(hand.actualSprite);
+	hand.position.x=10;
+	hand.position.y=10;
 
-	game.stage.addChild(pointer);
+	arm = new PIXI.Container();
+	arm.actualSprite = new PIXI.Sprite(PIXI.loader.resources.arm.texture);
+	arm.addChild(arm.actualSprite);
+	arm.actualSprite.anchor.x = 0.5;
+	arm.actualSprite.anchor.y = 1;
+
+	game.stage.addChild(arm);
+	game.stage.addChild(hand);
 
 	// start the main loop
 	window.onresize = onResize;
@@ -97,9 +104,14 @@ function update(){
 	// keep mouse within screen
 	mouse.pos.x = clamp(0, mouse.pos.x, (size.x-2) * scaleMultiplier);
 	mouse.pos.y = clamp(0, mouse.pos.y, (size.y-2) * scaleMultiplier);
-	// update pointer
-	pointer.x = Math.round(mouse.pos.x/scaleMultiplier);
-	pointer.y = Math.round(mouse.pos.y/scaleMultiplier);
+	// update hand
+	hand.x = Math.round(mouse.pos.x/scaleMultiplier);
+	hand.y = Math.round(mouse.pos.y/scaleMultiplier);
+
+	arm.x = hand.x;
+	arm.y = hand.y ;
+
+	arm.rotation = Math.atan2(size.y + 50 - arm.y, size.x/2 - arm.x) + Math.PI/2;
 }
 
 
