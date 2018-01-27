@@ -169,7 +169,8 @@ function update(){
 
 	var input = getInput();
 
-	
+	g.update();
+
 	var links = [];
 	var activePassage = g.currentPassage;
 	var anyHover = false;
