@@ -404,5 +404,6 @@ Game.prototype.endCurrentConversation = function(nextConversation){
 	.then(function(){
 		speech.visible = false;
 		this.nextConversation = nextConversation;
+		this.setCallsign(null);
 	}.bind(this));
 }
