@@ -37,6 +37,8 @@ function init(){
 
 	scene = new PIXI.Container();
 
+	textContainer = new PIXI.Container();
+
     // hand
 	hand=new PIXI.Container();
 	
@@ -93,8 +95,9 @@ function init(){
 	];
 	
 	for(var i = 0; i < interactiveObjects.length; i++){
-		game.stage.addChild(interactiveObjects[i]);	
+		scene.addChild(interactiveObjects[i]);	
 	}
+	scene.addChild(textContainer);
 
 	scaledMouse = {
 		x: 0,

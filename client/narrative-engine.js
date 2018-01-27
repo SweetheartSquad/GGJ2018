@@ -244,18 +244,18 @@ Game.prototype.displayPassage = function (__newPassage) {
 
 
 	// add parsed passage
-	var oldText = scene.removeChildren();
+	var oldText = textContainer.removeChildren();
 	for(var i = 0; i < oldText.length; ++i) {
 		oldText[i].destroy();
 	}
 	for(var i = 0; i < this.currentPassage.text.length; ++i){
-		scene.addChild(this.currentPassage.text[i]);
+		textContainer.addChild(this.currentPassage.text[i]);
 	}
 	for(var i = 0; i < this.currentPassage.links.length; ++i){
-		scene.removeChild(this.currentPassage.links[i]);
+		textContainer.removeChild(this.currentPassage.links[i]);
 		this.currentPassage.links[i].y += 10;
 		this.currentPassage.links[i].tint = 0xFF0000;
-		scene.addChild(this.currentPassage.links[i]);
+		textContainer.addChild(this.currentPassage.links[i]);
 	}
 	// video.passageContainer.bg.height = video.passageContainer.textContainer.height + border.outer*2;
 	// video.passageContainer.bg.width = textWidth + border.outer*2;
