@@ -69,7 +69,9 @@ function init(){
 		button
 	];
 	
-	game.stage.addChild(button);
+	for(var i = 0; i < interactiveObjects.length; i++){
+		game.stage.addChild(interactiveObjects[i]);	
+	}
 
 	game.stage.addChild(arm);
 	game.stage.addChild(hand);
@@ -170,10 +172,11 @@ function update(){
 				setHand(obj.hoverHand);
 			}
 		}else{
-			if(obj.hasOwnProperty("restoreState") && obj.hasOwnProperty("interacting") && obj.interacting){
-				obj.restoreState();
-				obj.interacting = false;
-				
+			if(obj.hasOwnProperty("restoreState") 
+				&& obj.hasOwnProperty("interacting") 
+				&& obj.interacting){
+					obj.restoreState();
+					obj.interacting = false;
 			}
 			setHand(hand1);
 		}
