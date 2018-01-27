@@ -24,6 +24,23 @@ function Game() {
 	this.narrativeEngine.scope = this;
 	this.passages = this.narrativeEngine.parseSource(PIXI.loader.resources.script.data);
 
+	for(var i in this.passages) {
+		if(this.passages.hasOwnProperty(i)){
+			sounds[i] = new Howl({
+				urls:["assets/audio/"+i+".ogg"],
+				autoplay:false,
+				loop:false,
+				volume:1,
+				onload: function(i){
+					this.log('sound loaded:', i);
+				}.bind(this, i),
+				onloaderror: function(i){
+					this.error('sound failed to load:', i);
+				}.bind(this, i)
+			});
+		}
+	}
+
 	var passage = this.narrativeEngine.parsePassage(this.passages["START"])
 	console.log(passage);
 }
@@ -78,7 +95,7 @@ Game.prototype.displayPassage = function (__newPassage) {
 
 	this.log(this.currentPassage);
 
-	(sounds[this.currentPassage.title] || sounds.temp).play();
+	this.getSound(this.currentPassage.title).play();
 
 
 	// remove existing passage
@@ -297,7 +314,7 @@ Game.prototype.autoRespond = function (timeout) {
 	.then(this.log.bind(this, 'autoRespond: start'))
 	.then(this.wait.bind(this,100))
 	.then(function(){
-		return this.wait((sounds[this.currentPassage.title] || sounds.temp)._duration*1000);
+		return this.wait(this.getSound(this.currentPassage.title)._duration*1000);
 	}.bind(this))
 	.then(function(){
 		return this.goto(this.currentPassage.title + '-RESPONSE');
@@ -309,10 +326,17 @@ Game.prototype.waitAndGoto = function (__passage) {
 	.then(this.log.bind(this, 'waitAndGoto: start'))
 	.then(this.wait.bind(this,100))
 	.then(function(){
-		return this.wait((sounds[this.currentPassage.title] || sounds.temp)._duration*1000);
+		return this.wait(this.getSound(this.currentPassage.title)._duration*1000);
 	}.bind(this))
 	.then(function(){
 		return this.goto(__passage);
 	}.bind(this))
 	.then(this.log.bind(this, 'waitAndGoto: complete'));
 };
+Game.prototype.getSound = function (__id) {
+	var s = sounds[__id];
+	if (!s || !s._loaded) {
+		s = sounds.temp;
+	}
+	return s;
+}
