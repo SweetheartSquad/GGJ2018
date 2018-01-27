@@ -37,7 +37,7 @@ void main(void){
     vec3 sideCol = vec3(0.5,1.0,0.5);
 
     float a = angle;
-    float roadPersp = uv.y;// * mix(distance(uv.x,angle),1.0,0.25) * 10.0;
+    float roadPersp = uv.y*2.0;// * mix(distance(uv.x,angle),1.0,0.25) * 10.0;
     float roadAngle = abs(uv.x-mix(0.5,angle,0.5)) - roadPersp;
     float far = 0.01;
     groundCol = mix(sideCol, roadCol, step(roadAngle, far));
