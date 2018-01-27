@@ -93,6 +93,8 @@ ready(function(){
 		.add("font","assets/font/font.fnt")
 		.add("dash", "assets/texture/dash.png")
 		.add("speech", "assets/texture/speech.png")
+		.add("option1", "assets/texture/option1.png")
+		.add("option2", "assets/texture/option2.png")
 		.add("button", "assets/texture/button.png")
 		.add("arm", "assets/texture/arm.png")
 		.add("hand2", "assets/texture/hand2.png")

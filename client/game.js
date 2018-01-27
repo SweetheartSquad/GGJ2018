@@ -154,7 +154,7 @@ Game.prototype.displayPassage = function (__newPassage) {
 	}
 	for(var i = 0; i < this.currentPassage.links.length; ++i){
 		textContainer.removeChild(this.currentPassage.links[i]);
-		this.currentPassage.links[i].y = 0;
+		this.currentPassage.links[i].y = -this.currentPassage.links[i].height/2;
 		this.currentPassage.links[i].x -= this.currentPassage.links[i].width/2;
 		this.currentPassage.links[i].tint = 0x000000;
 		if(i == 0){
@@ -208,7 +208,7 @@ Game.prototype.update = function(){
 		for(var i = 0; i < this.glyphs.length; ++i){
 			this.glyphs[i].visible = true;
 		}
-		linksVisible = true;
+		linksVisible = g.currentPassage.links.length > 0;
 	}
 
 	link1.visible = linksVisible;

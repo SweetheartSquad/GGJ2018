@@ -38,8 +38,6 @@ function init(){
 	scene = new PIXI.Container();
 
 	textContainer = new PIXI.Container();
-	link1 = new PIXI.Container();
-	link2 = new PIXI.Container();
 
     // hand
 	hand=new PIXI.Container();
@@ -94,6 +92,10 @@ function init(){
 	dash = new PIXI.Sprite(PIXI.loader.resources.dash.texture);
 	dash.anchor.x = dash.anchor.y = 0.5;
 	speech = new PIXI.Sprite(PIXI.loader.resources.speech.texture);
+	link1 = new PIXI.Sprite(PIXI.loader.resources.option1.texture);
+	link2 = new PIXI.Sprite(PIXI.loader.resources.option2.texture);
+
+	link1.anchor.x = link1.anchor.y = link2.anchor.x = link2.anchor.y = 0.5;
 
 	callsignDisplay = new PIXI.Container();
 	callsignDisplay.position.x = 332 - size.x/2;
