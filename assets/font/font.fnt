@@ -17,9 +17,9 @@
     <char id="41" x="2" y="31" width="2" height="5" xoffset="1" yoffset="1" xadvance="3" page="0" chnl="15"/>
     <char id="42" x="2" y="38" width="5" height="5" xoffset="1" yoffset="1" xadvance="6" page="0" chnl="15"/>
     <char id="43" x="6" y="31" width="5" height="5" xoffset="1" yoffset="1" xadvance="6" page="0" chnl="15"/>
-    <char id="44" x="9" y="22" width="2" height="2" xoffset="0" yoffset="5" xadvance="2" page="0" chnl="15"/>
+    <char id="44" x="9" y="22" width="2" height="2" xoffset="1" yoffset="5" xadvance="2" page="0" chnl="15"/>
     <char id="45" x="11" y="18" width="3" height="1" xoffset="1" yoffset="3" xadvance="4" page="0" chnl="15"/>
-    <char id="46" x="9" y="26" width="1" height="1" xoffset="0" yoffset="5" xadvance="1" page="0" chnl="15"/>
+    <char id="46" x="9" y="26" width="2" height="1" xoffset="1" yoffset="5" xadvance="1" page="0" chnl="15"/>
     <char id="47" x="14" y="9" width="3" height="5" xoffset="1" yoffset="1" xadvance="4" page="0" chnl="15"/>
     <char id="48" x="16" y="2" width="4" height="5" xoffset="1" yoffset="1" xadvance="5" page="0" chnl="15"/>
     <char id="49" x="2" y="45" width="3" height="5" xoffset="1" yoffset="1" xadvance="4" page="0" chnl="15"/>
@@ -32,7 +32,7 @@
     <char id="56" x="13" y="21" width="4" height="5" xoffset="1" yoffset="1" xadvance="5" page="0" chnl="15"/>
     <char id="57" x="13" y="28" width="4" height="5" xoffset="1" yoffset="1" xadvance="5" page="0" chnl="15"/>
     <char id="58" x="15" y="16" width="3" height="3" xoffset="0" yoffset="2" xadvance="1" page="0" chnl="15"/>
-    <char id="59" x="15" y="35" width="2" height="4" xoffset="0" yoffset="2" xadvance="2" page="0" chnl="15"/>
+    <char id="59" x="15" y="35" width="2" height="4" xoffset="1" yoffset="2" xadvance="2" page="0" chnl="15"/>
     <char id="60" x="19" y="9" width="3" height="5" xoffset="1" yoffset="1" xadvance="4" page="0" chnl="15"/>
     <char id="61" x="2" y="59" width="3" height="3" xoffset="1" yoffset="2" xadvance="4" page="0" chnl="15"/>
     <char id="62" x="22" y="2" width="3" height="5" xoffset="1" yoffset="1" xadvance="4" page="0" chnl="15"/>
