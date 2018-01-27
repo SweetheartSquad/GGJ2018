@@ -1,0 +1,54 @@
+hey here's some garbo that shouldn't get parsed
+
+::DEFAULT
+This page shows up when a passage failed to parse, or doesn't even exist. Try checking the link for spelling errors or the console logs for more detail on the error.
+[[back|this.back();]]
+
+::START
+CQ CQ anybody on the line?
+
+[[Something friendly]]
+[[Something curious]]
+
+::SOMETHING FRIENDLY
+hello there! just a new ham, living life and looking for love.
+(this.chefdone=true){}
+
+hey there sonny, what's going on? how're ya feeling? actually, first things first, what do i call ya?
+
+[[Something suggestive]]
+[[Something homey]]
+
+::SOMETHING CURIOUS
+oh, wow! didn't expect to hear anyone on here! picked this up at the gas station down the road from a little fella named Ronny along with a bottle of Dr. Pepper and three twizzlers.
+oh well nice to meet ya, nice to hear someone else on the air today. you got yourself a callsign bud?
+
+[[Something suggestive]]
+[[Something homey]]
+
+
+::SOMETHING SUGGESTIVE
+well they call me big chicken. and let me tell you what, it's not cause i got feathers.
+well big chicken, im no little chicken myself, but you can call me master ham.
+
+::SOMETHING HOMEY
+oh well you can call me little turkey. throw in some mashed potatoes and a side of green beans and you've got yourself a thanksgiving.
+pleasure to meet ya, gobble gobble, heh heh! I do like me some stuffed bird, but im more of ham-boy myself. You could even say i'm... a master of ham. that's me, master ham, nice to meet ya.
+
+::MASTER HAM SIGN-OFF
+sounds like you're pretty new here. im sure you know by now that if you twist that knob over there, it changes the frequency of your radio. you can find all sorts of folks on the hamverse. oh yeah, all sorts of... interesting folks. tell you what, how about you twist that there knob to <insert station number here>. It sounds like you're gonna need yourself some contacts; if you head on over there, i bet you'll find yourself some good'uns. i'll catch ya later <insert callsign here>, master ham signing off!
+
+??
+oh you're driving a truck? well that sure doesn't sounds safe.
+
+
+This page shows up when a passage failed to parse, or doesn't even exist. Try checking the link for spelling errors or the console logs for more detail on the error.
+[[back|this.back();]]
+
+::About
+Made by Ian, Sean & Michael for [[#CGAJAM|window.open('https://itch.io/jam/cga-jam')]] with [[Pixi.js|window.open('http://www.pixijs.com/')]].
+[[back|this.back()]]
+
+::Start
+Of course everything is going wrong on your vacation. You get away from the base for a five day getaway in the historic foothills of Charon and you're one day behind, two suitcases short, and three hundred thousand miles from the bed and breakfast you booked. You're only just now passing [[Venus]].
+

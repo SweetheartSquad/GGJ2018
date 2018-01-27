@@ -4,7 +4,7 @@ var curTime = 0;
 var game;
 var resizeTimeout=null;
 
-var size={x:160,y:144};
+var size={x:640,y:360};
 
 var sounds=[];
 
@@ -81,6 +81,7 @@ ready(function(){
 
 	PIXI.loader
 		.add("spritesheet","asset source files/assets/textures.json")
+		.add("script","assets/script.txt")
 		.add("font","assets/font/font.fnt");
 
 	PIXI.loader

@@ -48,12 +48,15 @@ function init(){
 	pointer.position.x=10;
 	pointer.position.y=10;
 
-	scene.addChild(pointer);
+	game.stage.addChild(pointer);
 
 	// start the main loop
 	window.onresize = onResize;
 	_resize();
 	game.ticker.update();
+
+	g = new Game();
+	g.goto("Start");
 }
 
 
