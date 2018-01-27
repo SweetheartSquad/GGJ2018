@@ -85,6 +85,8 @@ ready(function(){
 		.add("font","assets/font/font.fnt")
 		.add("button", "assets/texture/button.png")
 		.add("arm", "assets/texture/arm.png")
+		.add("hand2", "assets/texture/hand2.png")
+		.add("hand3", "assets/texture/hand3.png")
 		.add("hand", "assets/texture/hand.png");
 
 	PIXI.loader
