@@ -39,12 +39,13 @@ function init(){
 
     // hand
 	hand=new PIXI.Container();
-	hand.actualSprite=new PIXI.Sprite(PIXI.loader.resources.hand.texture);
-	hand.actualSprite.anchor.x=0.5;
-	hand.actualSprite.anchor.y=0.5;
-	hand.addChild(hand.actualSprite);
-	hand.position.x=10;
-	hand.position.y=10;
+	
+	hand1=makeHand(PIXI.loader.resources.hand.texture);
+	hand2=makeHand(PIXI.loader.resources.hand2.texture);
+	hand3=makeHand(PIXI.loader.resources.hand3.texture);
+
+	hand1.visible = true;
+	currentHand = hand1;
 
 	arm = new PIXI.Container();
 	arm.actualSprite = new PIXI.Sprite(PIXI.loader.resources.arm.texture);
@@ -76,6 +77,25 @@ function init(){
 	game.stage.addChild(arm);
 	game.stage.addChild(hand);
 
+	button = new PIXI.Container();
+	button.actualSprite = new PIXI.Sprite(PIXI.loader.resources.button.texture);
+	button.addChild(button.actualSprite);
+	button.position.x = 200;
+	button.position.y = 200;
+	button.onInteraction = onButtonInteraction;
+	button.restoreState = restoreButtonState;
+	button.interactingHand = hand2;
+	button.hoverHand = hand3;
+
+
+	interactiveObjects = [
+		button
+	];
+	
+	for(var i = 0; i < interactiveObjects.length; i++){
+		game.stage.addChild(interactiveObjects[i]);	
+	}
+
 	scaledMouse = {
 		x: 0,
 		y: 0
@@ -89,9 +109,6 @@ function init(){
 	_resize();
 	game.ticker.update();
 }
-
-
-
 
 
 function startGame(){
@@ -153,6 +170,38 @@ function update(){
 		}
 	}
 
+	// Check interactive objects
+	for(var i = 0; i < interactiveObjects.length; i++){
+		obj = interactiveObjects[i];
+		if(intersect(scaledMouse, obj.getBounds(true))){
+			if(mouse.isJustDown(mouse.LEFT)){
+				if(obj.hasOwnProperty("onInteraction")){
+					if(!obj.hasOwnProperty("interacting") || !obj.interacting){
+						obj.onInteraction();
+						obj.interacting = true;
+						setHand(obj.interactingHand);
+					}
+				}
+		 	}else if(mouse.isJustUp(mouse.LEFT)){
+				if(obj.hasOwnProperty("restoreState")){
+					obj.restoreState();
+					obj.interacting = false;
+					setHand(hand1);
+				}
+			}else if(!mouse.isDown(mouse.LEFT)){
+				setHand(obj.hoverHand);
+			}
+		}else{
+			if(obj.hasOwnProperty("restoreState") 
+				&& obj.hasOwnProperty("interacting") 
+				&& obj.interacting){
+					obj.restoreState();
+					obj.interacting = false;
+			}
+			setHand(hand1);
+		}
+	}
+	
 
 	// update input managers
 	gamepads.update();
@@ -236,4 +285,27 @@ function getInput(){
 	res.right |= gamepads.axisJustPast(gamepads.LSTICK_H, 0.5);
 
 	return res;
+}
+
+function makeHand(resource){
+	newHand=new PIXI.Sprite(resource);
+	newHand.anchor.x=0.5;
+	newHand.anchor.y=0.5;
+	newHand.visible = false;
+	hand.addChild(newHand);
+	return newHand;
+}
+
+function setHand(hand){
+	currentHand.visible = false;
+	currentHand = hand;
+	currentHand.visible = true;
+}
+
+function onButtonInteraction(){
+	button.actualSprite.width = 300;
+}
+
+function restoreButtonState(){
+	button.actualSprite.width = 79;
 }
