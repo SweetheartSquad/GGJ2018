@@ -1,5 +1,5 @@
 function NarrativeEngine() {
-
+	this.scope = this;
 }
 
 NarrativeEngine.prototype.log = function () {
@@ -43,7 +43,7 @@ NarrativeEngine.prototype.parseConditionals = function (__source) {
 	var result = [];
 	for (var i = 0; i < sections.length; i += 3) {
 		result.push(sections[i]);
-		if (this.__eval(sections[i + 1])) {
+		if (this.__eval.call(this.scope, sections[i + 1])) {
 			result.push(sections[i + 2]);
 		}
 	}
@@ -108,9 +108,9 @@ NarrativeEngine.prototype.__eval = function (__s) {
 	return eval(__s);
 };
 
-NarrativeEngine.prototype.eval = function (__script) {
+NarrativeEngine.prototype.eval = function (__script, __scope) {
 	return this.startAction()
-	.then(this.__eval.bind(this, __script))
+	.then(this.__eval.bind(__scope, __script))
 	.then(this.endAction.bind(this));
 };
 
@@ -143,6 +143,7 @@ function Game() {
 	this.history = [];
 
 	this.narrativeEngine = new NarrativeEngine();
+	this.narrativeEngine.scope = this;
 	this.passages = this.narrativeEngine.parseSource(PIXI.loader.resources.script.data);
 
 	var passage = this.narrativeEngine.parsePassage(this.passages["START"])
@@ -378,7 +379,7 @@ Game.prototype.transitionOut = function () {
 			}
 		}.bind(this), -1);
 	}.bind(this));
-}
+};
 Game.prototype.transitionIn = function () {
 	this.log('transitionIn: start');
 	var a = 0;
@@ -395,4 +396,13 @@ Game.prototype.transitionIn = function () {
 			}
 		}.bind(this), -1);
 	}.bind(this));
-}
+};
+Game.prototype.wait = function (timeout) {
+	this.log('wait: start');
+	return new Promise(function (__resolve, __reject) {
+		setTimeout(function () {
+			this.log('wait: complete');
+			__resolve();
+		}.bind(this), timeout);
+	}.bind(this));
+};

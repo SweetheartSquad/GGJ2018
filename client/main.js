@@ -56,7 +56,7 @@ function init(){
 	game.ticker.update();
 
 	g = new Game();
-	g.goto("Start");
+	g.goto("START");
 }
 
 
