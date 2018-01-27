@@ -1,8 +1,4 @@
 // used for parser
-PIXI.Text.prototype.measureWidth = function(__text){
-	this.context.font = this.style.font;
-	return this.context.measureText(__text).width;
-};
 PIXI.extras.BitmapText.prototype.measureWidth = function(__text){
 	var t = this.text;
 	this.text = __text;
