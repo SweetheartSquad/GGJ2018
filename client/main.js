@@ -95,6 +95,27 @@ function init(){
 	dash.anchor.x = dash.anchor.y = 0.5;
 	speech = new PIXI.Sprite(PIXI.loader.resources.speech.texture);
 
+	callsignDisplay = new PIXI.Container();
+	callsignDisplay.position.x = 332 - size.x/2;
+	callsignDisplay.position.y = 232 - size.y/2;
+	
+	callsignHam = new PIXI.Sprite(PIXI.loader.resources.callsignHam.texture);
+	callsignHam.title = "MASTER_HAM";
+	callsignHam.visible = false;
+	callsignDisplay.addChild(callsignHam);
+
+	callsigns = [
+		callsignHam
+	];
+
+	// callsignDisplay.width = 12;
+	// callsignDisplay.height = 12;
+
+	for(var i = 0; i < callsigns.length; i++){
+		callsignDisplay.addChild(callsigns[i]);	
+	}
+
+    currentCallsign = null;
 
 	interactiveObjects = [
 		button
@@ -104,13 +125,17 @@ function init(){
 	for(var i = 0; i < interactiveObjects.length; i++){
 		dash.addChild(interactiveObjects[i]);	
 	}
+	dash.addChild(callsignDisplay);
+
 	scene.addChild(speech);
+
 	textContainer.x = size.x*0.2;
 	textContainer.y = size.y*0.2;
 	link1.x = 543;
 	link1.y = 203;
 	link2.x = 543;
 	link2.y = 253;
+
 	scene.addChild(textContainer);
 	scene.addChild(link1);
 	scene.addChild(link2);
@@ -157,7 +182,6 @@ function update(){
 	var input = getInput();
 
 	g.update();
-
 
 	var links = [];
 	var activePassage = g.currentPassage;
@@ -221,6 +245,7 @@ function update(){
 		}
 	}
 	
+	updateCallsignDisplay();
 
 	// update input managers
 	gamepads.update();
@@ -306,6 +331,25 @@ function getInput(){
 	res.right |= gamepads.axisJustPast(gamepads.LSTICK_H, 0.5);
 
 	return res;
+}
+
+function updateCallsignDisplay(){
+	if(g.hasOwnProperty("currentCallsign")){
+		var callsign = g.currentCallsign;
+		if(currentCallsign){
+			currentCallsign.visible = false;
+		}
+		for(i = 0; i < callsigns.length; i++){
+			if(callsigns[i].title == callsign){
+				currentCallsign = callsigns[i];
+				currentCallsign.visible = true;
+			}
+		}
+	}else{
+		if(currentCallsign){
+			currentCallsign.visible = false;
+		}
+	}
 }
 
 function makeHand(resource){

@@ -57,6 +57,15 @@ NarrativeEngine.prototype.parseLinks = function (__source) {
 	return __source.split(regexSource);
 };
 
+NarrativeEngine.prototype.parseExtraData = function (__source) {
+	// break out links (links are inside double square brackets, i.e. [[link]] )
+	// result will be an array in format [plain-text,whitespace,link, plain-text,whitespace,link, ...]
+	regexSource = /(\s)?\\{{2}(.*?)\\}{2}/g
+	return __source.split(regexSource);
+};
+
+
+
 NarrativeEngine.prototype.parsePassage = function (__source) {
 	this.log('source: ', __source);
 	if (!__source) {

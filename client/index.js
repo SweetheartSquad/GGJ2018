@@ -97,6 +97,7 @@ ready(function(){
 		.add("arm", "assets/texture/arm.png")
 		.add("hand2", "assets/texture/hand2.png")
 		.add("hand3", "assets/texture/hand3.png")
+		.add("callsignHam", "assets/texture/ham.png")
 		.add("hand", "assets/texture/hand.png");
 
 	PIXI.loader

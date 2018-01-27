@@ -388,3 +388,7 @@ Game.prototype.getSound = function (__id) {
 	}
 	return s;
 }
+
+Game.prototype.setCallsign = function(callsign){
+	this.currentCallsign = callsign;
+};
