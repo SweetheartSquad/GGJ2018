@@ -107,9 +107,9 @@ function init(){
 	scene.addChild(speech);
 	textContainer.x = size.x*0.2;
 	textContainer.y = size.y*0.2;
-	link1.x = 535;
+	link1.x = 543;
 	link1.y = 203;
-	link2.x = 535;
+	link2.x = 543;
 	link2.y = 253;
 	scene.addChild(textContainer);
 	scene.addChild(link1);
@@ -174,14 +174,14 @@ function update(){
 				width:link.width,
 				height:link.height
 			})){
-				link.tint = 0x00FF00;
+				link.tint = 0xBBBBBB;
 				anyHover = true;
 
 				if(mouse.isJustDown(mouse.LEFT)){
 					links.push(link.onclick.bind(link));
 				}
 			} else {
-				link.tint = 0xFF0000;
+				link.tint = 0x000000;
 			}
 		}
 		for(var i = 0; i < links.length; ++i){

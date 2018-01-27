@@ -97,7 +97,10 @@ Game.prototype.displayPassage = function (__newPassage) {
 	this.log(this.currentPassage);
 
 	this.activeSound = this.getSound(this.currentPassage.title).play();
-
+	this.activeSound.done = false;
+	this.activeSound.on('end', function(){
+	  this.done = true;
+	});
 
 	// remove existing passage
 	// var oldText = textContainer.removeChildren();
@@ -153,7 +156,7 @@ Game.prototype.displayPassage = function (__newPassage) {
 		textContainer.removeChild(this.currentPassage.links[i]);
 		this.currentPassage.links[i].y = 0;
 		this.currentPassage.links[i].x -= this.currentPassage.links[i].width/2;
-		this.currentPassage.links[i].tint = 0xFF0000;
+		this.currentPassage.links[i].tint = 0x000000;
 		if(i == 0){
 			link1.addChild(this.currentPassage.links[i]);
 		}else{
@@ -170,6 +173,8 @@ Game.prototype.displayPassage = function (__newPassage) {
 	for(var i = 0; i < this.glyphs.length; ++i){
 		this.glyphs[i].visible = false;
 	}
+	link1.visible = false;
+	link2.visible = false;
 	// video.passageContainer.bg.height = video.passageContainer.textContainer.height + border.outer*2;
 	// video.passageContainer.bg.width = textWidth + border.outer*2;
 	// video.passageContainer.addChildAt(video.passageContainer.bg, 0);
@@ -190,13 +195,24 @@ Game.prototype.displayPassage = function (__newPassage) {
 };
 
 Game.prototype.update = function(){
-	if(this.activeSound && this.activeSound.pos() !== 0){
+	var linksVisible;
+	if(this.activeSound && !this.activeSound.done){
 		for(var i = 0; i < this.glyphs.length; ++i){
 			if(i/this.glyphs.length < this.activeSound.pos()/(this.activeSound._duration-1)){
 				this.glyphs[i].visible = true;
+			}else{
+				linksVisible = false;
 			}
 		}
+	}else if(this.activeSound && this.activeSound.done){
+		for(var i = 0; i < this.glyphs.length; ++i){
+			this.glyphs[i].visible = true;
+		}
+		linksVisible = true;
 	}
+
+	link1.visible = linksVisible;
+	link2.visible = linksVisible;
 };
 
 // go through passage contents and convert to text objects
@@ -204,6 +220,7 @@ Game.prototype.update = function(){
 Game.prototype.passageToText = function (__passage, __maxWidth) {
 	// var temp = new PIXI.Text("", this.font);
 	var temp = new PIXI.extras.BitmapText("", this.font);
+	temp.tint = 0x000000;
 	var line = "";
 	var passage = {
 		text: [],
@@ -234,6 +251,7 @@ Game.prototype.passageToText = function (__passage, __maxWidth) {
 
 			// temp = new PIXI.Text("", this.font);
 			temp = new PIXI.extras.BitmapText("", this.font);
+			temp.tint = 0x000000;
 		}
 		// append to current line
 		if (isLink) {
@@ -252,6 +270,7 @@ Game.prototype.passageToText = function (__passage, __maxWidth) {
 			var outline = 1;
 			// temp = new PIXI.Text(wordText, this.font);
 			temp = new PIXI.extras.BitmapText(wordText, this.font);
+			temp.tint = 0x000000;
 			temp.x = x;
 			temp.y = y;
 			temp.link = word.link;
