@@ -37,7 +37,7 @@ well they call me big chicken. and let me tell you what, it's not cause i got fe
 
 ::SOMETHING SUGGESTIVE-RESPONSE
 well big chicken, im no little chicken myself, but you can call me master ham.
-(this.waitAndGoto("MASTER HAM SIGN-OFF")){}
+(this.waitAndGoto("MASTER HAM SIGN-OFF 1")){}
 
 ::SOMETHING HOMEY
 oh well you can call me little turkey. throw in some mashed potatoes and a side of green beans and you've got yourself a thanksgiving.
@@ -45,10 +45,22 @@ oh well you can call me little turkey. throw in some mashed potatoes and a side 
 
 ::SOMETHING HOMEY-RESPONSE
 pleasure to meet ya, gobble gobble, heh heh! I do like me some stuffed bird, but im more of ham-boy myself. You could even say i'm... a master of ham. that's me, master ham, nice to meet ya.
-(this.waitAndGoto("MASTER HAM SIGN-OFF")){}
+(this.waitAndGoto("MASTER HAM SIGN-OFF 1")){}
 
-::MASTER HAM SIGN-OFF
-sounds like you're pretty new here. im sure you know by now that if you twist that knob over there, it changes the frequency of your radio. you can find all sorts of folks on the hamverse. oh yeah, all sorts of... interesting folks. tell you what, how about you twist that there knob to <insert station number here>. It sounds like you're gonna need yourself some contacts; if you head on over there, i bet you'll find yourself some good'uns. i'll catch ya later <insert callsign here>, master ham signing off!
+::MASTER HAM SIGN-OFF 1
+sounds like you're pretty new here. im sure you know by now that if you twist that knob over there, it changes the frequency of your radio. you can find all sorts of folks on the hamverse.
+(this.waitAndGoto("MASTER HAM SIGN-OFF 2")){}
+
+::MASTER HAM SIGN-OFF 2
+oh yeah, all sorts of... interesting folks.
+(this.waitAndGoto("MASTER HAM SIGN-OFF 3")){}
+
+::MASTER HAM SIGN-OFF 3
+tell you what, how about you twist that there knob to <insert station number here>. It sounds like you're gonna need yourself some contacts; if you head on over there, i bet you'll find yourself some good'uns.
+(this.waitAndGoto("MASTER HAM SIGN-OFF 4")){}
+
+::MASTER HAM SIGN-OFF 4
+i'll catch ya later <insert callsign here>, master ham signing off!
 
 ::??
 oh you're driving a truck? well that sure doesn't sounds safe.
