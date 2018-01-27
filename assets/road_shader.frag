@@ -23,8 +23,9 @@ void main(void){
     // get colour
     vec3 col = texture2D(uSampler, uv).rgb;
     
+    float horizon = horizon + sin(uv.x*3.0+uTime)*0.05;
     float range = (1.0-horizon)*0.02;
-    float sky = smoothstep(horizon+range, horizon-range, uv.y);
+    float sky = smoothstep(horizon+range, horizon-range, uv.y) + sin(uTime/2.0+uv.y*7.0+uv.x*11.0)*0.1 + sin(uTime*1.1+uv.y*3.0+uv.x*10.0)*0.1;
     
     uv.y -= horizon;
     uv.y /= (1.0 - horizon);
@@ -39,7 +40,7 @@ void main(void){
     float a = angle;
     float roadPersp = uv.y*2.0;// * mix(distance(uv.x,angle),1.0,0.25) * 10.0;
     float roadAngle = abs(uv.x-mix(0.5,angle,0.5)) - roadPersp;
-    float far = 0.01;
+    float far = 0.01 + sin(uTime)*0.01;
     groundCol = mix(sideCol, roadCol, step(roadAngle, far));
     groundCol = mix(groundCol, stripeCol, step((roadAngle+roadPersp) * 20.0 - roadPersp, far) * step(fract(pow(1.0-uv.y, 3.0)*2.0+uTime*4.0), 0.5)-0.1);
     col.rgb = mix(groundCol, skyCol, sky);
