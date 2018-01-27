@@ -59,6 +59,9 @@ NarrativeEngine.prototype.parseLinks = function (__source) {
 
 NarrativeEngine.prototype.parsePassage = function (__source) {
 	this.log('source: ', __source);
+	if (!__source) {
+		throw 'no source provided';
+	}
 	var s;
 	do {
 		s = __source;
@@ -411,4 +414,13 @@ Game.prototype.wait = function (timeout) {
 Game.prototype.onLinkClicked = function(__link){
 	this.log('Clicked link: ',__link.text,'\n','Running: ', __link.link);
 	this.narrativeEngine.eval(__link.link, this);
+};
+Game.prototype.autoRespond = function (timeout) {
+	return Promise.resolve()
+	.then(this.log.bind(this, 'autoRespond: start'))
+	.then(this.wait.bind(this, timeout || 1500)) // TODO: use length of audio clip
+	.then(function(){
+		this.goto(this.currentPassage.title + '-RESPONSE');
+	}.bind(this))
+	.then(this.log.bind(this, 'autoRespond: complete'));
 };
