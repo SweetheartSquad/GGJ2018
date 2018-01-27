@@ -392,3 +392,17 @@ Game.prototype.getSound = function (__id) {
 Game.prototype.setCallsign = function(callsign){
 	this.currentCallsign = callsign;
 };
+
+
+Game.prototype.endCurrentConversation = function(nextConversation){
+	return Promise.resolve()
+	.then(this.log.bind(this, 'waitAndGoto: start'))
+	.then(this.wait.bind(this,100))
+	.then(function(){
+		return this.wait(this.getSound(this.currentPassage.title)._duration*1000);
+	}.bind(this))
+	.then(function(){
+		speech.visible = false;
+		this.nextConversation = nextConversation;
+	}.bind(this));
+}

@@ -82,9 +82,9 @@ function init(){
 	button = new PIXI.Container();
 	button.actualSprite = new PIXI.Sprite(PIXI.loader.resources.button.texture);
 	button.addChild(button.actualSprite);
-	button.position.x = 200;
-	button.position.y = 200;
-	button.onInteraction = onButtonInteraction;
+	button.position.x = 200 - size.x/2;
+	button.position.y = 200 - size.y/2;
+	button.onInteraction = startNextConversation;
 	button.restoreState = restoreButtonState;
 	button.interactingHand = hand2;
 	button.hoverHand = hand3;
@@ -138,7 +138,7 @@ function init(){
 	link2.x = 543;
 	link2.y = 253;
 
-	scene.addChild(textContainer);
+	speech.addChild(textContainer);
 	scene.addChild(link1);
 	scene.addChild(link2);
 
@@ -375,4 +375,9 @@ function onButtonInteraction(){
 
 function restoreButtonState(){
 	button.actualSprite.width = 79;
+}
+
+function startNextConversation(){
+	speech.visible = true;
+	g.goto(g.nextConversation);	
 }

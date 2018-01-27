@@ -73,6 +73,8 @@ tell you what, how about you twist that there knob to <insert station number her
 ::MASTER HAM SIGN-OFF 4
 (this.setCallsign("MASTER_HAM")){}
 i'll catch ya later <insert callsign here>, master ham signing off!
+(this.endCurrentConversation("BIG QUEEN")){}
+
 
 ::??
 oh you're driving a truck? well that sure doesn't sounds safe.
