@@ -147,6 +147,13 @@ function init(){
 		y: 0
 	};
 
+	// setup screen filter
+	screen_filter = new CustomFilter(PIXI.loader.resources.screen_shader.data);
+	screen_filter.padding = 0;
+	screen_filter.uniforms.uTime = 0;
+
+	game.stage.filters = [screen_filter];
+
 	g = new Game();
 	g.goto("START");
 
@@ -271,8 +278,8 @@ function update(){
 	scaledMouse.y = mouse.pos.y / scaleMultiplier;
 
 	// update hand
-	hand.x = Math.round(scaledMouse.x);
-	hand.y = Math.round(scaledMouse.y);
+	hand.x = lerp(hand.x, Math.round(scaledMouse.x), 0.3);
+	hand.y = lerp(hand.y, Math.round(scaledMouse.y), 0.3);
 
 	arm.x = hand.x;
 	arm.y = hand.y ;
@@ -284,6 +291,7 @@ function update(){
 	road_filter.uniforms.horizon = 0.25 + (scaledMouse.y/size.y-0.5)/32.0 + (Math.sin(game.ticker.lastTime/30.0+0.2)*0.003);
 	dash.y = size.y/2 -Math.floor((scaledMouse.y/size.y-0.5)*4.0 + Math.random()*Math.sin(game.ticker.lastTime/30.0));
 	dash.x = size.x/2 -Math.floor((scaledMouse.x/size.x-0.5)*4.0);
+	screen_filter.uniforms.uTime = game.ticker.lastTime/1000.0%1000.0; // provide time in seconds (range 0-1000)
 }
 
 
@@ -387,6 +395,8 @@ function restoreButtonState(){
 }
 
 function startNextConversation(){
-	speech.visible = true;
-	g.goto(g.nextConversation);	
+	g.goto(g.nextConversation)
+	.then(function(){
+		speech.visible = true;
+	});
 }

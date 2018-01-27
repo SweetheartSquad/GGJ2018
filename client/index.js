@@ -90,6 +90,7 @@ ready(function(){
 		.add("script","assets/script.txt")
 		.add('vert','assets/passthrough.vert')
 		.add("road_shader","assets/road_shader.frag")
+		.add('screen_shader','assets/screen_shader.frag')
 		.add("font","assets/font/font.fnt")
 		.add("dash", "assets/texture/dash.png")
 		.add("speech", "assets/texture/speech.png")
@@ -175,8 +176,8 @@ function _resize(){
 	game.view.style.width=aw+'px';
 	game.view.style.height=ah+'px';
 
-	road_filter.uniforms["uScreenSize"] = [size.x,size.y];
-	road_filter.uniforms["uBufferSize"] = [nextPowerOfTwo(size.x),nextPowerOfTwo(size.y)];
+	screen_filter.uniforms.uScreenSize = road_filter.uniforms.uScreenSize = [size.x,size.y];
+	screen_filter.uniforms.uBufferSize = road_filter.uniforms.uBufferSize = [nextPowerOfTwo(size.x),nextPowerOfTwo(size.y)];
 }
 
 PIXI.zero=new PIXI.Point(0,0);

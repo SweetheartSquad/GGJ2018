@@ -211,6 +211,17 @@ Game.prototype.update = function(){
 		linksVisible = g.currentPassage.links.length > 0;
 	}
 
+	if(linksVisible){
+		link1.scale.x = lerp(link1.scale.x, 1.0, 0.25);
+		link1.scale.y = lerp(link1.scale.y, 1.0, 0.55);
+
+		link2.scale.x = lerp(link2.scale.x, 1.0, 0.15);
+		link2.scale.y = lerp(link2.scale.y, 1.0, 0.45);
+	}else{
+		link1.scale.x = link2.scale.x = 0;
+		link1.scale.y = link2.scale.y = 2;
+	}
+
 	link1.visible = linksVisible;
 	link2.visible = linksVisible;
 };
