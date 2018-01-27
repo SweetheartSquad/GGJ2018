@@ -155,7 +155,7 @@ function update(){
 						obj.interacting = true;
 					}
 				}
-			}else if(mouse.isJustUp(mouse.LEFT)){
+		 	}else if(mouse.isJustUp(mouse.LEFT)){
 				if(obj.hasOwnProperty("restoreState")){
 					obj.restoreState();
 					obj.interacting = false;
@@ -252,9 +252,9 @@ function getInput(){
 }
 
 function onButtonInteraction(){
-	console.log("Button interaction");
+	button.actualSprite.width = 300;
 }
 
 function restoreButtonState(){
-	console.log("Restore buttton");
+	button.actualSprite.width = 79;
 }
