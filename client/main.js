@@ -92,6 +92,10 @@ function init(){
 	dash = new PIXI.Sprite(PIXI.loader.resources.dash.texture);
 	dash.anchor.x = dash.anchor.y = 0.5;
 	speech = new PIXI.Sprite(PIXI.loader.resources.speech.texture);
+	speech.anchor.x = 0.66;
+	speech.anchor.y = 1.0;
+	speech.x = size.x*0.66;
+	speech.y = size.y*0.65;
 	link1 = new PIXI.Sprite(PIXI.loader.resources.option1.texture);
 	link2 = new PIXI.Sprite(PIXI.loader.resources.option2.texture);
 
@@ -130,9 +134,6 @@ function init(){
 	dash.addChild(callsignDisplay);
 
 	scene.addChild(speech);
-
-	textContainer.x = size.x*0.2;
-	textContainer.y = size.y*0.2;
 	link1.x = 543;
 	link1.y = 203;
 	link2.x = 543;
@@ -141,6 +142,10 @@ function init(){
 	speech.addChild(textContainer);
 	scene.addChild(link1);
 	scene.addChild(link2);
+
+	textContainer.x = -speech.width*0.6;
+	textContainer.y = -speech.height*0.85;
+	speech.scale.x = speech.scale.y = 0;
 
 	scaledMouse = {
 		x: 0,
@@ -264,6 +269,9 @@ function update(){
 	}
 	
 	updateCallsignDisplay();
+
+	speech.scale.x = lerp(speech.scale.x, 1.0, 0.1);
+	speech.scale.y = lerp(speech.scale.y, 1.0, 0.1);
 
 	// update input managers
 	gamepads.update();
@@ -397,6 +405,7 @@ function restoreButtonState(){
 function startNextConversation(){
 	g.goto(g.nextConversation)
 	.then(function(){
+		speech.scale.x = speech.scale.y = 0;
 		speech.visible = true;
 	});
 }
