@@ -90,6 +90,12 @@ ready(function(){
 		loop:false,
 		volume:1
 	});
+	sounds["not_yet"] = new Howl({
+		urls:["assets/audio/sfx_2.wav"],
+		autoplay:false,
+		loop:false,
+		volume:1
+	});
 
 	PIXI.loader
 		.add("spritesheet","asset source files/assets/textures.json")
@@ -117,6 +123,7 @@ ready(function(){
 		.add("arm2", "assets/texture/arm2.png")
 		.add("hand2", "assets/texture/hand2.png")
 		.add("hand3", "assets/texture/hand3.png")
+		.add("wheel", "assets/texture/wheel.png")
 		.add("callsignMASTER HAM", "assets/texture/MASTER HAM.png")
 		.add("callsignBIG QUEEN", "assets/texture/BIG QUEEN.png")
 		.add("callsignBIG CHICKEN", "assets/texture/BIG CHICKEN.png")

@@ -43,7 +43,7 @@ function init(){
 
     // hand
 	hand=new PIXI.Container();
-	
+
 	hand1=makeHand(PIXI.loader.resources.hand.texture);
 	hand2=makeHand(PIXI.loader.resources.hand2.texture);
 	hand3=makeHand(PIXI.loader.resources.hand3.texture);
@@ -51,15 +51,21 @@ function init(){
 	hand1.visible = true;
 	currentHand = hand1;
 
+	wheel = new PIXI.Sprite(PIXI.loader.resources.wheel.texture);
+	wheel.anchor.x = 0.6;
+	wheel.anchor.y = 0.93;
+	wheel.x = -size.x*0.25;
+	wheel.y = size.y*0.7;
+
 	arm = new PIXI.Container();
 	arm.actualSprite = new PIXI.Sprite(PIXI.loader.resources.arm.texture);
 	arm.addChild(arm.actualSprite);
-	arm.actualSprite.anchor.x = 0.5;
-	arm.actualSprite.anchor.y = 1;
+	arm.actualSprite.anchor.x = 0.6;
+	arm.actualSprite.anchor.y = 0.99;
 	arm.actualSprite2 = new PIXI.Sprite(PIXI.loader.resources.arm2.texture);
 	arm.addChild(arm.actualSprite2);
-	arm.actualSprite2.anchor.x = 0.75;
-	arm.actualSprite2.anchor.y = 0.9;
+	arm.actualSprite2.anchor.x = 0.6;
+	arm.actualSprite2.anchor.y = 0.93;
 
 	// setup screen filter
 	road_filter = new CustomFilter(PIXI.loader.resources.road_shader.data);
@@ -82,8 +88,8 @@ function init(){
 
 	game.stage.addChild(road);
 	game.stage.addChild(scene);
-	game.stage.addChild(arm);
 	game.stage.addChild(hand);
+	game.stage.addChild(arm);
 
 	toggle = new PIXI.Container();
 	toggle.downSprite = new PIXI.Sprite(PIXI.loader.resources.switch_down.texture);
@@ -208,8 +214,12 @@ function init(){
 	dial.position.x = 0;
 	dial.position.y = 90;
 	dial.onInteraction = function(){
-		this.rotation += Math.PI/2;
-		startNextConversation();
+		if(g.activeSound && !g.activeSound.done && g.nextConversation){
+			this.rotation += Math.PI/2;
+			startNextConversation();
+		}else{
+			sounds.not_yet.play();
+		}
 	}.bind(dial);
 	dial.restoreState = restoreButtonState;
 	dial.interactingHand = hand2;
@@ -261,6 +271,7 @@ function init(){
 		dash.addChild(interactiveObjects[i]);	
 	}
 	dash.addChild(callsignDisplay);
+	dash.addChild(wheel);
 
 	scene.addChild(speech);
 	link1.x = 543;
@@ -337,6 +348,7 @@ function update(){
 
 
 	pull_cord.y = lerp(pull_cord.y, -size.y*0.54, 0.1);
+	wheel.rotation = Math.sin(game.ticker.lastTime/1000.0 + game.ticker.lastTime/1200.0)*0.01;
 
 	var input = getInput();
 
@@ -433,15 +445,16 @@ function update(){
 
 	// update hand
 	hand.x = Math.round(lerp(hand.x, scaledMouse.x, 0.3));
-	hand.y = Math.round(lerp(hand.y, Math.max(scaledMouse.y, size.y*0.25 + Math.abs(hand.x-size.x/2)/2.0), 0.3));
+	hand.y = Math.round(lerp(hand.y, Math.max(scaledMouse.y, size.y*0.25 + Math.abs(hand.x-size.x/2)*0.33), 0.3));
 
-	arm.x = hand.x;
-	arm.y = hand.y;
-
-	arm.actualSprite.visible = (arm.y - Math.abs(arm.x-size.x*0.66)/3) < size.y*0.5;
+	var p = currentHand.armPoint.toGlobal(PIXI.zero);
+	arm.x = p.x;
+	arm.y = p.y;
+	var basex = size.x*0.66 - scaledMouse.x * 0.25;
+	// arm.actualSprite.visible = (hand.y + (hand.x-basex)/3) < size.y*0.5;
 	arm.actualSprite2.visible = !arm.actualSprite.visible;
 
-	arm.rotation = Math.atan2(size.y + 50 - arm.y, size.x*0.66 - arm.x) + Math.PI/2;
+	arm.rotation = clamp(1.5, Math.atan2(size.y + 50 - arm.y, basex - arm.x) + Math.PI/2, 4.5);
 
 	road_filter.uniforms.uTime = game.ticker.lastTime/1000;
 	road_filter.uniforms.angle = 0.5 - (scaledMouse.x/size.x-0.5)/16.0;
@@ -538,9 +551,14 @@ function updateCallsignDisplay(){
 
 function makeHand(resource){
 	newHand=new PIXI.Sprite(resource);
-	newHand.anchor.x=0.5;
-	newHand.anchor.y=0.5;
+	newHand.anchor.x=0.25;
+	newHand.anchor.y=0.1;
 	newHand.visible = false;
+	newHand.armPoint = new PIXI.Container();
+	newHand.armPoint.visible = false;
+	newHand.addChild(newHand.armPoint);
+	newHand.armPoint.x += 20;
+	newHand.armPoint.y += 80;
 	hand.addChild(newHand);
 	return newHand;
 }
