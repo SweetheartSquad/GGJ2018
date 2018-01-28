@@ -553,5 +553,11 @@ catch ya later, big guy. pbwriter, out.
 ::EPILOGUE
 (this.setCallsign("???")){}
 (this.frequency=Math.floor(Math.random()*999)/10){}
+(the end)
+(this.endCurrentConversation("EPILOGUE 2")){}
+
+::EPILOGUE 2
+(this.setCallsign("???")){}
+(this.frequency=Math.floor(Math.random()*999)/10){}
 ...
-(this.endCurrentConversation("EPILOGUE")){}
+(this.endCurrentConversation("EPILOGUE 2")){}
