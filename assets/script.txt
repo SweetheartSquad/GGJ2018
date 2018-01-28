@@ -300,7 +300,7 @@ It sure is buddy! I can hear you loud and clear.
 
 ::BE ENCOURAGING-RESPONSE
 (this.setCallsign("???")){}
-Oh golly gee howdy mister! I can't believe it, it's actually working!
+Oh good evening sir! I can't believe it, it's actually working!
 (this.waitAndGoto("CAPTAIN CALLSIGN")){}
 
 ::BE INQUISITIVE
@@ -342,15 +342,15 @@ Great to meet another connoisseur of his body of work! That movie was inspiring.
 
 ::BE IGNORANT-RESPONSE
 (this.setCallsign("CAPTAIN")){}
-WHAT?! You've never seen "Dead Poets Society"!? O-M-G it changed my life!
+WHAT?! You've never seen "Dead Poets Society"!? Oh my god it changed my life!
 (this.waitAndGoto("CAPTAIN CALLSIGN 3")){}
 
 ::CAPTAIN CALLSIGN 3
-In fact, I've been building this radio out of a kit as an experiment to show my students and let me tell you what, it's been giving me one heck of a time. Almost set fire to my credenza when I got the power supply hooked up!
+In fact, I've been building this radio out of a kit as an experiment to show my students and let me tell you what, it's been giving me one heck of a time. Almost set fire to my credenza when I tried to get the power supply hooked up!
 (this.waitAndGoto("CAPTAIN CALLSIGN 4")){}
 
 ::CAPTAIN CALLSIGN 4
-You're actually the first person I've heard on the air, why don't you tell me a bit about yourself?
+You're actually the first person I've heard on air, why don't you tell me a little bit about yourself?
 
 [[BE SOCIABLE]]
 [[BE HUMBLE]]
@@ -373,7 +373,7 @@ Oh well I'm just a simple trucker. Dunno much about this ham business; gives me 
 
 ::BE HUMBLE-RESPONSE
 (this.setCallsign("CAPTAIN")){}
-Wait, are you driving right now? That sure don't sound safe mister. I hope you're at least taking the proper precautions.
+Wait, are you driving right now? That sure don't sound safe sir. I hope you're at least taking the proper precautions.
 (this.waitAndGoto("SAFETY FIRST")){}
 
 ::SAFETY FIRST
@@ -393,7 +393,7 @@ Oh- well- I can't say I know much about driving, but it sure sounds like you've 
 (this.waitAndGoto("SAFETY FIRST")){}
 
 ::BE DANGEROUS-RESPONSE 2
-Well hey, you ever end up tripping down to Eureka Springs, Arkansas, maybe the two of us can go for a ride.
+Well hey, if you ever end up tripping down to Eureka Springs, Arkansas, maybe the two of us can go for a ride.
 (this.waitAndGoto("BE DANGEROUS-RESPONSE 3")){}
 
 ::BE DANGEROUS-RESPONSE 3
@@ -406,11 +406,11 @@ Oh... yeah, that'd probably be safer. Never been one much for following the safe
 
 ::BE BASHFUL-RESPONSE
 (this.setCallsign("CAPTAIN")){}
-Well that sure don't sound responsible.
+Well that sure doesn't sound responsible.
 (this.waitAndGoto("SAFETY FIRST")){}
 
 ::BE BASHFUL-RESPONSE 2
-Well hey, you ever end up tripping down to Eureka Springs, Arkansas, maybe we can have ourselves a little hamfest.
+But hey, you ever end up tripping down to Eureka Springs, Arkansas, maybe we can have ourselves a little hamfest.
 (this.waitAndGoto("BE BASHFUL-RESPONSE 3")){}
 
 ::BE BASHFUL-RESPONSE 3
