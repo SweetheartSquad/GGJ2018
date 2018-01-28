@@ -176,7 +176,7 @@ oh you know, never met a woman. least not a real one. funny how life works out.
 (this.setCallsign("BIG QUEEN")){}
 tsk tsk tsk, no wonder you don't have any kids. cant even tell the sound of a real woman when it's pounding right on those 
 eardrums of yours. i pity you, you sad sad man. over and out.
-(this.endCurrentConversation("CAPTAIN")){}
+(this.endCurrentConversation("PBWRITER")){}
 
 ::BE DIRECT
 (this.setCallsign("YOU")){}
@@ -191,7 +191,7 @@ well they aint worth it, these little arsewipes, they're just a pile of trouble.
 
 ::BE DIRECT-RESPONSE 2
 then again, aint no reason we cant chat some more. tell you what, you start feeling lonely, you just give your pal suzanne a call. over and out.
-(this.endCurrentConversation("CAPTAIN")){}
+(this.endCurrentConversation("PBWRITER")){}
 
 
 
@@ -547,7 +547,7 @@ mm, sounds like fun. it's a date, pal.
 ::PBWRITER SIGN-OFF
 (this.setCallsign("PBWRITER")){}
 catch ya later, big guy. pbwriter, out.
-(this.endCurrentConversation("EPILOGUE")){}
+(this.endCurrentConversation("CAPTAIN")){}
 
 
 ::EPILOGUE
