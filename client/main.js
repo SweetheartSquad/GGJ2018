@@ -85,16 +85,6 @@ function init(){
 	game.stage.addChild(arm);
 	game.stage.addChild(hand);
 
-	button = new PIXI.Container();
-	button.actualSprite = new PIXI.Sprite(PIXI.loader.resources.button.texture);
-	button.addChild(button.actualSprite);
-	button.position.x = 200 - size.x/2;
-	button.position.y = 200 - size.y/2;
-	button.onInteraction = startNextConversation;
-	button.restoreState = restoreButtonState;
-	button.interactingHand = hand2;
-	button.hoverHand = hand3;
-
 	toggle = new PIXI.Container();
 	toggle.downSprite = new PIXI.Sprite(PIXI.loader.resources.switch_down.texture);
 	toggle.upSprite = new PIXI.Sprite(PIXI.loader.resources.switch_up.texture);
@@ -204,7 +194,8 @@ function init(){
 	dial.position.x = 0;
 	dial.position.y = 90;
 	dial.onInteraction = function(){
-		this.rotation += Math.PI/4;
+		this.rotation += Math.PI/2;
+		startNextConversation();
 	}.bind(dial);
 	dial.restoreState = restoreButtonState;
 	dial.interactingHand = hand2;
@@ -250,8 +241,6 @@ function init(){
 	}
 
     currentCallsign = null;
-
-	interactiveObjects.push(button);
 
 	scene.addChild(dash);
 	for(var i = 0; i < interactiveObjects.length; i++){
@@ -547,11 +536,9 @@ function setHand(hand){
 }
 
 function onButtonInteraction(){
-	button.actualSprite.width = 300;
 }
 
 function restoreButtonState(){
-	button.actualSprite.width = 79;
 }
 
 function startNextConversation(){

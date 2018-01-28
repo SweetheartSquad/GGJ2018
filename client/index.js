@@ -97,7 +97,6 @@ ready(function(){
 		.add("speech2", "assets/texture/speech2.png")
 		.add("option1", "assets/texture/option1.png")
 		.add("option2", "assets/texture/option2.png")
-		.add("button", "assets/texture/button.png")
 		.add("switch_down", "assets/texture/switch-down.png")
 		.add("switch_up", "assets/texture/switch-up.png")
 		.add("light1_off", "assets/texture/light1-off.png")
