@@ -419,6 +419,139 @@ Just so long as you're not driving.
 
 
 
+
+::PBWRITER
+(this.setCallsign("PBWRITER")){}
+...anybody out there? it's me, that weird reporter again, ha ha. i'd love to hear some stories from the ham-o-sphere.
+
+[[BE CHEERFUL]]
+[[BE OSTENTATIOUS]]
+
+::BE CHEERFUL
+(this.setCallsign("YOU")){}
+any chance you'd wanna to hear a story from a lonesome old trucker? lord knows I've got more than a few I could tell.
+(this.autoRespond()){}
+
+::BE CHEERFUL-RESPONSE
+(this.setCallsign("PBWRITER")){}
+awesome! i love hearing from truckers. you guys see so much action out on the road.
+(this.waitAndGoto("PBWRITER 2")){}
+
+::BE OSTENTATIOUS
+(this.setCallsign("YOU")){}
+well there, aren't you lucky? you just so happen to be talkin to the most interesting trucker on the road!
+(this.autoRespond()){}
+
+::BE OSTENTATIOUS-RESPONSE
+(this.setCallsign("PBWRITER")){}
+maybe turn down the bragging, pal. i'm looking for human interest stories, not a new york times feature.
+(this.waitAndGoto("PBWRITER 2")){}
+
+::PBWRITER 2
+(this.setCallsign("PBWRITER")){}
+now, i've got to ask: is this chat on the record? i write a column on ham radio for my local newspaper, and i like to feature guests like you when i can.
+(this.waitAndGoto("PBWRITER 3")){}
+
+[[BE AMENABLE]]
+[[BE CAGEY]]
+
+::BE AMENABLE
+(this.setCallsign("YOU")){}
+absolutely. i don't mind bein the centre of attention. ask away.
+(this.autoRespond()){}
+
+::BE AMENABLE-RESPONSE
+(this.setCallsign("PBWRITER")){}
+great! this is going to be fun.
+(this.waitAndGoto("PBWRITER 3")){}
+
+::BE CAGEY
+(this.setCallsign("YOU")){}
+er, i dunno, miss. i was kinda hopin we could maybe talk privately. you know, just you and me.
+(this.autoRespond()){}
+
+::BE CAGEY-RESPONSE
+(this.setCallsign("PBWRITER")){}
+well... alright. i'll keep this off-the-record for now. we can just talk.
+(this.waitAndGoto("PBWRITER 3")){}
+
+::PBWRITER 3
+(this.setCallsign("PBWRITER")){}
+so, big guy, how'd you get into trucking? i've talked to a lot of drivers and there's always a reason they take the job. what's yours?
+
+[[BE LIGHT]]
+[[BE VULNERABLE]]
+
+::BE LIGHT
+(this.setCallsign("YOU")){}
+oh, no special reason. i just like to drive. it's peaceful, really. kinda zen, you know?
+(this.autoRespond()){}
+
+::BE LIGHT-RESPONSE
+(this.setCallsign("PBWRITER")){}
+really... there's no deeper story?
+(this.autoRespond()){}
+
+::BE LIGHT 2
+(this.setCallsign("YOU")){}
+nope.
+(this.autoRespond()){}
+
+::BE LIGHT-RESPONSE 2
+(this.setCallsign("PBWRITER")){}
+huh. well, i'm glad the job makes you happy.
+(this.waitAndGoto("PBWRITER 4")){}
+
+::BE VULNERABLE
+(this.setCallsign("YOU")){}
+well, if i'm bein honest, it was because of my last relationship. when my partner broke up with me, i didn't know what to do.
+(this.waitAndGoto("BE VULNERABLE 2")){}
+
+::BE VULNERABLE 2
+(this.setCallsign("YOU")){}
+so i packed up my things, got my license, and hit the road.
+(this.autoRespond()){}
+
+::BE VULNERABLE-RESPONSE
+(this.setCallsign("PBWRITER")){}
+i'm sorry to hear that. i hope the job has helped you figure things out. you'll meet someone new, i'm sure of it.
+(this.waitAndGoto("PBWRITER 4")){}
+
+::PBWRITER 4
+(this.setCallsign("PBWRITER")){}
+hey, sorry to cut this short, big guy, but I've got a meeting with my editor. maybe we can talk more another time?
+
+[[BE AFFABLE]]
+[[BE AMOROUS]]
+
+::BE AFFABLE
+(this.setCallsign("YOU")){}
+sure thing, it's been a pleasure. you know where to find me.
+(this.autoRespond()){}
+
+::BE AFFABLE-RESPONSE
+(this.setCallsign("PBWRITER")){}
+yeah, this was fun!
+(this.waitAndGoto("PBWRITER 2")){}
+
+::BE AMOROUS
+(this.setCallsign("YOU")){}
+sure. maybe this time we can talk about you. talk about... us.
+(this.autoRespond()){}
+
+::BE AMOROUS-RESPONSE
+(this.setCallsign("PBWRITER")){}
+mm, sounds like fun. it's a date, pal.
+(this.waitAndGoto("PBWRITER SIGN-OFF")){}
+
+::PBWRITER SIGN-OFF
+(this.setCallsign("PBWRITER")){}
+catch ya later, big guy. pbwriter, out.
+
+
+
+
+
 ::ABOUT
 Made by Ian, Ryan, Sean & Michael for [[#GGJ2018|window.open('https://globalgamejam.org/')]] with [[Pixi.js|window.open('http://www.pixijs.com/')]].
 [[back|this.back()]]
