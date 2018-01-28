@@ -4,7 +4,7 @@ hey here's some garbo that shouldn't get parsed
 This page shows up when a passage failed to parse, or doesn't even exist. Try checking the link for spelling errors or the console logs for more detail on the error.
 [[back|this.back();]]
 
-::START
+::START1
 CQ CQ anybody on the line?
 
 [[BE FRIENDLY]]
@@ -81,10 +81,6 @@ i'll catch ya later big chicken, master ham signing off!
 (this.setCallsign("MASTER HAM")){}
 i'll catch ya later little turkey, master ham signing off!
 (this.endCurrentConversation("BIG QUEEN")){}
-
-
-::??
-oh you're driving a truck? well that sure doesn't sounds safe.
 
 
 
@@ -195,13 +191,9 @@ well they aint worth it, these little arsewipes, they're just a pile of trouble.
 ::BE DIRECT-RESPONSE 2
 then again, aint no reason we cant chat some more. tell you what, you start feeling lonely, you just give your pal suzanne a call. over and out.
 
-
-//////////////////////////////////////////////////////////////////////////
-
-::GENTLE JIM
+::START
 (this.setCallsign("GENTLE JIM")){}
-...as i sit here on my porch today, i see johnathan, and he's just out there with all his friends. eating his acorn. johnathan's one of my favourite squirrels,
- and - oh! there he goes off into his tree. Once again this is gentle jim, is anyone listening in today?
+...as i sit here on my porch today, i see johnathan, and he's just out there with all his friends. eating his acorn. johnathan's one of my favourite squirrels, and - oh! there he goes off into his tree. Once again this is gentle jim, is anyone listening in today?
 
 [[BE MELLOW]]
 [[BE TREPIDACIOUS]]
@@ -233,8 +225,7 @@ just the other day i was washing the dishes, and i broke my favourite mug. broke
 
 ::GENTLE JIM 3
 (this.setCallsign("GENTLE JIM")){}
-just got out my trusty sandpaper, gave it a good rubbing, and got myself a brand new favourite cup. anyway, 
-that's enough about ol jimmy, why don't you tell me a little story about yourself?
+just got out my trusty sandpaper, gave it a good rubbing, and got myself a brand new favourite cup. anyway, that's enough about ol jimmy, why don't you tell me a little story about yourself?
 
 [[BE PERSONAL]]
 [[BE PROFESSIONAL]]
@@ -246,8 +237,7 @@ well...sure, so, just the other day I was cruising down 95 with a full load, had
 
 ::BE PERSONAL 2
 (this.setCallsign("YOU")){}
-Well the ol' "water tank" was getting pretty full and I did't have time to pull over....so I grabbed my trusty bottle and lined er 
-up and let loose. Didn't get it all in but 40% ain't bad.
+Well the ol' "water tank" was getting pretty full and I did't have time to pull over....so I grabbed my trusty bottle and lined er up and let loose. Didn't get it all in but 40% ain't bad.
 (this.waitAndGoto("BE PERSONAL-RESPONSE")){}
 
 ::BE PERSONAL-RESPONSE
@@ -262,8 +252,7 @@ well, this one time I was delivering this shipment of potatoes down to Albuquerq
 
 ::BE PROFESSIONAL 2
 (this.setCallsign("YOU")){}
-It was a raining mighty heavy but I needed to be there potatoe hereo, I got there just in time and opened up the back of my ol' girl but
- all them potatoes were sour. Those fumes put me in the hospital for three weeks.
+It was a raining mighty heavy but I needed to be there potatoe hereo, I got there just in time and opened up the back of my ol' girl but all them potatoes were sour. Those fumes put me in the hospital for three weeks.
 (this.waitAndGoto("BE PROFESSIONAL-RESPONSE")){}
 
 ::BE PROFESSIONAL-RESPONSE
@@ -274,6 +263,152 @@ well, that was riveting, you had me glued to my seat. I think you might be my ne
 ::GENTLE JIM SIGN-OFF
 (this.setCallsign("GENTLE JIM")){}
 anyways, it was nice to hear from another ham head. Gentle Jim signing off.
+
+
+
+
+
+
+
+(this.setCallsign("???")){}
+testing, testing, one two three. alpha. bravo. charlie.
+(this.waitAndGoto("CAPTAIN 2")){}
+
+::CAPTAIN 2
+...
+(this.waitAndGoto("CAPTAIN 3")){}
+
+::CAPTAIN 3
+is it working? can anyone hear me?
+
+[[BE ENCOURAGING]]
+[[BE INQUISITIVE]]
+
+::BE ENCOURAGING
+(this.setCallsign("YOU")){}
+It sure is buddy! I can hear you loud and clear.
+(this.autoRespond()){}
+
+::BE ENCOURAGING-RESPONSE
+(this.setCallsign("???")){}
+Oh golly gee howdy mister! I can't believe it, it's actually working!
+(this.waitAndGoto("CAPTAIN CALLSIGN")){}
+
+::BE INQUISITIVE
+(this.setCallsign("YOU")){}
+That depends: who's asking?
+(this.autoRespond()){}
+
+::BE INQUISITIVE-RESPONSE
+(this.setCallsign("???")){}
+Aw shucks... I didn't even pick out a name yet! Um...
+(this.waitAndGoto("CAPTAIN CALLSIGN")){}
+
+::CAPTAIN CALLSIGN
+(this.setCallsign("CAPTAIN")){}
+You can call me THE CAPTAIN. Or even, "oh captain my captain"! Ha!
+(this.waitAndGoto("CAPTAIN CALLSIGN 2")){}
+
+::CAPTAIN CALLSIGN 2
+Get it?
+
+[[BE SAVVY]]
+[[BE IGNORANT]]
+
+
+::BE SAVVY
+(this.setCallsign("YOU")){}
+Oh, heh, I love Robin Williams.
+(this.autoRespond()){}
+
+::BE SAVVY-RESPONSE
+(this.setCallsign("CAPTAIN")){}
+Great to meet another connoisseur of his body of work! That movie was inspiring.
+(this.waitAndGoto("CAPTAIN CALLSIGN 3")){}
+
+::BE IGNORANT
+(this.setCallsign("YOU")){}
+...I don't get it.
+(this.autoRespond()){}
+
+::BE IGNORANT-RESPONSE
+(this.setCallsign("CAPTAIN")){}
+WHAT?! You've never seen "Dead Poets Society"!? O-M-G it changed my life!
+(this.waitAndGoto("CAPTAIN CALLSIGN 3")){}
+
+::CAPTAIN CALLSIGN 3
+In fact, I've been building this radio out of a kit as an experiment to show my students and let me tell you what, it's been giving me one heck of a time. Almost set fire to my credenza when I got the power supply hooked up!
+(this.waitAndGoto("CAPTAIN CALLSIGN 4")){}
+
+::CAPTAIN CALLSIGN 4
+You're actually the first person I've heard on the air, why don't you tell me a bit about yourself?
+
+[[BE SOCIABLE]]
+[[BE HUMBLE]]
+
+
+::BE SOCIABLE
+(this.setCallsign("YOU")){}
+Oh well I just got into this ham business myself! Lots of nice folk, and it sure makes the truckin' go by more quick-like.
+(this.autoRespond()){}
+
+::BE SOCIABLE-RESPONSE
+(this.setCallsign("CAPTAIN")){}
+Oh I bet you've got a dandy ol' life. Living large, living free, just you and the road, right? Gee whiz, that sounds so exciting...
+(this.waitAndGoto("SAFETY FIRST")){}
+
+::BE HUMBLE
+(this.setCallsign("YOU")){}
+Oh well I'm just a simple trucker. Dunno much about this ham business; gives me something to take my mind off the road I guess.
+(this.autoRespond()){}
+
+::BE HUMBLE-RESPONSE
+(this.setCallsign("CAPTAIN")){}
+Wait, are you driving right now? That sure don't sound safe mister. I hope you're at least taking the proper precautions.
+(this.waitAndGoto("SAFETY FIRST")){}
+
+::SAFETY FIRST
+Both eyes on the road and both hands on the wheel!
+
+[[BE DANGEROUS]]
+[[BE BASHFUL]]
+
+::BE DANGEROUS
+(this.setCallsign("YOU")){}
+Nah, I'm used to driving manual; can't help but keep one hand free. Feels wrong to be driving without that stick in my hand.
+(this.autoRespond()){}
+
+::BE DANGEROUS-RESPONSE
+(this.setCallsign("CAPTAIN")){}
+Oh- well- I can't say I know much about driving, but it sure sounds like you've got a lot of experience.
+(this.waitAndGoto("SAFETY FIRST")){}
+
+::BE DANGEROUS-RESPONSE 2
+Well hey, you ever end up tripping down to Eureka Springs, Arkansas, maybe the two of us can go for a ride.
+(this.waitAndGoto("BE DANGEROUS-RESPONSE 3")){}
+
+::BE DANGEROUS-RESPONSE 3
+You can teach me how to drive stick!
+
+::BE BASHFUL
+(this.setCallsign("YOU")){}
+Oh... yeah, that'd probably be safer. Never been one much for following the safety procedures.
+(this.autoRespond()){}
+
+::BE BASHFUL-RESPONSE
+(this.setCallsign("CAPTAIN")){}
+Well that sure don't sound responsible.
+(this.waitAndGoto("SAFETY FIRST")){}
+
+::BE BASHFUL-RESPONSE 2
+Well hey, you ever end up tripping down to Eureka Springs, Arkansas, maybe we can have ourselves a little hamfest.
+(this.waitAndGoto("BE BASHFUL-RESPONSE 3")){}
+
+::BE BASHFUL-RESPONSE 3
+Just so long as you're not driving.
+(this.waitAndGoto("BE BASHFUL-RESPONSE 3")){}
+
+
 
 ::ABOUT
 Made by Ian, Ryan, Sean & Michael for [[#GGJ2018|window.open('https://globalgamejam.org/')]] with [[Pixi.js|window.open('http://www.pixijs.com/')]].
