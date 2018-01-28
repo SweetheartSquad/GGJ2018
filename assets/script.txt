@@ -555,9 +555,3 @@ catch ya later, big guy. pbwriter, out.
 (this.frequency=Math.floor(Math.random()*999)/10){}
 ...
 (this.endCurrentConversation("EPILOGUE")){}
-
-
-
-::ABOUT
-Made by Ian, Ryan, Sean & Michael for [[#GGJ2018|window.open('https://globalgamejam.org/')]] with [[Pixi.js|window.open('http://www.pixijs.com/')]].
-[[back|this.back()]]
