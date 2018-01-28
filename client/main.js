@@ -51,6 +51,12 @@ function init(){
 	hand1.visible = true;
 	currentHand = hand1;
 
+	wheel = new PIXI.Sprite(PIXI.loader.resources.wheel.texture);
+	wheel.anchor.x = 0.6;
+	wheel.anchor.y = 0.93;
+	wheel.x = -size.x*0.25;
+	wheel.y = size.y*0.7;
+
 	arm = new PIXI.Container();
 	arm.actualSprite = new PIXI.Sprite(PIXI.loader.resources.arm.texture);
 	arm.addChild(arm.actualSprite);
@@ -265,6 +271,7 @@ function init(){
 		dash.addChild(interactiveObjects[i]);	
 	}
 	dash.addChild(callsignDisplay);
+	dash.addChild(wheel);
 
 	scene.addChild(speech);
 	link1.x = 543;
@@ -341,6 +348,7 @@ function update(){
 
 
 	pull_cord.y = lerp(pull_cord.y, -size.y*0.54, 0.1);
+	wheel.rotation = Math.sin(game.ticker.lastTime/1000.0 + game.ticker.lastTime/1200.0)*0.01;
 
 	var input = getInput();
 
