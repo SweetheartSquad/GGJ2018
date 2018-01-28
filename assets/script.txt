@@ -75,12 +75,12 @@ tell you what, how about you twist that knob to 12.7. It sounds like you're gonn
 ::MASTER HAM SIGN-OFF 4 BIG CHICKEN
 (this.setCallsign("MASTER HAM")){}
 i'll catch ya later big chicken, master ham signing off!
-(this.endCurrentConversation("BIG QUEEN")){}
+(this.endCurrentConversation("GENTLE JIM")){}
 
 ::MASTER HAM SIGN-OFF 4 LITTLE TURKEY
 (this.setCallsign("MASTER HAM")){}
 i'll catch ya later little turkey, master ham signing off!
-(this.endCurrentConversation("BIG QUEEN")){}
+(this.endCurrentConversation("GENTLE JIM")){}
 
 
 
@@ -90,7 +90,7 @@ i'll catch ya later little turkey, master ham signing off!
 
 ::BIG QUEEN
 (this.setCallsign("???")){}
-(this.frequency="12.7"){}
+(this.frequency="29.1"){}
 calling all ham-lovers, anyone out there?
 (this.waitAndGoto("BIG QUEEN 2")){}
 
@@ -122,7 +122,7 @@ well hey there squirt. been far too long since i've heard-
 (this.waitAndGoto("BIG QUEEN SHOUT")){}
 
 ::BIG QUEEN SHOUT
-Johnathan you put that down! momma's talking to a real stud right now and if you dont shut your little yap im gonna shut it for ya!
+Johnathan you put that down! momma's talking to a real stud right now and if you don't shut your little yap im gonna shut it for ya!
 (this.waitAndGoto("BIG QUEEN SHOUT 2")){}
 
 ::BIG QUEEN SHOUT 2
@@ -174,8 +174,9 @@ oh you know, never met a woman. least not a real one. funny how life works out.
 
 ::BE EVASIVE-RESPONSE
 (this.setCallsign("BIG QUEEN")){}
-tsk tsk tsk, no wonder you dont have any kids. cant even tell the sound of a real woman when its pounding right on those 
+tsk tsk tsk, no wonder you don't have any kids. cant even tell the sound of a real woman when it's pounding right on those 
 eardrums of yours. i pity you, you sad sad man. over and out.
+(this.endCurrentConversation("CAPTAIN")){}
 
 ::BE DIRECT
 (this.setCallsign("YOU")){}
@@ -184,15 +185,22 @@ nah im sure you've heard the story before, always on the road. aint go no time f
 
 ::BE DIRECT-RESPONSE
 (this.setCallsign("BIG QUEEN")){}
-well they aint worth it, these little arsewipes, they're just a pile of trouble. its too bad they're around, or maybe the two of us
+well they aint worth it, these little arsewipes, they're just a pile of trouble. it's too bad they're around, or maybe the two of us
  coulda spent a little more time together.
 (this.waitAndGoto("BE DIRECT-RESPONSE 2")){}
 
 ::BE DIRECT-RESPONSE 2
 then again, aint no reason we cant chat some more. tell you what, you start feeling lonely, you just give your pal suzanne a call. over and out.
+(this.endCurrentConversation("CAPTAIN")){}
+
+
+
+
+
 
 ::GENTLE JIM
-(this.setCallsign("GENTLE JIM")){}
+(this.setCallsign("???")){}
+(this.frequency="12.7"){}
 ...as i sit here on my porch today, i see johnathan, and he's just out there with all his friends. eating his acorn. johnathan's one of my favourite squirrels, and - oh! there he goes off into his tree. Once again this is gentle jim, is anyone listening in today?
 
 [[BE MELLOW]]
@@ -237,12 +245,12 @@ well...sure, so, just the other day I was cruising down 95 with a full load, had
 
 ::BE PERSONAL 2
 (this.setCallsign("YOU")){}
-Well the ol' "water tank" was getting pretty full and I did't have time to pull over....so I grabbed my trusty bottle and lined er up and let loose. Didn't get it all in but 40% ain't bad.
+Well the ol' "water tank" was getting pretty full and I didn't have time to pull over....so I grabbed my trusty bottle and lined 'er up and let loose. Didn't get it all in but 40% ain't bad.
 (this.waitAndGoto("BE PERSONAL-RESPONSE")){}
 
 ::BE PERSONAL-RESPONSE
 (this.setCallsign("GENTLE JIM")){}
-No worries, no worries I've been there my self. A bottle ain't an easy target, especially when your nicknam is Gentle Giant.
+No worries, no worries I've been there my self. A bottle ain't an easy target, especially when your nickname is Gentle Giant.
 (this.waitAndGoto("GENTLE JIM SIGN-OFF")){}
 
 ::BE PROFESSIONAL
@@ -252,25 +260,26 @@ well, this one time I was delivering this shipment of potatoes down to Albuquerq
 
 ::BE PROFESSIONAL 2
 (this.setCallsign("YOU")){}
-It was a raining mighty heavy but I needed to be there potatoe hereo, I got there just in time and opened up the back of my ol' girl but all them potatoes were sour. Those fumes put me in the hospital for three weeks.
+It was a raining mighty heavy but I needed to be there potato hero, I got there just in time and opened up the back of my ol' girl but all them potatoes were sour. Those fumes put me in the hospital for three weeks.
 (this.waitAndGoto("BE PROFESSIONAL-RESPONSE")){}
 
 ::BE PROFESSIONAL-RESPONSE
 (this.setCallsign("GENTLE JIM")){}
-well, that was riveting, you had me glued to my seat. I think you might be my new hero, and that's no easy feat
+well, that was riveting, you had me glued to my seat. I think you might be my new hero, and that's no easy feat.
 (this.waitAndGoto("GENTLE JIM SIGN-OFF")){}
 
 ::GENTLE JIM SIGN-OFF
 (this.setCallsign("GENTLE JIM")){}
 anyways, it was nice to hear from another ham head. Gentle Jim signing off.
+(this.endCurrentConversation("BIG QUEEN")){}
 
 
 
 
 
-
-
+::CAPTAIN
 (this.setCallsign("???")){}
+(this.frequency="32.2"){}
 testing, testing, one two three. alpha. bravo. charlie.
 (this.waitAndGoto("CAPTAIN 2")){}
 
