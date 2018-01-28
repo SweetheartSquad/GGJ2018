@@ -390,6 +390,11 @@ function updateCallsignDisplay(){
 			currentCallsign.visible = false;
 		}
 		callsignText.text = callsign.toLowerCase();
+		if(callsign == "YOU") {
+			speech.texture = PIXI.loader.resources.speech2.texture;
+		}else{
+			speech.texture = PIXI.loader.resources.speech.texture;
+		}
 		for(i = 0; i < callsigns.length; i++){
 			if(callsigns[i].title == callsign){
 				currentCallsign = callsigns[i];
