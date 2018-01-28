@@ -156,6 +156,7 @@ ready(function(){
 		.add("hand3", "assets/texture/hand.png")
 		.add("hand_knob", "assets/texture/hand_knob.png")
 		.add("hand_tug", "assets/texture/hand_tug.png")
+		.add("hand_thumb", "assets/texture/hand_thumb.png")
 		.add("wheel", "assets/texture/wheel.png")
 		.add("wiper", "assets/texture/wiper.png")
 		.add("callsignMASTER HAM", "assets/texture/MASTER HAM.png")

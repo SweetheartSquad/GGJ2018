@@ -49,6 +49,7 @@ function init(){
 	hand3=makeHand(PIXI.loader.resources.hand3.texture, 0.25, 0.1, 20, 80);
 	hand_knob=makeHand(PIXI.loader.resources.hand_knob.texture, 0.1, 0.4, 40, 40);
 	hand_tug=makeHand(PIXI.loader.resources.hand_tug.texture, 0.2, 0.2, 40, 40);
+	hand_thumb=makeHand(PIXI.loader.resources.hand_thumb.texture, 0.3, 0.1, 0, 68);
 
 	hand1.visible = true;
 	currentHand = hand1;
@@ -413,9 +414,9 @@ function update(){
 					link.tint = 0xBBBBBB;
 					anyHover = true;
 					if(mouse.isDown(mouse.LEFT)){
-						setHand(obj.interactingHand);
+						setHand(hand_thumb);
 					}else{
-						setHand(obj.hoverHand);
+						setHand(hand_thumb);
 					}
 
 					if(mouse.isJustDown(mouse.LEFT)){
