@@ -390,7 +390,7 @@ Nah, I'm used to driving manual; can't help but keep one hand free. Feels wrong 
 ::BE DANGEROUS-RESPONSE
 (this.setCallsign("CAPTAIN")){}
 Oh- well- I can't say I know much about driving, but it sure sounds like you've got a lot of experience.
-(this.waitAndGoto("SAFETY FIRST")){}
+(this.waitAndGoto("BE DANGEROUS-RESPONSE 2")){}
 
 ::BE DANGEROUS-RESPONSE 2
 Well hey, if you ever end up tripping down to Eureka Springs, Arkansas, maybe the two of us can go for a ride.
@@ -398,6 +398,7 @@ Well hey, if you ever end up tripping down to Eureka Springs, Arkansas, maybe th
 
 ::BE DANGEROUS-RESPONSE 3
 You can teach me how to drive stick!
+(this.endCurrentConversation("EPILOGUE")){}
 
 ::BE BASHFUL
 (this.setCallsign("YOU")){}
@@ -407,7 +408,7 @@ Oh... yeah, that'd probably be safer. Never been one much for following the safe
 ::BE BASHFUL-RESPONSE
 (this.setCallsign("CAPTAIN")){}
 Well that sure doesn't sound responsible.
-(this.waitAndGoto("SAFETY FIRST")){}
+(this.waitAndGoto("BE BASHFUL-RESPONSE 2")){}
 
 ::BE BASHFUL-RESPONSE 2
 But hey, you ever end up tripping down to Eureka Springs, Arkansas, maybe we can have ourselves a little hamfest.
@@ -415,7 +416,7 @@ But hey, you ever end up tripping down to Eureka Springs, Arkansas, maybe we can
 
 ::BE BASHFUL-RESPONSE 3
 Just so long as you're not driving.
-(this.waitAndGoto("BE BASHFUL-RESPONSE 3")){}
+(this.endCurrentConversation("EPILOGUE")){}
 
 
 

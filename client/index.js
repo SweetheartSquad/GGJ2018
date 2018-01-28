@@ -169,6 +169,7 @@ ready(function(){
 		.add("callsignBIG CHICKEN", "assets/texture/BIG CHICKEN.png")
 		.add("callsignLITTLE TURKEY", "assets/texture/LITTLE TURKEY.png")
 		.add("callsignGENTLE JIM", "assets/texture/GENTLE JIM.png")
+		.add("callsignCAPTAIN", "assets/texture/CAPTAIN.png")
 		.add("hand", "assets/texture/hand.png")
 		.add("splash", "assets/texture/splash.png");
 
