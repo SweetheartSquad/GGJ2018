@@ -208,12 +208,16 @@ function init(){
 
 	pull_cord = new PIXI.Sprite(PIXI.loader.resources.pull_cord.texture);
 	pull_cord.position.x = size.x*0.2;
-	pull_cord.position.y = -size.y*0.54;
+	pull_cord.position.y = -size.y*1.1;
 	pull_cord.anchor.x = 0.5;
 	pull_cord.anchor.y = 0;
 	pull_cord.onInteraction = function(){
-		sounds.pull_cord.play();
-		this.y = -size.y*0.52;
+		if(this.sound){
+			this.sound.stop();
+		}
+		this.sound = sounds.pull_cord.play();
+		this.y = -size.y*0.7;
+		hand.y -= -size.y*0.6;
 	}.bind(pull_cord);
 	pull_cord.restoreState = restoreButtonState;
 	pull_cord.interactingHand = hand2;
@@ -233,7 +237,10 @@ function init(){
 			startNextConversation();
 			sounds.dial.play();
 		}else{
-			sounds.not_yet.play();
+			if(this.sound){
+				this.sound.stop();
+			}
+			this.sound = sounds.not_yet.play();
 		}
 	}.bind(dial);
 	dial.restoreState = restoreButtonState;
@@ -362,8 +369,8 @@ function update(){
 	}
 
 
-	pull_cord.y = lerp(pull_cord.y, -size.y*0.54, 0.1);
-	wheel.rotation = Math.sin(game.ticker.lastTime/1000.0 + game.ticker.lastTime/1200.0)*0.01;
+	pull_cord.y = lerp(pull_cord.y, -size.y*1.1, 0.1);
+	wheel.rotation = Math.sin(game.ticker.lastTime/1000.0 + game.ticker.lastTime/1200.0)*0.01 + Math.sin(game.ticker.lastTime/900.0 + game.ticker.lastTime/1400.0)*0.01;
 
 	var input = getInput();
 

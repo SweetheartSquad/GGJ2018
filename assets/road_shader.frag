@@ -23,13 +23,13 @@ void main(void){
     // get colour
     vec3 col = texture2D(uSampler, uv).rgb;
     
-    float horizon = horizon + sin(uv.x*3.0+uTime)*0.05;
+    float horizon = horizon + sin(uv.x*3.0+uTime)*0.025;
     float range = (1.0-horizon)*0.02;
     float sky = smoothstep(horizon+range, horizon-range, uv.y) + sin(uTime/2.0+uv.y*7.0+uv.x*11.0)*0.1 + sin(uTime*1.1+uv.y*3.0+uv.x*10.0)*0.1;
     
     uv.y -= horizon;
     uv.y /= (1.0 - horizon);
-    uv.x += -0.25 + uv.y*0.25;
+    uv.x += -0.15 + uv.y*0.25;
 
     vec3 skyCol = vec3(0.5,0.5,1.0);
     vec3 groundCol = vec3(0);

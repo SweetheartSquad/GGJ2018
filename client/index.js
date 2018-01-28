@@ -109,7 +109,7 @@ ready(function(){
 		volume:1
 	});
 	sounds["pull_cord"] = new Howl({
-		urls:["assets/audio/sfx_2.wav"],
+		urls:["assets/audio/horn.ogg"],
 		autoplay:false,
 		loop:false,
 		volume:1
