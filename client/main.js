@@ -111,7 +111,9 @@ function init(){
 	
 	callsigns = [
 		'MASTER HAM',
-		'BIG QUEEN'
+		'BIG QUEEN',
+		'BIG CHICKEN',
+		'LITTLE TURKEY'
 	];
 	for(var i = 0; i < callsigns.length; ++i){
 		var c = callsigns[i];
@@ -395,6 +397,7 @@ function updateCallsignDisplay(){
 		callsignText.text = callsign.toLowerCase();
 		if(callsign == "YOU") {
 			speech.texture = PIXI.loader.resources.speech2.texture;
+			callsign = g.yourCallsign || callsign;
 		}else{
 			speech.texture = PIXI.loader.resources.speech.texture;
 		}

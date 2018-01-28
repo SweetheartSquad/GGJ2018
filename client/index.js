@@ -104,6 +104,8 @@ ready(function(){
 		.add("hand3", "assets/texture/hand3.png")
 		.add("callsignMASTER HAM", "assets/texture/MASTER HAM.png")
 		.add("callsignBIG QUEEN", "assets/texture/BIG QUEEN.png")
+		.add("callsignBIG CHICKEN", "assets/texture/BIG CHICKEN.png")
+		.add("callsignLITTLE TURKEY", "assets/texture/LITTLE TURKEY.png")
 		.add("hand", "assets/texture/hand.png");
 
 	PIXI.loader

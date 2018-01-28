@@ -37,6 +37,7 @@ oh well nice to meet ya, nice to hear someone else on the air today. you got you
 
 ::BE SUGGESTIVE
 (this.setCallsign("YOU")){}
+(this.yourCallsign="BIG CHICKEN"){}
 well they call me big chicken. and let me tell you what, it's not cause i got feathers.
 (this.autoRespond()){}
 
@@ -47,6 +48,7 @@ well big chicken, im no little chicken myself, but you can call me master ham.
 
 ::BE HOMEY
 (this.setCallsign("YOU")){}
+(this.yourCallsign="LITTLE TURKEY"){}
 oh well you can call me little turkey. throw in some mashed potatoes and a side of green beans and you've got yourself a thanksgiving.
 (this.autoRespond()){}
 
