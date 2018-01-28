@@ -4,7 +4,7 @@ hey here's some garbo that shouldn't get parsed
 This page shows up when a passage failed to parse, or doesn't even exist. Try checking the link for spelling errors or the console logs for more detail on the error.
 [[back|this.back();]]
 
-::START1
+::START
 CQ CQ anybody on the line?
 
 [[BE FRIENDLY]]
@@ -191,7 +191,7 @@ well they aint worth it, these little arsewipes, they're just a pile of trouble.
 ::BE DIRECT-RESPONSE 2
 then again, aint no reason we cant chat some more. tell you what, you start feeling lonely, you just give your pal suzanne a call. over and out.
 
-::START
+::GENTLE JIM
 (this.setCallsign("GENTLE JIM")){}
 ...as i sit here on my porch today, i see johnathan, and he's just out there with all his friends. eating his acorn. johnathan's one of my favourite squirrels, and - oh! there he goes off into his tree. Once again this is gentle jim, is anyone listening in today?
 
