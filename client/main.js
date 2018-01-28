@@ -106,8 +106,8 @@ function init(){
 	link1.anchor.x = link1.anchor.y = link2.anchor.x = link2.anchor.y = 0.5;
 
 	callsignDisplay = new PIXI.Container();
-	callsignDisplay.position.x = 332 - size.x/2;
-	callsignDisplay.position.y = 232 - size.y/2;
+	callsignDisplay.position.x = 38;
+	callsignDisplay.position.y = 26;
 	
 	callsigns = [
 		'MASTER HAM',

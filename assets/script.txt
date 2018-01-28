@@ -147,7 +147,7 @@ oh im sucking on a juice box right now; always keep my van loaded up for the boy
 
 ::BE PASSIONATE
 (this.setCallsign("YOU")){}
-well big queen, i like to get down in my gitch, flex in front of the mirror and say 'hey'... you know, just practice talking to women like you.
+well big queen, i like to get down in my gitch, flex in front of the mirror and say "hey"... you know, just practice talking to women like you.
 (this.waitAndGoto("BE PASSIONATE 2")){}
 
 ::BE PASSIONATE 2
@@ -172,7 +172,7 @@ oh you know, never met a woman. least not a real one. funny how life works out.
 
 ::BE EVASIVE-RESPONSE
 (this.setCallsign("BIG QUEEN")){}
-tsk tsk tsk, no wonder you dont have any kids. cant even tell the sound of a real woman when its pounding right on those eardrums of yours. i pity you, you sad sad man. over and out."
+tsk tsk tsk, no wonder you dont have any kids. cant even tell the sound of a real woman when its pounding right on those eardrums of yours. i pity you, you sad sad man. over and out.
 
 ::BE DIRECT
 (this.setCallsign("YOU")){}
