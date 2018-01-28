@@ -86,47 +86,65 @@ oh you're driving a truck? well that sure doesn't sounds safe.
 
 
 ::BIG QUEEN
+(this.setCallsign("???")){}
 calling all ham-lovers, anyone out there?
 (this.waitAndGoto("BIG QUEEN 2")){}
 
 ::BIG QUEEN 2
+(this.setCallsign("BIG QUEEN")){}
 anyone got time to spare for big queen?
 
 [[BE EAGER]]
 [[BE RESERVED]]
 
 ::BE EAGER
+(this.setCallsign("YOU")){}
 oh i got more than enough time for you big queen.
 (this.autoRespond()){}
 
 ::BE EAGER-RESPONSE
-BE eager response
+(this.setCallsign("BIG QUEEN")){}
+hoo boy, am i glad to hear it! you would not believe how long-
+(this.waitAndGoto("BIG QUEEN SHOUT")){}
 
 ::BE RESERVED
+(this.setCallsign("YOU")){}
 i can probably spare a moment or two; what's going on big queen?
 (this.autoRespond()){}
 
 ::BE RESERVED-RESPONSE
-BE reserved response
+(this.setCallsign("BIG QUEEN")){}
+well hey there squirt. been far too long since i've heard-
+(this.waitAndGoto("BIG QUEEN SHOUT")){}
 
-::??
+::BIG QUEEN SHOUT
 Johnathan you put that down! momma's talking to a real stud right now and if you dont shut your little yap im gonna shut it for ya!
-Hey squirt, what gets you choochin at night?
+(this.waitAndGoto("BIG QUEEN SHOUT 2")){}
+
+::BIG QUEEN SHOUT 2
+Sorry 'bout that squirt. I swear these boys'd tear the place down if I let them have their way.
+(this.waitAndGoto("BIG QUEEN SHOUT 3")){}
+
+::BIG QUEEN SHOUT 3
+So squirt: what gets you *choochin* at night?
 
 [[BE CAREFREE]]
 [[BE PASSIONATE]]
 
 ::BE CAREFREE
+(this.setCallsign("YOU")){}
 ah you know, suck on a juice box, watch a little news. kick back, relax, take a shower. shave my pits, eat a couple cheetos, go to bed.
 (this.autoRespond()){}
 
 ::BE CAREFREE-RESPONSE
+(this.setCallsign("BIG QUEEN")){}
 oh im sucking on a juice box right now; always keep my van loaded up for the boys. you got any kids yerself?
 
 [[BE EVASIVE]]
 [[BE DIRECT]]
 
 ::BE PASSIONATE
+(this.setCallsign("YOU")){}
 well big queen, i like to get down in my gitch, flex in front of the mirror and say 'hey'... you know, just practice talking to women like you.
 (this.waitAndGoto("BE PASSIONATE 2")){}
 
@@ -139,23 +157,28 @@ though really, im more of a foot man myself; tell me, how does big queen feel ab
 (this.waitAndGoto("BE PASSIONATE-RESPONSE")){}
 
 ::BE PASSIONATE-RESPONSE
+(this.setCallsign("BIG QUEEN")){}
 ever since i had little Roger, aint no one wanna see these footsies. i gots myself a bad case of gout thanks to this bugger. you got any little monsters yerself?
 
 [[BE EVASIVE]]
 [[BE DIRECT]]
 
 ::BE EVASIVE
+(this.setCallsign("YOU")){}
 oh you know, never met a woman. least not a real one. funny how life works out.
 (this.autoRespond()){}
 
 ::BE EVASIVE-RESPONSE
+(this.setCallsign("BIG QUEEN")){}
 tsk tsk tsk, no wonder you dont have any kids. cant even tell the sound of a real woman when its pounding right on those eardrums of yours. i pity you, you sad sad man. over and out."
 
 ::BE DIRECT
+(this.setCallsign("YOU")){}
 nah im sure you've heard the story before, always on the road. aint go no time for the little tykes, just me myself and i, all grown, all alone.
 (this.autoRespond()){}
 
 ::BE DIRECT-RESPONSE
+(this.setCallsign("BIG QUEEN")){}
 well they aint worth it, these little arsewipes, they're just a pile of trouble. its too bad they're around, or maybe the two of us coulda spent a little more time together.
 (this.waitAndGoto("BE DIRECT-RESPONSE 2")){}
 

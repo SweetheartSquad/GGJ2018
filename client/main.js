@@ -109,14 +109,17 @@ function init(){
 	callsignDisplay.position.x = 332 - size.x/2;
 	callsignDisplay.position.y = 232 - size.y/2;
 	
-	callsignHam = new PIXI.Sprite(PIXI.loader.resources.callsignHam.texture);
-	callsignHam.title = "MASTER HAM";
-	callsignHam.visible = false;
-	callsignDisplay.addChild(callsignHam);
-
 	callsigns = [
-		callsignHam
+		'MASTER HAM',
+		'BIG QUEEN'
 	];
+	for(var i = 0; i < callsigns.length; ++i){
+		var c = callsigns[i];
+		callsigns[i] = new PIXI.Sprite(PIXI.loader.resources['callsign' + c].texture);
+		callsigns[i].title = c;
+		callsigns[i].visible = false;
+		callsignDisplay.addChild(callsigns[i]);
+	}
 
 	// callsignDisplay.width = 12;
 	// callsignDisplay.height = 12;

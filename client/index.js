@@ -102,7 +102,8 @@ ready(function(){
 		.add("arm2", "assets/texture/arm2.png")
 		.add("hand2", "assets/texture/hand2.png")
 		.add("hand3", "assets/texture/hand3.png")
-		.add("callsignHam", "assets/texture/ham.png")
+		.add("callsignMASTER HAM", "assets/texture/MASTER HAM.png")
+		.add("callsignBIG QUEEN", "assets/texture/BIG QUEEN.png")
 		.add("hand", "assets/texture/hand.png");
 
 	PIXI.loader
