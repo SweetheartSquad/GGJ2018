@@ -24,7 +24,8 @@ hey there sonny, what's going on? how're ya feeling? actually, first things firs
 
 ::BE CURIOUS
 (this.setCallsign("YOU")){}
-oh, wow! didn't expect to hear anyone on here! picked this up at the gas station down the road from a little fella named Ronny along with a bottle of Dr. Pepper and three twizzlers.
+oh, wow! didn't expect to hear anyone on here! picked this up at the gas station down the road from a
+ little fella named Ronny along with a bottle of Dr. Pepper and three twizzlers.
 (this.autoRespond()){}
 
 ::BE CURIOUS-RESPONSE
@@ -59,7 +60,8 @@ pleasure to meet ya, gobble gobble, heh heh! I do like me some stuffed bird, but
 
 ::MASTER HAM SIGN-OFF 1
 (this.setCallsign("MASTER HAM")){}
-sounds like you're pretty new here. im sure you know by now that if you twist that knob over there, it changes the frequency of your radio. you can find all sorts of folks on the hamverse.
+sounds like you're pretty new here. im sure you know by now that if you twist that knob over there, 
+it changes the frequency of your radio. you can find all sorts of folks on the hamverse.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 2")){}
 
 ::MASTER HAM SIGN-OFF 2
@@ -69,7 +71,8 @@ oh yeah, all sorts of... interesting folks.
 
 ::MASTER HAM SIGN-OFF 3
 (this.setCallsign("MASTER HAM")){}
-tell you what, how about you twist that there knob to 12.7. It sounds like you're gonna need yourself some contacts; if you head on over there, i bet you'll find yourself some good'uns.
+tell you what, how about you twist that there knob to 12.7. It sounds like you're gonna need yourself 
+some contacts; if you head on over there, i bet you'll find yourself some good'uns.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 4 "+this.yourCallsign)){}
 
 ::MASTER HAM SIGN-OFF 4 BIG CHICKEN
