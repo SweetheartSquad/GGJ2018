@@ -69,12 +69,17 @@ oh yeah, all sorts of... interesting folks.
 
 ::MASTER HAM SIGN-OFF 3
 (this.setCallsign("MASTER HAM")){}
-tell you what, how about you twist that there knob to <insert station number here>. It sounds like you're gonna need yourself some contacts; if you head on over there, i bet you'll find yourself some good'uns.
-(this.waitAndGoto("MASTER HAM SIGN-OFF 4")){}
+tell you what, how about you twist that there knob to 12.7. It sounds like you're gonna need yourself some contacts; if you head on over there, i bet you'll find yourself some good'uns.
+(this.waitAndGoto("MASTER HAM SIGN-OFF 4 "+this.yourCallsign)){}
 
-::MASTER HAM SIGN-OFF 4
+::MASTER HAM SIGN-OFF 4 BIG CHICKEN
 (this.setCallsign("MASTER HAM")){}
-i'll catch ya later <insert callsign here>, master ham signing off!
+i'll catch ya later big chicken, master ham signing off!
+(this.endCurrentConversation("BIG QUEEN")){}
+
+::MASTER HAM SIGN-OFF 4 LITTLE TURKEY
+(this.setCallsign("MASTER HAM")){}
+i'll catch ya later little turkey, master ham signing off!
 (this.endCurrentConversation("BIG QUEEN")){}
 
 
