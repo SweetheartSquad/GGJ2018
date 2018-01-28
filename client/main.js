@@ -230,6 +230,7 @@ function init(){
 		if(g.activeSound && g.activeSound.done && g.nextConversation){
 			this.rotation += Math.PI/2;
 			startNextConversation();
+			sounds.dial.play();
 		}else{
 			sounds.not_yet.play();
 		}

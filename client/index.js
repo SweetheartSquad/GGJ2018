@@ -96,6 +96,12 @@ ready(function(){
 		loop:false,
 		volume:1
 	});
+	sounds.dial = new Howl({
+		urls:["assets/audio/dial.ogg"],
+		autoplay:false,
+		loop:false,
+		volume:1
+	});
 	sounds["temp"] = new Howl({
 		urls:["assets/audio/temp.wav"],
 		autoplay:false,
@@ -109,7 +115,7 @@ ready(function(){
 		volume:1
 	});
 	sounds["not_yet"] = new Howl({
-		urls:["assets/audio/sfx_2.wav"],
+		urls:["assets/audio/NOT YET.ogg", "assets/audio/NOT YET.mp3"],
 		autoplay:false,
 		loop:false,
 		volume:1
