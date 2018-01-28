@@ -94,13 +94,18 @@ ready(function(){
 		.add("font","assets/font/font.fnt")
 		.add("dash", "assets/texture/dash.png")
 		.add("speech", "assets/texture/speech.png")
+		.add("speech2", "assets/texture/speech2.png")
 		.add("option1", "assets/texture/option1.png")
 		.add("option2", "assets/texture/option2.png")
 		.add("button", "assets/texture/button.png")
 		.add("arm", "assets/texture/arm.png")
+		.add("arm2", "assets/texture/arm2.png")
 		.add("hand2", "assets/texture/hand2.png")
 		.add("hand3", "assets/texture/hand3.png")
-		.add("callsignHam", "assets/texture/ham.png")
+		.add("callsignMASTER HAM", "assets/texture/MASTER HAM.png")
+		.add("callsignBIG QUEEN", "assets/texture/BIG QUEEN.png")
+		.add("callsignBIG CHICKEN", "assets/texture/BIG CHICKEN.png")
+		.add("callsignLITTLE TURKEY", "assets/texture/LITTLE TURKEY.png")
 		.add("hand", "assets/texture/hand.png");
 
 	PIXI.loader

@@ -16,7 +16,7 @@ hello there! just a new ham, living life and looking for love.
 (this.autoRespond()){}
 
 ::BE FRIENDLY-RESPONSE
-(this.setCallsign("MASTER_HAM")){}
+(this.setCallsign("???")){}
 hey there sonny, what's going on? how're ya feeling? actually, first things first, what do i call ya?
 
 [[BE SUGGESTIVE]]
@@ -28,7 +28,7 @@ oh, wow! didn't expect to hear anyone on here! picked this up at the gas station
 (this.autoRespond()){}
 
 ::BE CURIOUS-RESPONSE
-(this.setCallsign("MASTER_HAM")){}
+(this.setCallsign("???")){}
 oh well nice to meet ya, nice to hear someone else on the air today. you got yourself a callsign bud?
 
 [[BE SUGGESTIVE]]
@@ -37,41 +37,43 @@ oh well nice to meet ya, nice to hear someone else on the air today. you got you
 
 ::BE SUGGESTIVE
 (this.setCallsign("YOU")){}
+(this.yourCallsign="BIG CHICKEN"){}
 well they call me big chicken. and let me tell you what, it's not cause i got feathers.
 (this.autoRespond()){}
 
 ::BE SUGGESTIVE-RESPONSE
-(this.setCallsign("MASTER_HAM")){}
+(this.setCallsign("MASTER HAM")){}
 well big chicken, im no little chicken myself, but you can call me master ham.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 1")){}
 
 ::BE HOMEY
 (this.setCallsign("YOU")){}
+(this.yourCallsign="LITTLE TURKEY"){}
 oh well you can call me little turkey. throw in some mashed potatoes and a side of green beans and you've got yourself a thanksgiving.
 (this.autoRespond()){}
 
 ::BE HOMEY-RESPONSE
-(this.setCallsign("MASTER_HAM")){}
+(this.setCallsign("MASTER HAM")){}
 pleasure to meet ya, gobble gobble, heh heh! I do like me some stuffed bird, but im more of ham-boy myself. You could even say i'm... a master of ham. that's me, master ham, nice to meet ya.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 1")){}
 
 ::MASTER HAM SIGN-OFF 1
-(this.setCallsign("MASTER_HAM")){}
+(this.setCallsign("MASTER HAM")){}
 sounds like you're pretty new here. im sure you know by now that if you twist that knob over there, it changes the frequency of your radio. you can find all sorts of folks on the hamverse.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 2")){}
 
 ::MASTER HAM SIGN-OFF 2
-(this.setCallsign("MASTER_HAM")){}
+(this.setCallsign("MASTER HAM")){}
 oh yeah, all sorts of... interesting folks.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 3")){}
 
 ::MASTER HAM SIGN-OFF 3
-(this.setCallsign("MASTER_HAM")){}
+(this.setCallsign("MASTER HAM")){}
 tell you what, how about you twist that there knob to <insert station number here>. It sounds like you're gonna need yourself some contacts; if you head on over there, i bet you'll find yourself some good'uns.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 4")){}
 
 ::MASTER HAM SIGN-OFF 4
-(this.setCallsign("MASTER_HAM")){}
+(this.setCallsign("MASTER HAM")){}
 i'll catch ya later <insert callsign here>, master ham signing off!
 (this.endCurrentConversation("BIG QUEEN")){}
 
@@ -86,48 +88,66 @@ oh you're driving a truck? well that sure doesn't sounds safe.
 
 
 ::BIG QUEEN
+(this.setCallsign("???")){}
 calling all ham-lovers, anyone out there?
 (this.waitAndGoto("BIG QUEEN 2")){}
 
 ::BIG QUEEN 2
+(this.setCallsign("BIG QUEEN")){}
 anyone got time to spare for big queen?
 
 [[BE EAGER]]
 [[BE RESERVED]]
 
 ::BE EAGER
+(this.setCallsign("YOU")){}
 oh i got more than enough time for you big queen.
 (this.autoRespond()){}
 
 ::BE EAGER-RESPONSE
-BE eager response
+(this.setCallsign("BIG QUEEN")){}
+hoo boy, am i glad to hear it! you would not believe how long-
+(this.waitAndGoto("BIG QUEEN SHOUT")){}
 
 ::BE RESERVED
+(this.setCallsign("YOU")){}
 i can probably spare a moment or two; what's going on big queen?
 (this.autoRespond()){}
 
 ::BE RESERVED-RESPONSE
-BE reserved response
+(this.setCallsign("BIG QUEEN")){}
+well hey there squirt. been far too long since i've heard-
+(this.waitAndGoto("BIG QUEEN SHOUT")){}
 
-::??
+::BIG QUEEN SHOUT
 Johnathan you put that down! momma's talking to a real stud right now and if you dont shut your little yap im gonna shut it for ya!
-Hey squirt, what gets you choochin at night?
+(this.waitAndGoto("BIG QUEEN SHOUT 2")){}
+
+::BIG QUEEN SHOUT 2
+Sorry 'bout that squirt. I swear these boys'd tear the place down if I let them have their way.
+(this.waitAndGoto("BIG QUEEN SHOUT 3")){}
+
+::BIG QUEEN SHOUT 3
+So squirt: what gets you *choochin* at night?
 
 [[BE CAREFREE]]
 [[BE PASSIONATE]]
 
 ::BE CAREFREE
+(this.setCallsign("YOU")){}
 ah you know, suck on a juice box, watch a little news. kick back, relax, take a shower. shave my pits, eat a couple cheetos, go to bed.
 (this.autoRespond()){}
 
 ::BE CAREFREE-RESPONSE
+(this.setCallsign("BIG QUEEN")){}
 oh im sucking on a juice box right now; always keep my van loaded up for the boys. you got any kids yerself?
 
 [[BE EVASIVE]]
 [[BE DIRECT]]
 
 ::BE PASSIONATE
-well big queen, i like to get down in my gitch, flex in front of the mirror and say 'hey'... you know, just practice talking to women like you.
+(this.setCallsign("YOU")){}
+well big queen, i like to get down in my gitch, flex in front of the mirror and say "hey"... you know, just practice talking to women like you.
 (this.waitAndGoto("BE PASSIONATE 2")){}
 
 ::BE PASSIONATE 2
@@ -139,23 +159,28 @@ though really, im more of a foot man myself; tell me, how does big queen feel ab
 (this.waitAndGoto("BE PASSIONATE-RESPONSE")){}
 
 ::BE PASSIONATE-RESPONSE
+(this.setCallsign("BIG QUEEN")){}
 ever since i had little Roger, aint no one wanna see these footsies. i gots myself a bad case of gout thanks to this bugger. you got any little monsters yerself?
 
 [[BE EVASIVE]]
 [[BE DIRECT]]
 
 ::BE EVASIVE
+(this.setCallsign("YOU")){}
 oh you know, never met a woman. least not a real one. funny how life works out.
 (this.autoRespond()){}
 
 ::BE EVASIVE-RESPONSE
-tsk tsk tsk, no wonder you dont have any kids. cant even tell the sound of a real woman when its pounding right on those eardrums of yours. i pity you, you sad sad man. over and out."
+(this.setCallsign("BIG QUEEN")){}
+tsk tsk tsk, no wonder you dont have any kids. cant even tell the sound of a real woman when its pounding right on those eardrums of yours. i pity you, you sad sad man. over and out.
 
 ::BE DIRECT
+(this.setCallsign("YOU")){}
 nah im sure you've heard the story before, always on the road. aint go no time for the little tykes, just me myself and i, all grown, all alone.
 (this.autoRespond()){}
 
 ::BE DIRECT-RESPONSE
+(this.setCallsign("BIG QUEEN")){}
 well they aint worth it, these little arsewipes, they're just a pile of trouble. its too bad they're around, or maybe the two of us coulda spent a little more time together.
 (this.waitAndGoto("BE DIRECT-RESPONSE 2")){}
 

@@ -19,6 +19,7 @@ function Game() {
 	this.font = {font: "16px font", align: "right", lineHeight: 16};
 
 	this.currentPassage = null;
+	this.frequency = '7.034';
 	this.history = [];
 
 	this.narrativeEngine = new NarrativeEngine();
@@ -405,6 +406,9 @@ Game.prototype.getSound = function (__id) {
 Game.prototype.setCallsign = function(callsign){
 	this.currentCallsign = callsign;
 };
+Game.prototype.setFrequency = function(frequency){
+	this.frequency = frequency;
+};
 
 
 Game.prototype.endCurrentConversation = function(nextConversation){
@@ -417,6 +421,6 @@ Game.prototype.endCurrentConversation = function(nextConversation){
 	.then(function(){
 		speech.visible = false;
 		this.nextConversation = nextConversation;
-		this.setCallsign(null);
+		this.setCallsign("");
 	}.bind(this));
 }

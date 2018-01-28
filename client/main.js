@@ -54,6 +54,10 @@ function init(){
 	arm.addChild(arm.actualSprite);
 	arm.actualSprite.anchor.x = 0.5;
 	arm.actualSprite.anchor.y = 1;
+	arm.actualSprite2 = new PIXI.Sprite(PIXI.loader.resources.arm2.texture);
+	arm.addChild(arm.actualSprite2);
+	arm.actualSprite2.anchor.x = 0.75;
+	arm.actualSprite2.anchor.y = 0.9;
 
 	// setup screen filter
 	road_filter = new CustomFilter(PIXI.loader.resources.road_shader.data);
@@ -102,17 +106,22 @@ function init(){
 	link1.anchor.x = link1.anchor.y = link2.anchor.x = link2.anchor.y = 0.5;
 
 	callsignDisplay = new PIXI.Container();
-	callsignDisplay.position.x = 332 - size.x/2;
-	callsignDisplay.position.y = 232 - size.y/2;
+	callsignDisplay.position.x = 38;
+	callsignDisplay.position.y = 26;
 	
-	callsignHam = new PIXI.Sprite(PIXI.loader.resources.callsignHam.texture);
-	callsignHam.title = "MASTER_HAM";
-	callsignHam.visible = false;
-	callsignDisplay.addChild(callsignHam);
-
 	callsigns = [
-		callsignHam
+		'MASTER HAM',
+		'BIG QUEEN',
+		'BIG CHICKEN',
+		'LITTLE TURKEY'
 	];
+	for(var i = 0; i < callsigns.length; ++i){
+		var c = callsigns[i];
+		callsigns[i] = new PIXI.Sprite(PIXI.loader.resources['callsign' + c].texture);
+		callsigns[i].title = c;
+		callsigns[i].visible = false;
+		callsignDisplay.addChild(callsigns[i]);
+	}
 
 	// callsignDisplay.width = 12;
 	// callsignDisplay.height = 12;
@@ -161,6 +170,20 @@ function init(){
 
 	g = new Game();
 	g.goto("START");
+
+	frequency = new PIXI.extras.BitmapText("", g.font);
+	dash.addChild(frequency);
+	frequency.x = 20;
+	frequency.y = 85;
+	frequency.tint = 0x88BBFF;
+	frequency.rotation = 0.1;
+
+	callsignText = new PIXI.extras.BitmapText("???", g.font);
+	dash.addChild(callsignText);
+	callsignText.x = -5;
+	callsignText.y = 113;
+	callsignText.tint = 0x88BBFF;
+	callsignText.rotation = 0.1;
 
 	// start the main loop
 	window.onresize = onResize;
@@ -270,6 +293,8 @@ function update(){
 	
 	updateCallsignDisplay();
 
+	frequency.text = g.frequency.toString();
+
 	speech.scale.x = lerp(speech.scale.x, 1.0, 0.1);
 	speech.scale.y = lerp(speech.scale.y, 1.0, 0.1);
 
@@ -286,16 +311,19 @@ function update(){
 	scaledMouse.y = mouse.pos.y / scaleMultiplier;
 
 	// update hand
-	hand.x = lerp(hand.x, Math.round(scaledMouse.x), 0.3);
-	hand.y = lerp(hand.y, Math.round(scaledMouse.y), 0.3);
+	hand.x = Math.round(lerp(hand.x, scaledMouse.x, 0.3));
+	hand.y = Math.round(lerp(hand.y, Math.max(scaledMouse.y, size.y*0.25 + Math.abs(hand.x-size.x/2)/2.0), 0.3));
 
 	arm.x = hand.x;
-	arm.y = hand.y ;
+	arm.y = hand.y;
 
-	arm.rotation = Math.atan2(size.y + 50 - arm.y, size.x/2 - arm.x) + Math.PI/2;
+	arm.actualSprite.visible = (arm.y - Math.abs(arm.x-size.x*0.66)/3) < size.y*0.5;
+	arm.actualSprite2.visible = !arm.actualSprite.visible;
+
+	arm.rotation = Math.atan2(size.y + 50 - arm.y, size.x*0.66 - arm.x) + Math.PI/2;
 
 	road_filter.uniforms.uTime = game.ticker.lastTime/1000;
-	road_filter.uniforms.angle = 0.5 + (scaledMouse.x/size.x-0.5)/16.0;
+	road_filter.uniforms.angle = 0.5 - (scaledMouse.x/size.x-0.5)/16.0;
 	road_filter.uniforms.horizon = 0.25 + (scaledMouse.y/size.y-0.5)/32.0 + (Math.sin(game.ticker.lastTime/30.0+0.2)*0.003);
 	dash.y = size.y/2 -Math.floor((scaledMouse.y/size.y-0.5)*4.0 + Math.random()*Math.sin(game.ticker.lastTime/30.0));
 	dash.x = size.x/2 -Math.floor((scaledMouse.x/size.x-0.5)*4.0);
@@ -366,6 +394,13 @@ function updateCallsignDisplay(){
 		if(currentCallsign){
 			currentCallsign.visible = false;
 		}
+		callsignText.text = callsign.toLowerCase();
+		if(callsign == "YOU") {
+			speech.texture = PIXI.loader.resources.speech2.texture;
+			callsign = g.yourCallsign || callsign;
+		}else{
+			speech.texture = PIXI.loader.resources.speech.texture;
+		}
 		for(i = 0; i < callsigns.length; i++){
 			if(callsigns[i].title == callsign){
 				currentCallsign = callsigns[i];
@@ -375,6 +410,7 @@ function updateCallsignDisplay(){
 	}else{
 		if(currentCallsign){
 			currentCallsign.visible = false;
+			callsignText.text = '???';
 		}
 	}
 }
@@ -403,9 +439,12 @@ function restoreButtonState(){
 }
 
 function startNextConversation(){
-	g.goto(g.nextConversation)
-	.then(function(){
-		speech.scale.x = speech.scale.y = 0;
-		speech.visible = true;
-	});
+	if(g.nextConversation){
+		g.goto(g.nextConversation)
+		.then(function(){
+			speech.scale.x = speech.scale.y = 0;
+			speech.visible = true;
+			g.nextConversation = null;
+		});
+	}
 }
