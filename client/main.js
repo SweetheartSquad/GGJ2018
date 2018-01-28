@@ -54,6 +54,10 @@ function init(){
 	arm.addChild(arm.actualSprite);
 	arm.actualSprite.anchor.x = 0.5;
 	arm.actualSprite.anchor.y = 1;
+	arm.actualSprite2 = new PIXI.Sprite(PIXI.loader.resources.arm2.texture);
+	arm.addChild(arm.actualSprite2);
+	arm.actualSprite2.anchor.x = 0.75;
+	arm.actualSprite2.anchor.y = 0.9;
 
 	// setup screen filter
 	road_filter = new CustomFilter(PIXI.loader.resources.road_shader.data);
@@ -290,9 +294,12 @@ function update(){
 	hand.y = lerp(hand.y, Math.round(scaledMouse.y), 0.3);
 
 	arm.x = hand.x;
-	arm.y = hand.y ;
+	arm.y = hand.y;
 
-	arm.rotation = Math.atan2(size.y + 50 - arm.y, size.x/2 - arm.x) + Math.PI/2;
+	arm.actualSprite.visible = (arm.y - Math.abs(arm.x-size.x*0.66)/3) < size.y*0.5;
+	arm.actualSprite2.visible = !arm.actualSprite.visible;
+
+	arm.rotation = Math.atan2(size.y + 50 - arm.y, size.x*0.66 - arm.x) + Math.PI/2;
 
 	road_filter.uniforms.uTime = game.ticker.lastTime/1000;
 	road_filter.uniforms.angle = 0.5 - (scaledMouse.x/size.x-0.5)/16.0;

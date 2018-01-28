@@ -98,6 +98,7 @@ ready(function(){
 		.add("option2", "assets/texture/option2.png")
 		.add("button", "assets/texture/button.png")
 		.add("arm", "assets/texture/arm.png")
+		.add("arm2", "assets/texture/arm2.png")
 		.add("hand2", "assets/texture/hand2.png")
 		.add("hand3", "assets/texture/hand3.png")
 		.add("callsignHam", "assets/texture/ham.png")
