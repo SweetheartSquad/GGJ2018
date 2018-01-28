@@ -94,6 +94,7 @@ oh you're driving a truck? well that sure doesn't sounds safe.
 
 ::BIG QUEEN
 (this.setCallsign("???")){}
+(this.frequency="12.7"){}
 calling all ham-lovers, anyone out there?
 (this.waitAndGoto("BIG QUEEN 2")){}
 
