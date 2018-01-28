@@ -290,8 +290,8 @@ function update(){
 	scaledMouse.y = mouse.pos.y / scaleMultiplier;
 
 	// update hand
-	hand.x = lerp(hand.x, Math.round(scaledMouse.x), 0.3);
-	hand.y = lerp(hand.y, Math.round(scaledMouse.y), 0.3);
+	hand.x = Math.round(lerp(hand.x, scaledMouse.x, 0.3));
+	hand.y = Math.round(lerp(hand.y, Math.max(scaledMouse.y, size.y*0.25 + Math.abs(hand.x-size.x/2)/2.0), 0.3));
 
 	arm.x = hand.x;
 	arm.y = hand.y;
