@@ -120,13 +120,18 @@ ready(function(){
 		loop:false,
 		volume:1
 	});
+	sounds["portal"] = new Howl({
+		urls:["assets/audio/portal.ogg"],
+		autoplay:false,
+		loop:false,
+		volume:1
+	});
 	sounds["bgm"] = new Howl({
 		urls:["assets/audio/Song2_RadioEffect.ogg"],
-		autoplay:true,
+		autoplay:false,
 		loop:true,
 		volume:0
 	});
-	sounds['bgm'].fadeIn(1,1000);
 
 	PIXI.loader
 		.add("spritesheet","asset source files/assets/textures.json")
@@ -164,7 +169,8 @@ ready(function(){
 		.add("callsignBIG CHICKEN", "assets/texture/BIG CHICKEN.png")
 		.add("callsignLITTLE TURKEY", "assets/texture/LITTLE TURKEY.png")
 		.add("callsignGENTLE JIM", "assets/texture/GENTLE JIM.png")
-		.add("hand", "assets/texture/hand.png");
+		.add("hand", "assets/texture/hand.png")
+		.add("splash", "assets/texture/splash.png");
 
 	PIXI.loader
 		.on("progress", loadProgressHandler)

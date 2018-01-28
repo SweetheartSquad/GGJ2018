@@ -37,6 +37,50 @@ function init(){
 
 	scene = new PIXI.Container();
 
+
+
+	splash = new PIXI.Sprite(PIXI.loader.resources.splash.texture);
+	splash.anchor.x = splash.anchor.y = 0.5;
+	splash.x = size.x/2;
+	splash.y = size.y/2;
+	sounds.portal.play();
+	game.stage.addChild(splash);
+	setTimeout(function(){
+		game.stage.removeChild(splash);
+		splash.destroy();
+		startGame();
+	},2000);
+
+	// setup screen filter
+	screen_filter = new CustomFilter(PIXI.loader.resources.screen_shader.data);
+	screen_filter.padding = 0;
+	screen_filter.uniforms.uTime = 0;
+
+	road_filter = new CustomFilter(PIXI.loader.resources.road_shader.data);
+	road_filter.padding = 0;
+	road_filter.uniforms["uTime"] = 0;
+
+	game.stage.filters = [screen_filter];
+
+	scaledMouse = {
+		x: 0,
+		y: 0
+	};
+
+	// start the main loop
+	window.onresize = onResize;
+	_resize();
+	game.ticker.update();
+}
+
+
+function startGame(){
+	game.started=true;
+
+	sounds['bgm'].play();
+	sounds['bgm'].fadeIn(1,1000);
+
+
 	textContainer = new PIXI.Container();
 
 	interactiveObjects=[];
@@ -81,11 +125,6 @@ function init(){
 	arm.addChild(arm.actualSprite2);
 	arm.actualSprite2.anchor.x = 0.6;
 	arm.actualSprite2.anchor.y = 0.93;
-
-	// setup screen filter
-	road_filter = new CustomFilter(PIXI.loader.resources.road_shader.data);
-	road_filter.padding = 0;
-	road_filter.uniforms["uTime"] = 0;
 
 	(function(){
 		var graphics = new PIXI.Graphics();
@@ -327,18 +366,6 @@ function init(){
 	textContainer.y = -speech.height*0.85;
 	speech.scale.x = speech.scale.y = 0;
 
-	scaledMouse = {
-		x: 0,
-		y: 0
-	};
-
-	// setup screen filter
-	screen_filter = new CustomFilter(PIXI.loader.resources.screen_shader.data);
-	screen_filter.padding = 0;
-	screen_filter.uniforms.uTime = 0;
-
-	game.stage.filters = [screen_filter];
-
 	g = new Game();
 	g.goto("START");
 
@@ -355,16 +382,6 @@ function init(){
 	callsignText.y = 113;
 	callsignText.tint = 0x88BBFF;
 	callsignText.rotation = 0.1;
-
-	// start the main loop
-	window.onresize = onResize;
-	_resize();
-	game.ticker.update();
-}
-
-
-function startGame(){
-	game.started=true;
 }
 
 function update(){
@@ -386,93 +403,96 @@ function update(){
 		sounds["sfx_select"].play();
 	}
 
+	if(game.started){
 
-	pull_cord.y = lerp(pull_cord.y, -size.y*1.1, 0.1);
-	wheel.rotation = Math.sin(game.ticker.lastTime/1000.0 + game.ticker.lastTime/1200.0)*0.01 + Math.sin(game.ticker.lastTime/900.0 + game.ticker.lastTime/1400.0)*0.01;
+		pull_cord.y = lerp(pull_cord.y, -size.y*1.1, 0.1);
+		wheel.rotation = Math.sin(game.ticker.lastTime/1000.0 + game.ticker.lastTime/1200.0)*0.01 + Math.sin(game.ticker.lastTime/900.0 + game.ticker.lastTime/1400.0)*0.01;
 
-	var input = getInput();
+		var input = getInput();
 
-	g.update();
+		g.update();
 
-	setHand(hand1);
-	var links = [];
-	var activePassage = g.currentPassage;
-	var anyHover = false;
-	if(activePassage){
-		var activeLinks = activePassage.links;
-		for(var i = 0; i < activeLinks.length; ++i){
-			var link = activeLinks[i];
-			if(link.parent.visible){
-				var p = link.parent.toGlobal(PIXI.zero);
+		setHand(hand1);
+		var links = [];
+		var activePassage = g.currentPassage;
+		var anyHover = false;
+		if(activePassage){
+			var activeLinks = activePassage.links;
+			for(var i = 0; i < activeLinks.length; ++i){
+				var link = activeLinks[i];
+				if(link.parent.visible){
+					var p = link.parent.toGlobal(PIXI.zero);
 
-				if(intersect(scaledMouse, {
-					x:p.x-link.parent.width/2,
-					y:p.y-link.parent.height/2,
-					width:link.parent.width,
-					height:link.parent.height
-				})){
-					link.tint = 0xBBBBBB;
-					anyHover = true;
-					if(mouse.isDown(mouse.LEFT)){
-						setHand(hand_thumb);
-					}else{
-						setHand(hand_thumb);
+					if(intersect(scaledMouse, {
+						x:p.x-link.parent.width/2,
+						y:p.y-link.parent.height/2,
+						width:link.parent.width,
+						height:link.parent.height
+					})){
+						link.tint = 0xBBBBBB;
+						anyHover = true;
+						if(mouse.isDown(mouse.LEFT)){
+							setHand(hand_thumb);
+						}else{
+							setHand(hand_thumb);
+						}
+
+						if(mouse.isJustDown(mouse.LEFT)){
+							links.push(link.onclick.bind(link));
+						}
+					} else {
+						link.tint = 0x000000;
 					}
-
-					if(mouse.isJustDown(mouse.LEFT)){
-						links.push(link.onclick.bind(link));
-					}
-				} else {
-					link.tint = 0x000000;
 				}
 			}
+			for(var i = 0; i < links.length; ++i){
+				links[i]();
+			}
 		}
-		for(var i = 0; i < links.length; ++i){
-			links[i]();
-		}
-	}
 
-	if(!anyHover){
-		// Check interactive objects
-		for(var i = 0; i < interactiveObjects.length; i++){
-			obj = interactiveObjects[i];
-			if(intersect(scaledMouse, obj.getBounds(true))){
-				if(mouse.isDown(mouse.LEFT)){
-					if(obj.hasOwnProperty("onInteraction")){
-						if(!obj.interacting){
-							obj.onInteraction();
-							obj.interacting = true;
+		if(!anyHover){
+			// Check interactive objects
+			for(var i = 0; i < interactiveObjects.length; i++){
+				obj = interactiveObjects[i];
+				if(intersect(scaledMouse, obj.getBounds(true))){
+					if(mouse.isDown(mouse.LEFT)){
+						if(obj.hasOwnProperty("onInteraction")){
+							if(!obj.interacting){
+								obj.onInteraction();
+								obj.interacting = true;
+							}
+							setHand(obj.interactingHand);
 						}
-						setHand(obj.interactingHand);
+				 	}else{
+						setHand(obj.hoverHand);
+						if(mouse.isJustUp(mouse.LEFT)){
+							if(obj.hasOwnProperty("restoreState")){
+								obj.restoreState();
+								obj.interacting = false;
+							}
+						}
 					}
-			 	}else{
-					setHand(obj.hoverHand);
-					if(mouse.isJustUp(mouse.LEFT)){
-						if(obj.hasOwnProperty("restoreState")){
+				}else{
+					if(obj.hasOwnProperty("restoreState") 
+						&& obj.hasOwnProperty("interacting") 
+						&& obj.interacting){
 							obj.restoreState();
 							obj.interacting = false;
-						}
 					}
-				}
-			}else{
-				if(obj.hasOwnProperty("restoreState") 
-					&& obj.hasOwnProperty("interacting") 
-					&& obj.interacting){
-						obj.restoreState();
-						obj.interacting = false;
 				}
 			}
 		}
+		
+		updateCallsignDisplay();
+
+		frequency.text = g.frequency.toString();
+
+		speech.scale.x = lerp(speech.scale.x, 1.0, 0.1);
+		speech.scale.y = lerp(speech.scale.y, 1.0, 0.1);
+
+		hand_knob.rotation = lerp(hand_knob.rotation, 0, 0.1);
+
 	}
-	
-	updateCallsignDisplay();
-
-	frequency.text = g.frequency.toString();
-
-	speech.scale.x = lerp(speech.scale.x, 1.0, 0.1);
-	speech.scale.y = lerp(speech.scale.y, 1.0, 0.1);
-
-	hand_knob.rotation = lerp(hand_knob.rotation, 0, 0.1);
 
 	// update input managers
 	gamepads.update();
@@ -486,35 +506,38 @@ function update(){
 	scaledMouse.x = mouse.pos.x / scaleMultiplier;
 	scaledMouse.y = mouse.pos.y / scaleMultiplier;
 
-	// update hand
-	hand.x = Math.round(lerp(hand.x, scaledMouse.x, 0.3));
-	hand.y = Math.round(lerp(hand.y, Math.max(scaledMouse.y, size.y*0.25 + Math.abs(hand.x-size.x/2)*0.33), 0.3));
+	if(game.started){
+		// update hand
+		hand.x = Math.round(lerp(hand.x, scaledMouse.x, 0.3));
+		hand.y = Math.round(lerp(hand.y, Math.max(scaledMouse.y, size.y*0.25 + Math.abs(hand.x-size.x/2)*0.33), 0.3));
 
-	var p = currentHand.armPoint.toGlobal(PIXI.zero);
-	arm.x = p.x;
-	arm.y = p.y;
-	var basex = size.x*0.66 - scaledMouse.x * 0.25;
-	// arm.actualSprite.visible = (hand.y + (hand.x-basex)/3) < size.y*0.5;
-	arm.actualSprite2.visible = !arm.actualSprite.visible;
+		var p = currentHand.armPoint.toGlobal(PIXI.zero);
+		arm.x = p.x;
+		arm.y = p.y;
+		var basex = size.x*0.66 - scaledMouse.x * 0.25;
+		// arm.actualSprite.visible = (hand.y + (hand.x-basex)/3) < size.y*0.5;
+		arm.actualSprite2.visible = !arm.actualSprite.visible;
 
-	arm.rotation = clamp(1.5, Math.atan2(size.y + 50 - arm.y, basex - arm.x) + Math.PI/2, 4.5);
+		arm.rotation = clamp(1.5, Math.atan2(size.y + 50 - arm.y, basex - arm.x) + Math.PI/2, 4.5);
 
-	road_filter.uniforms.uTime = game.ticker.lastTime/1000;
-	road_filter.uniforms.angle = 0.5 - (scaledMouse.x/size.x-0.5)/16.0;
-	road_filter.uniforms.horizon = 0.25 + (scaledMouse.y/size.y-0.5)/32.0 + (Math.sin(game.ticker.lastTime/30.0+0.2)*0.003);
-	dash.y = size.y/2 -Math.floor((scaledMouse.y/size.y-0.5)*4.0 + Math.random()*Math.sin(game.ticker.lastTime/30.0));
-	dash.x = size.x/2 -Math.floor((scaledMouse.x/size.x-0.5)*4.0);
+		road_filter.uniforms.uTime = game.ticker.lastTime/1000;
+		road_filter.uniforms.angle = 0.5 - (scaledMouse.x/size.x-0.5)/16.0;
+		road_filter.uniforms.horizon = 0.25 + (scaledMouse.y/size.y-0.5)/32.0 + (Math.sin(game.ticker.lastTime/30.0+0.2)*0.003);
+		dash.y = size.y/2 -Math.floor((scaledMouse.y/size.y-0.5)*4.0 + Math.random()*Math.sin(game.ticker.lastTime/30.0));
+		dash.x = size.x/2 -Math.floor((scaledMouse.x/size.x-0.5)*4.0);
 
-	wiper1.x = dash.x - 60;
-	wiper1.y = dash.y - 24;
-	wiper2.x = dash.x + 200;
-	wiper2.y = dash.y - 20;
-	if(wiping){
-		wiper1.rotation = lerp(wiper1.rotation, Math.sin(game.ticker.lastTime/200)*1.1-1.1, 0.1);
-		wiper2.rotation = lerp(wiper2.rotation, Math.sin(game.ticker.lastTime/200+0.8)*1.1-1.1, 0.1);
-	}else{
-		wiper1.rotation = lerp(wiper1.rotation, 0, 0.1);
-		wiper2.rotation = lerp(wiper2.rotation, 0, 0.1);
+		wiper1.x = dash.x - 60;
+		wiper1.y = dash.y - 24;
+		wiper2.x = dash.x + 200;
+		wiper2.y = dash.y - 20;
+		if(wiping){
+			wiper1.rotation = lerp(wiper1.rotation, Math.sin(game.ticker.lastTime/200)*1.1-1.1, 0.1);
+			wiper2.rotation = lerp(wiper2.rotation, Math.sin(game.ticker.lastTime/200+0.8)*1.1-1.1, 0.1);
+		}else{
+			wiper1.rotation = lerp(wiper1.rotation, 0, 0.1);
+			wiper2.rotation = lerp(wiper2.rotation, 0, 0.1);
+		}
+
 	}
 	screen_filter.uniforms.uTime = game.ticker.lastTime/1000.0%1000.0; // provide time in seconds (range 0-1000)
 }
