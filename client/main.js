@@ -54,9 +54,9 @@ function init(){
 
 	wheel = new PIXI.Sprite(PIXI.loader.resources.wheel.texture);
 	wheel.anchor.x = 0.6;
-	wheel.anchor.y = 0.93;
-	wheel.x = -size.x*0.25;
-	wheel.y = size.y*0.7;
+	wheel.anchor.y = 0.5;
+	wheel.x = -size.x*0.24;
+	wheel.y = size.y*0.22;
 
 	arm = new PIXI.Container();
 	arm.actualSprite = new PIXI.Sprite(PIXI.loader.resources.arm.texture);
