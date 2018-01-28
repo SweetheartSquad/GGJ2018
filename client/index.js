@@ -120,6 +120,13 @@ ready(function(){
 		loop:false,
 		volume:1
 	});
+	sounds["bgm"] = new Howl({
+		urls:["assets/audio/Song2_RadioEffect.ogg"],
+		autoplay:true,
+		loop:true,
+		volume:0
+	});
+	sounds['bgm'].fadeIn(1,1000);
 
 	PIXI.loader
 		.add("spritesheet","asset source files/assets/textures.json")
