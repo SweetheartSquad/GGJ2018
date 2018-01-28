@@ -214,7 +214,7 @@ function init(){
 	dial.position.x = 0;
 	dial.position.y = 90;
 	dial.onInteraction = function(){
-		if(g.activeSound && !g.activeSound.done && g.nextConversation){
+		if(g.activeSound && g.activeSound.done && g.nextConversation){
 			this.rotation += Math.PI/2;
 			startNextConversation();
 		}else{
