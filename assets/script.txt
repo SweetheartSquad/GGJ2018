@@ -90,7 +90,7 @@ i'll catch ya later little turkey, master ham signing off!
 
 ::BIG QUEEN
 (this.setCallsign("???")){}
-(this.frequency="29.1"){}
+(this.frequency="6.90"){}
 calling all ham-lovers, anyone out there?
 (this.waitAndGoto("BIG QUEEN 2")){}
 
@@ -421,8 +421,9 @@ Just so long as you're not driving.
 
 
 ::PBWRITER
-(this.setCallsign("PBWRITER")){}
-...anybody out there? it's me, that weird reporter again. i'd love to hear a story or two.
+(this.setCallsign("???")){}
+(this.frequency="4.20"){}
+...anybody out there? it's me, PBWRITER, that weird reporter again. i'd love to hear a story or two.
 
 [[BE AMICABLE]]
 [[BE ARROGANT]]
@@ -448,16 +449,14 @@ maybe turn down the bragging, pal. i'm looking for human interest stories, not a
 (this.waitAndGoto("PBWRITER 2")){}
 
 ::PBWRITER 2
-(this.setCallsign("PBWRITER")){}
 now, i've got to ask: is this chat on the record? i write a column on ham radio for my local newspaper, and i like to feature guests like you when i can.
-(this.waitAndGoto("PBWRITER 3")){}
 
 [[BE AMENABLE]]
 [[BE AVOIDANT]]
 
 ::BE AMENABLE
 (this.setCallsign("YOU")){}
-absolutely. i don't mind bein the centre of attention. ask away.
+absolutely. i don't mind bein' the centre of attention. ask away.
 (this.autoRespond()){}
 
 ::BE AMENABLE-RESPONSE
@@ -532,7 +531,7 @@ sure thing, it's been a pleasure. you know where to find me.
 ::BE AFFABLE-RESPONSE
 (this.setCallsign("PBWRITER")){}
 yeah, this was fun!
-(this.waitAndGoto("PBWRITER 2")){}
+(this.waitAndGoto("PBWRITER SIGN-OFF")){}
 
 ::BE AMOROUS
 (this.setCallsign("YOU")){}
@@ -547,8 +546,13 @@ mm, sounds like fun. it's a date, pal.
 ::PBWRITER SIGN-OFF
 (this.setCallsign("PBWRITER")){}
 catch ya later, big guy. pbwriter, out.
+(this.endCurrentConversation("EPILOGUE")){}
 
 
+::EPILOGUE
+(this.setCallsign("???")){}
+...
+(this.endCurrentConversation("EPILOGUE")){}
 
 
 
