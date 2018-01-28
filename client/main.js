@@ -166,6 +166,13 @@ function init(){
 	g = new Game();
 	g.goto("START");
 
+	frequency = new PIXI.extras.BitmapText("", g.font);
+	dash.addChild(frequency);
+	frequency.x = 20;
+	frequency.y = 85;
+	frequency.tint = 0x88BBFF;
+	frequency.rotation = 0.1;
+
 	// start the main loop
 	window.onresize = onResize;
 	_resize();
@@ -273,6 +280,8 @@ function update(){
 	}
 	
 	updateCallsignDisplay();
+
+	frequency.text = g.frequency.toString();
 
 	speech.scale.x = lerp(speech.scale.x, 1.0, 0.1);
 	speech.scale.y = lerp(speech.scale.y, 1.0, 0.1);
