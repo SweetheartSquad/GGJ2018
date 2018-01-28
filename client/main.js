@@ -48,6 +48,7 @@ function init(){
 	hand2=makeHand(PIXI.loader.resources.hand2.texture, 0.25, 0.1, 20, 80);
 	hand3=makeHand(PIXI.loader.resources.hand3.texture, 0.25, 0.1, 20, 80);
 	hand_knob=makeHand(PIXI.loader.resources.hand_knob.texture, 0.1, 0.4, 40, 40);
+	hand_tug=makeHand(PIXI.loader.resources.hand_tug.texture, 0.2, 0.2, 40, 40);
 
 	hand1.visible = true;
 	currentHand = hand1;
@@ -220,8 +221,8 @@ function init(){
 		hand.y -= -size.y*0.6;
 	}.bind(pull_cord);
 	pull_cord.restoreState = restoreButtonState;
-	pull_cord.interactingHand = hand2;
-	pull_cord.hoverHand = hand3;
+	pull_cord.interactingHand = hand_tug;
+	pull_cord.hoverHand = hand_tug;
 	interactiveObjects.push(pull_cord);
 
 	dial = new PIXI.Container();
