@@ -69,7 +69,7 @@ oh yeah, all sorts of... interesting folks.
 
 ::MASTER HAM SIGN-OFF 3
 (this.setCallsign("MASTER HAM")){}
-tell you what, how about you twist that there knob to 12.7. It sounds like you're gonna need yourself some contacts; if you head on over there, i bet you'll find yourself some good'uns.
+tell you what, how about you twist that knob to 12.7. It sounds like you're gonna need yourself some contacts; if you head over there, i bet you'll find yourself some good'uns.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 4 "+this.yourCallsign)){}
 
 ::MASTER HAM SIGN-OFF 4 BIG CHICKEN
