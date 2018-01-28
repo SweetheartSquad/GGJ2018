@@ -59,6 +59,18 @@ function init(){
 	wheel.x = -size.x*0.24;
 	wheel.y = size.y*0.22;
 
+	wiper1 = new PIXI.Sprite(PIXI.loader.resources.wiper.texture);
+	wiper1.anchor.x = 0.05;
+	wiper1.anchor.y = 1;
+	wiper1.x = -size.x*0.24;
+	wiper1.y = size.y*0.22;
+	wiper2 = new PIXI.Sprite(PIXI.loader.resources.wiper.texture);
+	wiper2.anchor.x = 0.05;
+	wiper2.anchor.y = 1;
+	wiper2.x = -size.x*0.24;
+	wiper2.y = size.y*0.22;
+	wiping = false;
+
 	arm = new PIXI.Container();
 	arm.actualSprite = new PIXI.Sprite(PIXI.loader.resources.arm.texture);
 	arm.addChild(arm.actualSprite);
@@ -106,6 +118,7 @@ function init(){
 		this.upSprite.visible = !this.upSprite.visible;
 		sounds['click'+Math.ceil(Math.random()*3)].play();
 		hand.y += 10;
+		wiping = !wiping;
 	}.bind(toggle);
 	toggle.restoreState = restoreButtonState;
 	toggle.interactingHand = hand2;
@@ -289,6 +302,8 @@ function init(){
 
     currentCallsign = null;
 
+    scene.addChild(wiper1);
+    scene.addChild(wiper2);
 	scene.addChild(dash);
 	for(var i = 0; i < interactiveObjects.length; i++){
 		dash.addChild(interactiveObjects[i]);	
@@ -487,6 +502,18 @@ function update(){
 	road_filter.uniforms.horizon = 0.25 + (scaledMouse.y/size.y-0.5)/32.0 + (Math.sin(game.ticker.lastTime/30.0+0.2)*0.003);
 	dash.y = size.y/2 -Math.floor((scaledMouse.y/size.y-0.5)*4.0 + Math.random()*Math.sin(game.ticker.lastTime/30.0));
 	dash.x = size.x/2 -Math.floor((scaledMouse.x/size.x-0.5)*4.0);
+
+	wiper1.x = dash.x - 60;
+	wiper1.y = dash.y - 24;
+	wiper2.x = dash.x + 200;
+	wiper2.y = dash.y - 20;
+	if(wiping){
+		wiper1.rotation = lerp(wiper1.rotation, Math.sin(game.ticker.lastTime/200)*1.1-1.1, 0.1);
+		wiper2.rotation = lerp(wiper2.rotation, Math.sin(game.ticker.lastTime/200+0.8)*1.1-1.1, 0.1);
+	}else{
+		wiper1.rotation = lerp(wiper1.rotation, 0, 0.1);
+		wiper2.rotation = lerp(wiper2.rotation, 0, 0.1);
+	}
 	screen_filter.uniforms.uTime = game.ticker.lastTime/1000.0%1000.0; // provide time in seconds (range 0-1000)
 }
 

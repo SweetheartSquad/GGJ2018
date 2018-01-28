@@ -150,6 +150,7 @@ ready(function(){
 		.add("hand_knob", "assets/texture/hand_knob.png")
 		.add("hand_tug", "assets/texture/hand_tug.png")
 		.add("wheel", "assets/texture/wheel.png")
+		.add("wiper", "assets/texture/wiper.png")
 		.add("callsignMASTER HAM", "assets/texture/MASTER HAM.png")
 		.add("callsignBIG QUEEN", "assets/texture/BIG QUEEN.png")
 		.add("callsignBIG CHICKEN", "assets/texture/BIG CHICKEN.png")
