@@ -106,6 +106,7 @@ ready(function(){
 		.add("light2_on", "assets/texture/light2-on.png")
 		.add("light3_off", "assets/texture/light3-off.png")
 		.add("light3_on", "assets/texture/light3-on.png")
+		.add("dial", "assets/texture/dial.png")
 		.add("arm", "assets/texture/arm.png")
 		.add("arm2", "assets/texture/arm2.png")
 		.add("hand2", "assets/texture/hand2.png")

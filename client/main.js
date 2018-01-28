@@ -197,6 +197,20 @@ function init(){
 	toggle.hoverHand = hand3;
 	interactiveObjects.push(toggle);
 
+	dial = new PIXI.Container();
+	dial.sprite = new PIXI.Sprite(PIXI.loader.resources.dial.texture);
+	dial.sprite.anchor.x = dial.sprite.anchor.y = 0.5;
+	dial.addChild(dial.sprite);
+	dial.position.x = 0;
+	dial.position.y = 90;
+	dial.onInteraction = function(){
+		this.rotation += Math.PI/4;
+	}.bind(dial);
+	dial.restoreState = restoreButtonState;
+	dial.interactingHand = hand2;
+	dial.hoverHand = hand3;
+	interactiveObjects.push(dial);
+
 
 	dash = new PIXI.Sprite(PIXI.loader.resources.dash.texture);
 	dash.anchor.x = dash.anchor.y = 0.5;
