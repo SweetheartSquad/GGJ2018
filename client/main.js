@@ -110,7 +110,7 @@ function init(){
 	callsignDisplay.position.y = 232 - size.y/2;
 	
 	callsignHam = new PIXI.Sprite(PIXI.loader.resources.callsignHam.texture);
-	callsignHam.title = "MASTER_HAM";
+	callsignHam.title = "MASTER HAM";
 	callsignHam.visible = false;
 	callsignDisplay.addChild(callsignHam);
 
@@ -172,6 +172,13 @@ function init(){
 	frequency.y = 85;
 	frequency.tint = 0x88BBFF;
 	frequency.rotation = 0.1;
+
+	callsignText = new PIXI.extras.BitmapText("???", g.font);
+	dash.addChild(callsignText);
+	callsignText.x = -5;
+	callsignText.y = 113;
+	callsignText.tint = 0x88BBFF;
+	callsignText.rotation = 0.1;
 
 	// start the main loop
 	window.onresize = onResize;
@@ -382,6 +389,7 @@ function updateCallsignDisplay(){
 		if(currentCallsign){
 			currentCallsign.visible = false;
 		}
+		callsignText.text = callsign.toLowerCase();
 		for(i = 0; i < callsigns.length; i++){
 			if(callsigns[i].title == callsign){
 				currentCallsign = callsigns[i];
@@ -391,6 +399,7 @@ function updateCallsignDisplay(){
 	}else{
 		if(currentCallsign){
 			currentCallsign.visible = false;
+			callsignText.text = '???';
 		}
 	}
 }

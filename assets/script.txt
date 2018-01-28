@@ -16,7 +16,7 @@ hello there! just a new ham, living life and looking for love.
 (this.autoRespond()){}
 
 ::BE FRIENDLY-RESPONSE
-(this.setCallsign("MASTER_HAM")){}
+(this.setCallsign("???")){}
 hey there sonny, what's going on? how're ya feeling? actually, first things first, what do i call ya?
 
 [[BE SUGGESTIVE]]
@@ -28,7 +28,7 @@ oh, wow! didn't expect to hear anyone on here! picked this up at the gas station
 (this.autoRespond()){}
 
 ::BE CURIOUS-RESPONSE
-(this.setCallsign("MASTER_HAM")){}
+(this.setCallsign("???")){}
 oh well nice to meet ya, nice to hear someone else on the air today. you got yourself a callsign bud?
 
 [[BE SUGGESTIVE]]
@@ -41,7 +41,7 @@ well they call me big chicken. and let me tell you what, it's not cause i got fe
 (this.autoRespond()){}
 
 ::BE SUGGESTIVE-RESPONSE
-(this.setCallsign("MASTER_HAM")){}
+(this.setCallsign("MASTER HAM")){}
 well big chicken, im no little chicken myself, but you can call me master ham.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 1")){}
 
@@ -51,27 +51,27 @@ oh well you can call me little turkey. throw in some mashed potatoes and a side 
 (this.autoRespond()){}
 
 ::BE HOMEY-RESPONSE
-(this.setCallsign("MASTER_HAM")){}
+(this.setCallsign("MASTER HAM")){}
 pleasure to meet ya, gobble gobble, heh heh! I do like me some stuffed bird, but im more of ham-boy myself. You could even say i'm... a master of ham. that's me, master ham, nice to meet ya.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 1")){}
 
 ::MASTER HAM SIGN-OFF 1
-(this.setCallsign("MASTER_HAM")){}
+(this.setCallsign("MASTER HAM")){}
 sounds like you're pretty new here. im sure you know by now that if you twist that knob over there, it changes the frequency of your radio. you can find all sorts of folks on the hamverse.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 2")){}
 
 ::MASTER HAM SIGN-OFF 2
-(this.setCallsign("MASTER_HAM")){}
+(this.setCallsign("MASTER HAM")){}
 oh yeah, all sorts of... interesting folks.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 3")){}
 
 ::MASTER HAM SIGN-OFF 3
-(this.setCallsign("MASTER_HAM")){}
+(this.setCallsign("MASTER HAM")){}
 tell you what, how about you twist that there knob to <insert station number here>. It sounds like you're gonna need yourself some contacts; if you head on over there, i bet you'll find yourself some good'uns.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 4")){}
 
 ::MASTER HAM SIGN-OFF 4
-(this.setCallsign("MASTER_HAM")){}
+(this.setCallsign("MASTER HAM")){}
 i'll catch ya later <insert callsign here>, master ham signing off!
 (this.endCurrentConversation("BIG QUEEN")){}
 
