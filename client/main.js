@@ -87,6 +87,8 @@ function startGame(){
 
     // hand
 	hand=new PIXI.Container();
+	hand.tx = size.x/2;
+	hand.ty = size.y/2;
 
 	hand1=makeHand(PIXI.loader.resources.hand.texture, 0.25, 0.1, 20, 80);
 	hand2=makeHand(PIXI.loader.resources.hand2.texture, 0.25, 0.1, 20, 80);
@@ -398,10 +400,6 @@ function update(){
 		toggleMute();
 		sounds["sfx_select"].play();
 	}
-	if(keys.isJustDown(keys.P)){
-		swapPalette();
-		sounds["sfx_select"].play();
-	}
 
 	if(game.started){
 
@@ -423,7 +421,7 @@ function update(){
 				if(link.parent.visible){
 					var p = link.parent.toGlobal(PIXI.zero);
 
-					if(intersect(scaledMouse, {
+					if(intersect(hand, {
 						x:p.x-link.parent.width/2,
 						y:p.y-link.parent.height/2,
 						width:link.parent.width,
@@ -431,13 +429,13 @@ function update(){
 					})){
 						link.tint = 0xBBBBBB;
 						anyHover = true;
-						if(mouse.isDown(mouse.LEFT)){
+						if(input.confirm){
 							setHand(hand_thumb);
 						}else{
 							setHand(hand_thumb);
 						}
 
-						if(mouse.isJustDown(mouse.LEFT)){
+						if(input.justConfirm){
 							links.push(link.onclick.bind(link));
 						}
 					} else {
@@ -454,8 +452,8 @@ function update(){
 			// Check interactive objects
 			for(var i = 0; i < interactiveObjects.length; i++){
 				obj = interactiveObjects[i];
-				if(intersect(scaledMouse, obj.getBounds(true))){
-					if(mouse.isDown(mouse.LEFT)){
+				if(intersect(hand, obj.getBounds(true))){
+					if(input.justConfirm){
 						if(obj.hasOwnProperty("onInteraction")){
 							if(!obj.interacting){
 								obj.onInteraction();
@@ -465,7 +463,7 @@ function update(){
 						}
 				 	}else{
 						setHand(obj.hoverHand);
-						if(mouse.isJustUp(mouse.LEFT)){
+						if(input.justConfirmUp){
 							if(obj.hasOwnProperty("restoreState")){
 								obj.restoreState();
 								obj.interacting = false;
@@ -494,6 +492,8 @@ function update(){
 
 	}
 
+	var useMouse = Math.abs(mouse.delta.x) + Math.abs(mouse.delta.y) > 0;
+
 	// update input managers
 	gamepads.update();
 	keys.update();
@@ -508,8 +508,27 @@ function update(){
 
 	if(game.started){
 		// update hand
-		hand.x = Math.round(lerp(hand.x, scaledMouse.x, 0.3));
-		hand.y = Math.round(lerp(hand.y, Math.max(scaledMouse.y, size.y*0.25 + Math.abs(hand.x-size.x/2)*0.33), 0.3));
+		
+		if (useMouse) {
+			hand.tx = scaledMouse.x;
+			hand.ty = scaledMouse.y;
+		}else{
+			var speed = 10;
+			if (input.up) {
+				hand.ty -= speed;
+			}if (input.down) {
+				hand.ty += speed;
+			}if (input.left) {
+				hand.tx -= speed;
+			}if (input.right) {
+				hand.tx += speed;
+			}
+		}
+		hand.tx = clamp(0, hand.tx, size.x);
+		hand.ty = clamp(size.y*0.25 + Math.abs(hand.tx-size.x/2)*0.33, hand.ty, size.y);
+
+		hand.x = Math.round(lerp(hand.x, hand.tx, 0.3));
+		hand.y = Math.round(lerp(hand.y, hand.ty, 0.3));
 
 		var p = currentHand.armPoint.toGlobal(PIXI.zero);
 		arm.x = p.x;
@@ -577,25 +596,29 @@ function getInput(){
 		cancel: false
 	};
 
-	res.up |= keys.isJustDown(keys.UP);
-	res.up |= keys.isJustDown(keys.W);
-	res.up |= gamepads.isJustDown(gamepads.DPAD_UP);
-	res.up |= gamepads.axisJustPast(gamepads.LSTICK_V, 0.5);
+	res.up |= keys.isDown(keys.UP);
+	res.up |= keys.isDown(keys.W);
+	res.up |= gamepads.isDown(gamepads.DPAD_UP);
+	res.up |= gamepads.axisPast(gamepads.LSTICK_V, -0.5);
 
-	res.down |= keys.isJustDown(keys.DOWN);
-	res.down |= keys.isJustDown(keys.S);
-	res.down |= gamepads.isJustDown(gamepads.DPAD_DOWN);
-	res.down |= gamepads.axisJustPast(gamepads.LSTICK_V, -0.5);
+	res.down |= keys.isDown(keys.DOWN);
+	res.down |= keys.isDown(keys.S);
+	res.down |= gamepads.isDown(gamepads.DPAD_DOWN);
+	res.down |= gamepads.axisPast(gamepads.LSTICK_V, 0.5);
 
-	res.left |= keys.isJustDown(keys.LEFT);
-	res.left |= keys.isJustDown(keys.A);
-	res.left |= gamepads.isJustDown(gamepads.DPAD_LEFT);
-	res.left |= gamepads.axisJustPast(gamepads.LSTICK_H, -0.5);
+	res.left |= keys.isDown(keys.LEFT);
+	res.left |= keys.isDown(keys.A);
+	res.left |= gamepads.isDown(gamepads.DPAD_LEFT);
+	res.left |= gamepads.axisPast(gamepads.LSTICK_H, -0.5);
 
-	res.right |= keys.isJustDown(keys.RIGHT);
-	res.right |= keys.isJustDown(keys.D);
-	res.right |= gamepads.isJustDown(gamepads.DPAD_RIGHT);
-	res.right |= gamepads.axisJustPast(gamepads.LSTICK_H, 0.5);
+	res.right |= keys.isDown(keys.RIGHT);
+	res.right |= keys.isDown(keys.D);
+	res.right |= gamepads.isDown(gamepads.DPAD_RIGHT);
+	res.right |= gamepads.axisPast(gamepads.LSTICK_H, 0.5);
+
+	res.justConfirm = gamepads.isJustDown(gamepads.A) || gamepads.isJustDown(gamepads.B) || gamepads.isJustDown(gamepads.X) || gamepads.isJustDown(gamepads.Y) || keys.isJustDown(keys.SPACE) || keys.isJustDown(keys.ENTER) || keys.isJustDown(keys.Z) || keys.isJustDown(keys.X) || mouse.isJustDown(mouse.LEFT);
+	res.justConfirmUp = gamepads.isJustUp(gamepads.A) || gamepads.isJustUp(gamepads.B) || gamepads.isJustUp(gamepads.X) || gamepads.isJustUp(gamepads.Y) || keys.isJustUp(keys.SPACE) || keys.isJustUp(keys.ENTER) || keys.isJustUp(keys.Z) || keys.isJustUp(keys.X) || mouse.isJustUp(mouse.LEFT);	
+	res.confirm = gamepads.isDown(gamepads.A) || gamepads.isDown(gamepads.B) || gamepads.isDown(gamepads.X) || gamepads.isDown(gamepads.Y) || keys.isDown(keys.SPACE) || keys.isDown(keys.ENTER) || keys.isDown(keys.Z) || keys.isDown(keys.X) || mouse.isDown(mouse.LEFT);
 
 	return res;
 }
