@@ -118,7 +118,7 @@ i can probably spare a moment or two; what's going on big queen?
 
 ::BE RESERVED-RESPONSE
 (this.setCallsign("BIG QUEEN")){}
-well hey there squirt. been far too long since i've heard-
+well hey there squirt. been too long since i've heard-
 (this.waitAndGoto("BIG QUEEN SHOUT")){}
 
 ::BIG QUEEN SHOUT
@@ -142,7 +142,7 @@ ah you know, suck on a juice box, watch a little news. kick back, relax, take a 
 
 ::BE CAREFREE-RESPONSE
 (this.setCallsign("BIG QUEEN")){}
-oh im sucking on a juice box right now; always keep my van loaded up for the boys. you got any kids yerself?
+oh im sucking on a juice box right now; always keep my van loaded up for my boys. you got any kids yerself?
 
 [[BE EVASIVE]]
 [[BE DIRECT]]
@@ -233,19 +233,19 @@ just the other day i was washing the dishes, and i broke my favourite mug. broke
 
 ::GENTLE JIM 3
 (this.setCallsign("GENTLE JIM")){}
-just got out my trusty sandpaper, gave it a good rubbing, and got myself a brand new favourite cup. anyway, that's enough about ol jimmy, why don't you tell me a little story about yourself?
+i just got out my trusty sandpaper, gave it a good rubbing, and got myself a brand new favourite cup. anyway, that's enough about ol jimmy, why don't you tell me a little story about yourself?
 
 [[BE PERSONAL]]
 [[BE PROFESSIONAL]]
 
 ::BE PERSONAL
 (this.setCallsign("YOU")){}
-well...sure, so, just the other day I was cruising down 95 with a full load, had to get there by midnight ya know. 
+well... sure. so, just the other day I was cruising down 95 with a full load, had to get there by midnight ya know. 
 (this.waitAndGoto("BE PERSONAL 2")){}
 
 ::BE PERSONAL 2
 (this.setCallsign("YOU")){}
-Well the ol' "water tank" was getting pretty full and I didn't have time to pull over....so I grabbed my trusty bottle and lined 'er up and let loose. Didn't get it all in but 40% ain't bad.
+Well the ol' "water tank" was getting pretty full and I didn't have time to pull over... so I grabbed my trusty bottle and lined 'er up and let loose. Didn't get it all in but 40% ain't bad.
 (this.waitAndGoto("BE PERSONAL-RESPONSE")){}
 
 ::BE PERSONAL-RESPONSE
