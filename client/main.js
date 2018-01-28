@@ -208,8 +208,12 @@ function init(){
 	dial.position.x = 0;
 	dial.position.y = 90;
 	dial.onInteraction = function(){
-		this.rotation += Math.PI/2;
-		startNextConversation();
+		if(g.activeSound && !g.activeSound.done && g.nextConversation){
+			this.rotation += Math.PI/2;
+			startNextConversation();
+		}else{
+			sounds.not_yet.play();
+		}
 	}.bind(dial);
 	dial.restoreState = restoreButtonState;
 	dial.interactingHand = hand2;

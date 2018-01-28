@@ -90,6 +90,12 @@ ready(function(){
 		loop:false,
 		volume:1
 	});
+	sounds["not_yet"] = new Howl({
+		urls:["assets/audio/sfx_2.wav"],
+		autoplay:false,
+		loop:false,
+		volume:1
+	});
 
 	PIXI.loader
 		.add("spritesheet","asset source files/assets/textures.json")
