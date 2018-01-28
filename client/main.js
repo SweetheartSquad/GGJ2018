@@ -44,18 +44,32 @@ function init(){
     // hand
 	hand=new PIXI.Container();
 
-	hand1=makeHand(PIXI.loader.resources.hand.texture);
-	hand2=makeHand(PIXI.loader.resources.hand2.texture);
-	hand3=makeHand(PIXI.loader.resources.hand3.texture);
+	hand1=makeHand(PIXI.loader.resources.hand.texture, 0.25, 0.1, 20, 80);
+	hand2=makeHand(PIXI.loader.resources.hand2.texture, 0.25, 0.1, 20, 80);
+	hand3=makeHand(PIXI.loader.resources.hand3.texture, 0.25, 0.1, 20, 80);
+	hand_knob=makeHand(PIXI.loader.resources.hand_knob.texture, 0.1, 0.4, 40, 40);
+	hand_tug=makeHand(PIXI.loader.resources.hand_tug.texture, 0.2, 0.2, 40, 40);
 
 	hand1.visible = true;
 	currentHand = hand1;
 
 	wheel = new PIXI.Sprite(PIXI.loader.resources.wheel.texture);
 	wheel.anchor.x = 0.6;
-	wheel.anchor.y = 0.93;
-	wheel.x = -size.x*0.25;
-	wheel.y = size.y*0.7;
+	wheel.anchor.y = 0.5;
+	wheel.x = -size.x*0.24;
+	wheel.y = size.y*0.22;
+
+	wiper1 = new PIXI.Sprite(PIXI.loader.resources.wiper.texture);
+	wiper1.anchor.x = 0.05;
+	wiper1.anchor.y = 1;
+	wiper1.x = -size.x*0.24;
+	wiper1.y = size.y*0.22;
+	wiper2 = new PIXI.Sprite(PIXI.loader.resources.wiper.texture);
+	wiper2.anchor.x = 0.05;
+	wiper2.anchor.y = 1;
+	wiper2.x = -size.x*0.24;
+	wiper2.y = size.y*0.22;
+	wiping = false;
 
 	arm = new PIXI.Container();
 	arm.actualSprite = new PIXI.Sprite(PIXI.loader.resources.arm.texture);
@@ -102,6 +116,9 @@ function init(){
 	toggle.onInteraction = function(){
 		this.downSprite.visible = !this.downSprite.visible;
 		this.upSprite.visible = !this.upSprite.visible;
+		sounds['click'+Math.ceil(Math.random()*3)].play();
+		hand.y += 10;
+		wiping = !wiping;
 	}.bind(toggle);
 	toggle.restoreState = restoreButtonState;
 	toggle.interactingHand = hand2;
@@ -119,6 +136,8 @@ function init(){
 	toggle.onInteraction = function(){
 		this.downSprite.visible = !this.downSprite.visible;
 		this.upSprite.visible = !this.upSprite.visible;
+		sounds['click'+Math.ceil(Math.random()*3)].play();
+		hand.y += 10;
 	}.bind(toggle);
 	toggle.restoreState = restoreButtonState;
 	toggle.interactingHand = hand2;
@@ -136,6 +155,8 @@ function init(){
 	toggle.onInteraction = function(){
 		this.downSprite.visible = !this.downSprite.visible;
 		this.upSprite.visible = !this.upSprite.visible;
+		sounds['click'+Math.ceil(Math.random()*3)].play();
+		hand.y += 10;
 	}.bind(toggle);
 	toggle.restoreState = restoreButtonState;
 	toggle.interactingHand = hand2;
@@ -153,6 +174,8 @@ function init(){
 	toggle.onInteraction = function(){
 		this.downSprite.visible = !this.downSprite.visible;
 		this.upSprite.visible = !this.upSprite.visible;
+		sounds['click'+Math.ceil(Math.random()*3)].play();
+		hand.y += 10;
 	}.bind(toggle);
 	toggle.restoreState = restoreButtonState;
 	toggle.interactingHand = hand2;
@@ -170,6 +193,8 @@ function init(){
 	toggle.onInteraction = function(){
 		this.downSprite.visible = !this.downSprite.visible;
 		this.upSprite.visible = !this.upSprite.visible;
+		sounds['click'+Math.ceil(Math.random()*3)].play();
+		hand.y += 10;
 	}.bind(toggle);
 	toggle.restoreState = restoreButtonState;
 	toggle.interactingHand = hand2;
@@ -187,6 +212,8 @@ function init(){
 	toggle.onInteraction = function(){
 		this.downSprite.visible = !this.downSprite.visible;
 		this.upSprite.visible = !this.upSprite.visible;
+		sounds['click'+Math.ceil(Math.random()*3)].play();
+		hand.y += 10;
 	}.bind(toggle);
 	toggle.restoreState = restoreButtonState;
 	toggle.interactingHand = hand2;
@@ -195,16 +222,20 @@ function init(){
 
 	pull_cord = new PIXI.Sprite(PIXI.loader.resources.pull_cord.texture);
 	pull_cord.position.x = size.x*0.2;
-	pull_cord.position.y = -size.y*0.54;
+	pull_cord.position.y = -size.y*1.1;
 	pull_cord.anchor.x = 0.5;
 	pull_cord.anchor.y = 0;
 	pull_cord.onInteraction = function(){
-		sounds.pull_cord.play();
-		this.y = -size.y*0.52;
+		if(this.sound){
+			this.sound.stop();
+		}
+		this.sound = sounds.pull_cord.play();
+		this.y = -size.y*0.7;
+		hand.y -= -size.y*0.6;
 	}.bind(pull_cord);
 	pull_cord.restoreState = restoreButtonState;
-	pull_cord.interactingHand = hand2;
-	pull_cord.hoverHand = hand3;
+	pull_cord.interactingHand = hand_tug;
+	pull_cord.hoverHand = hand_tug;
 	interactiveObjects.push(pull_cord);
 
 	dial = new PIXI.Container();
@@ -214,16 +245,21 @@ function init(){
 	dial.position.x = 0;
 	dial.position.y = 90;
 	dial.onInteraction = function(){
+		hand_knob.rotation += 0.2;
 		if(g.activeSound && g.activeSound.done && g.nextConversation){
 			this.rotation += Math.PI/2;
 			startNextConversation();
+			sounds.dial.play();
 		}else{
-			sounds.not_yet.play();
+			if(this.sound){
+				this.sound.stop();
+			}
+			this.sound = sounds.not_yet.play();
 		}
 	}.bind(dial);
 	dial.restoreState = restoreButtonState;
-	dial.interactingHand = hand2;
-	dial.hoverHand = hand3;
+	dial.interactingHand = hand_knob;
+	dial.hoverHand = hand_knob;
 	interactiveObjects.push(dial);
 
 
@@ -247,7 +283,8 @@ function init(){
 		'MASTER HAM',
 		'BIG QUEEN',
 		'BIG CHICKEN',
-		'LITTLE TURKEY'
+		'LITTLE TURKEY',
+		'GENTLE JIM'
 	];
 	for(var i = 0; i < callsigns.length; ++i){
 		var c = callsigns[i];
@@ -266,6 +303,8 @@ function init(){
 
     currentCallsign = null;
 
+    scene.addChild(wiper1);
+    scene.addChild(wiper2);
 	scene.addChild(dash);
 	for(var i = 0; i < interactiveObjects.length; i++){
 		dash.addChild(interactiveObjects[i]);	
@@ -347,8 +386,8 @@ function update(){
 	}
 
 
-	pull_cord.y = lerp(pull_cord.y, -size.y*0.54, 0.1);
-	wheel.rotation = Math.sin(game.ticker.lastTime/1000.0 + game.ticker.lastTime/1200.0)*0.01;
+	pull_cord.y = lerp(pull_cord.y, -size.y*1.1, 0.1);
+	wheel.rotation = Math.sin(game.ticker.lastTime/1000.0 + game.ticker.lastTime/1200.0)*0.01 + Math.sin(game.ticker.lastTime/900.0 + game.ticker.lastTime/1400.0)*0.01;
 
 	var input = getInput();
 
@@ -405,13 +444,14 @@ function update(){
 						}
 						setHand(obj.interactingHand);
 					}
-			 	}else if(mouse.isJustUp(mouse.LEFT)){
-					if(obj.hasOwnProperty("restoreState")){
-						obj.restoreState();
-						obj.interacting = false;
-					}
-				}else if(!mouse.isDown(mouse.LEFT)){
+			 	}else{
 					setHand(obj.hoverHand);
+					if(mouse.isJustUp(mouse.LEFT)){
+						if(obj.hasOwnProperty("restoreState")){
+							obj.restoreState();
+							obj.interacting = false;
+						}
+					}
 				}
 			}else{
 				if(obj.hasOwnProperty("restoreState") 
@@ -430,6 +470,8 @@ function update(){
 
 	speech.scale.x = lerp(speech.scale.x, 1.0, 0.1);
 	speech.scale.y = lerp(speech.scale.y, 1.0, 0.1);
+
+	hand_knob.rotation = lerp(hand_knob.rotation, 0, 0.1);
 
 	// update input managers
 	gamepads.update();
@@ -461,6 +503,18 @@ function update(){
 	road_filter.uniforms.horizon = 0.25 + (scaledMouse.y/size.y-0.5)/32.0 + (Math.sin(game.ticker.lastTime/30.0+0.2)*0.003);
 	dash.y = size.y/2 -Math.floor((scaledMouse.y/size.y-0.5)*4.0 + Math.random()*Math.sin(game.ticker.lastTime/30.0));
 	dash.x = size.x/2 -Math.floor((scaledMouse.x/size.x-0.5)*4.0);
+
+	wiper1.x = dash.x - 60;
+	wiper1.y = dash.y - 24;
+	wiper2.x = dash.x + 200;
+	wiper2.y = dash.y - 20;
+	if(wiping){
+		wiper1.rotation = lerp(wiper1.rotation, Math.sin(game.ticker.lastTime/200)*1.1-1.1, 0.1);
+		wiper2.rotation = lerp(wiper2.rotation, Math.sin(game.ticker.lastTime/200+0.8)*1.1-1.1, 0.1);
+	}else{
+		wiper1.rotation = lerp(wiper1.rotation, 0, 0.1);
+		wiper2.rotation = lerp(wiper2.rotation, 0, 0.1);
+	}
 	screen_filter.uniforms.uTime = game.ticker.lastTime/1000.0%1000.0; // provide time in seconds (range 0-1000)
 }
 
@@ -549,16 +603,16 @@ function updateCallsignDisplay(){
 	}
 }
 
-function makeHand(resource){
+function makeHand(resource, x, y, x2, y2){
 	newHand=new PIXI.Sprite(resource);
-	newHand.anchor.x=0.25;
-	newHand.anchor.y=0.1;
+	newHand.anchor.x=x;
+	newHand.anchor.y=y;
 	newHand.visible = false;
 	newHand.armPoint = new PIXI.Container();
 	newHand.armPoint.visible = false;
 	newHand.addChild(newHand.armPoint);
-	newHand.armPoint.x += 20;
-	newHand.armPoint.y += 80;
+	newHand.armPoint.x += x2;
+	newHand.armPoint.y += y2;
 	hand.addChild(newHand);
 	return newHand;
 }

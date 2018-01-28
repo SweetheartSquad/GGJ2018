@@ -78,6 +78,30 @@ ready(function(){
 		loop:false,
 		volume:1
 	});
+	sounds.click1 = new Howl({
+		urls:["assets/audio/click1.ogg"],
+		autoplay:false,
+		loop:false,
+		volume:1
+	});
+	sounds.click2 = new Howl({
+		urls:["assets/audio/click2.ogg"],
+		autoplay:false,
+		loop:false,
+		volume:1
+	});
+	sounds.click3 = new Howl({
+		urls:["assets/audio/click3.ogg"],
+		autoplay:false,
+		loop:false,
+		volume:1
+	});
+	sounds.dial = new Howl({
+		urls:["assets/audio/dial.ogg"],
+		autoplay:false,
+		loop:false,
+		volume:1
+	});
 	sounds["temp"] = new Howl({
 		urls:["assets/audio/temp.wav"],
 		autoplay:false,
@@ -85,13 +109,13 @@ ready(function(){
 		volume:1
 	});
 	sounds["pull_cord"] = new Howl({
-		urls:["assets/audio/sfx_2.wav"],
+		urls:["assets/audio/horn.ogg"],
 		autoplay:false,
 		loop:false,
 		volume:1
 	});
 	sounds["not_yet"] = new Howl({
-		urls:["assets/audio/sfx_2.wav"],
+		urls:["assets/audio/NOT YET.ogg", "assets/audio/NOT YET.mp3"],
 		autoplay:false,
 		loop:false,
 		volume:1
@@ -121,13 +145,17 @@ ready(function(){
 		.add("pull_cord", "assets/texture/pull_cord.png")
 		.add("arm", "assets/texture/arm.png")
 		.add("arm2", "assets/texture/arm2.png")
-		.add("hand2", "assets/texture/hand2.png")
-		.add("hand3", "assets/texture/hand3.png")
+		.add("hand2", "assets/texture/hand.png")
+		.add("hand3", "assets/texture/hand.png")
+		.add("hand_knob", "assets/texture/hand_knob.png")
+		.add("hand_tug", "assets/texture/hand_tug.png")
 		.add("wheel", "assets/texture/wheel.png")
+		.add("wiper", "assets/texture/wiper.png")
 		.add("callsignMASTER HAM", "assets/texture/MASTER HAM.png")
 		.add("callsignBIG QUEEN", "assets/texture/BIG QUEEN.png")
 		.add("callsignBIG CHICKEN", "assets/texture/BIG CHICKEN.png")
 		.add("callsignLITTLE TURKEY", "assets/texture/LITTLE TURKEY.png")
+		.add("callsignGENTLE JIM", "assets/texture/GENTLE JIM.png")
 		.add("hand", "assets/texture/hand.png");
 
 	PIXI.loader
