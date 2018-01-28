@@ -6,7 +6,7 @@ function init(){
 	keys.init({
 		capture: [keys.LEFT,keys.RIGHT,keys.UP,keys.DOWN,keys.SPACE,keys.ENTER,keys.BACKSPACE,keys.ESCAPE,keys.W,keys.A,keys.S,keys.D,keys.P,keys.M]
 	});
-	mouse.init("canvas", false);
+	mouse.init("canvas", true);
 
 	// setup main loop
 	var main = function(){
