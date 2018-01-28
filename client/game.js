@@ -29,7 +29,7 @@ function Game() {
 	for(var i in this.passages) {
 		if(this.passages.hasOwnProperty(i)){
 			sounds[i] = new Howl({
-				urls:["assets/audio/"+i+".ogg"],
+				urls:["assets/audio/"+i+".ogg", "assets/audio/"+i+".mp3"],
 				autoplay:false,
 				loop:false,
 				volume:1,
