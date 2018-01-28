@@ -39,6 +39,8 @@ function init(){
 
 	textContainer = new PIXI.Container();
 
+	interactiveObjects=[];
+
     // hand
 	hand=new PIXI.Container();
 	
@@ -93,6 +95,58 @@ function init(){
 	button.interactingHand = hand2;
 	button.hoverHand = hand3;
 
+	toggle = new PIXI.Container();
+	toggle.downSprite = new PIXI.Sprite(PIXI.loader.resources.switch_down.texture);
+	toggle.upSprite = new PIXI.Sprite(PIXI.loader.resources.switch_up.texture);
+	toggle.downSprite.visible = false;
+	toggle.addChild(toggle.downSprite);
+	toggle.addChild(toggle.upSprite);
+	toggle.position.x = 2;
+	toggle.position.y = 27;
+	toggle.onInteraction = function(){
+		this.downSprite.visible = !this.downSprite.visible;
+		this.upSprite.visible = !this.upSprite.visible;
+	}.bind(toggle);
+	toggle.restoreState = restoreButtonState;
+	toggle.interactingHand = hand2;
+	toggle.hoverHand = hand3;
+	interactiveObjects.push(toggle);
+
+	toggle = new PIXI.Container();
+	toggle.downSprite = new PIXI.Sprite(PIXI.loader.resources.switch_down.texture);
+	toggle.upSprite = new PIXI.Sprite(PIXI.loader.resources.switch_up.texture);
+	toggle.downSprite.visible = false;
+	toggle.addChild(toggle.downSprite);
+	toggle.addChild(toggle.upSprite);
+	toggle.position.x = 14;
+	toggle.position.y = 26;
+	toggle.onInteraction = function(){
+		this.downSprite.visible = !this.downSprite.visible;
+		this.upSprite.visible = !this.upSprite.visible;
+	}.bind(toggle);
+	toggle.restoreState = restoreButtonState;
+	toggle.interactingHand = hand2;
+	toggle.hoverHand = hand3;
+	interactiveObjects.push(toggle);
+
+	toggle = new PIXI.Container();
+	toggle.downSprite = new PIXI.Sprite(PIXI.loader.resources.switch_down.texture);
+	toggle.upSprite = new PIXI.Sprite(PIXI.loader.resources.switch_up.texture);
+	toggle.downSprite.visible = false;
+	toggle.addChild(toggle.downSprite);
+	toggle.addChild(toggle.upSprite);
+	toggle.position.x = 26;
+	toggle.position.y = 25;
+	toggle.onInteraction = function(){
+		this.downSprite.visible = !this.downSprite.visible;
+		this.upSprite.visible = !this.upSprite.visible;
+	}.bind(toggle);
+	toggle.restoreState = restoreButtonState;
+	toggle.interactingHand = hand2;
+	toggle.hoverHand = hand3;
+	interactiveObjects.push(toggle);
+
+
 	dash = new PIXI.Sprite(PIXI.loader.resources.dash.texture);
 	dash.anchor.x = dash.anchor.y = 0.5;
 	speech = new PIXI.Sprite(PIXI.loader.resources.speech.texture);
@@ -132,9 +186,7 @@ function init(){
 
     currentCallsign = null;
 
-	interactiveObjects = [
-		button
-	];
+	interactiveObjects.push(button);
 
 	scene.addChild(dash);
 	for(var i = 0; i < interactiveObjects.length; i++){
@@ -220,6 +272,7 @@ function update(){
 
 	g.update();
 
+	setHand(hand1);
 	var links = [];
 	var activePassage = g.currentPassage;
 	var anyHover = false;
@@ -262,19 +315,18 @@ function update(){
 		for(var i = 0; i < interactiveObjects.length; i++){
 			obj = interactiveObjects[i];
 			if(intersect(scaledMouse, obj.getBounds(true))){
-				if(mouse.isJustDown(mouse.LEFT)){
+				if(mouse.isDown(mouse.LEFT)){
 					if(obj.hasOwnProperty("onInteraction")){
-						if(!obj.hasOwnProperty("interacting") || !obj.interacting){
+						if(!obj.interacting){
 							obj.onInteraction();
 							obj.interacting = true;
-							setHand(obj.interactingHand);
 						}
+						setHand(obj.interactingHand);
 					}
 			 	}else if(mouse.isJustUp(mouse.LEFT)){
 					if(obj.hasOwnProperty("restoreState")){
 						obj.restoreState();
 						obj.interacting = false;
-						setHand(hand1);
 					}
 				}else if(!mouse.isDown(mouse.LEFT)){
 					setHand(obj.hoverHand);
@@ -286,7 +338,6 @@ function update(){
 						obj.restoreState();
 						obj.interacting = false;
 				}
-				setHand(hand1);
 			}
 		}
 	}

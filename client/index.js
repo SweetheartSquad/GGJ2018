@@ -98,6 +98,8 @@ ready(function(){
 		.add("option1", "assets/texture/option1.png")
 		.add("option2", "assets/texture/option2.png")
 		.add("button", "assets/texture/button.png")
+		.add("switch_down", "assets/texture/switch-down.png")
+		.add("switch_up", "assets/texture/switch-up.png")
 		.add("arm", "assets/texture/arm.png")
 		.add("arm2", "assets/texture/arm2.png")
 		.add("hand2", "assets/texture/hand2.png")
