@@ -104,6 +104,7 @@ function init(){
 		this.downSprite.visible = !this.downSprite.visible;
 		this.upSprite.visible = !this.upSprite.visible;
 		sounds['click'+Math.ceil(Math.random()*3)].play();
+		hand.y += 10;
 	}.bind(toggle);
 	toggle.restoreState = restoreButtonState;
 	toggle.interactingHand = hand2;
@@ -419,13 +420,14 @@ function update(){
 						}
 						setHand(obj.interactingHand);
 					}
-			 	}else if(mouse.isJustUp(mouse.LEFT)){
-					if(obj.hasOwnProperty("restoreState")){
-						obj.restoreState();
-						obj.interacting = false;
-					}
-				}else if(!mouse.isDown(mouse.LEFT)){
+			 	}else{
 					setHand(obj.hoverHand);
+					if(mouse.isJustUp(mouse.LEFT)){
+						if(obj.hasOwnProperty("restoreState")){
+							obj.restoreState();
+							obj.interacting = false;
+						}
+					}
 				}
 			}else{
 				if(obj.hasOwnProperty("restoreState") 
