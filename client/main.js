@@ -410,9 +410,12 @@ function restoreButtonState(){
 }
 
 function startNextConversation(){
-	g.goto(g.nextConversation)
-	.then(function(){
-		speech.scale.x = speech.scale.y = 0;
-		speech.visible = true;
-	});
+	if(g.nextConversation){
+		g.goto(g.nextConversation)
+		.then(function(){
+			speech.scale.x = speech.scale.y = 0;
+			speech.visible = true;
+			g.nextConversation = null;
+		});
+	}
 }
