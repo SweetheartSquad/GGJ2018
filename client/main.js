@@ -115,7 +115,7 @@ function init(){
 	toggle = new PIXI.Container();
 	toggle.downSprite = new PIXI.Sprite(PIXI.loader.resources.switch_down.texture);
 	toggle.upSprite = new PIXI.Sprite(PIXI.loader.resources.switch_up.texture);
-	toggle.downSprite.visible = false;
+	toggle.upSprite.visible = false;
 	toggle.addChild(toggle.downSprite);
 	toggle.addChild(toggle.upSprite);
 	toggle.position.x = 14;
@@ -137,6 +137,57 @@ function init(){
 	toggle.addChild(toggle.upSprite);
 	toggle.position.x = 26;
 	toggle.position.y = 25;
+	toggle.onInteraction = function(){
+		this.downSprite.visible = !this.downSprite.visible;
+		this.upSprite.visible = !this.upSprite.visible;
+	}.bind(toggle);
+	toggle.restoreState = restoreButtonState;
+	toggle.interactingHand = hand2;
+	toggle.hoverHand = hand3;
+	interactiveObjects.push(toggle);
+
+	toggle = new PIXI.Container();
+	toggle.downSprite = new PIXI.Sprite(PIXI.loader.resources.light1_on.texture);
+	toggle.upSprite = new PIXI.Sprite(PIXI.loader.resources.light1_off.texture);
+	toggle.upSprite.visible = false;
+	toggle.addChild(toggle.downSprite);
+	toggle.addChild(toggle.upSprite);
+	toggle.position.x = 0;
+	toggle.position.y = 53;
+	toggle.onInteraction = function(){
+		this.downSprite.visible = !this.downSprite.visible;
+		this.upSprite.visible = !this.upSprite.visible;
+	}.bind(toggle);
+	toggle.restoreState = restoreButtonState;
+	toggle.interactingHand = hand2;
+	toggle.hoverHand = hand3;
+	interactiveObjects.push(toggle);
+
+	toggle = new PIXI.Container();
+	toggle.downSprite = new PIXI.Sprite(PIXI.loader.resources.light2_on.texture);
+	toggle.upSprite = new PIXI.Sprite(PIXI.loader.resources.light2_off.texture);
+	toggle.downSprite.visible = false;
+	toggle.addChild(toggle.downSprite);
+	toggle.addChild(toggle.upSprite);
+	toggle.position.x = 20;
+	toggle.position.y = 54;
+	toggle.onInteraction = function(){
+		this.downSprite.visible = !this.downSprite.visible;
+		this.upSprite.visible = !this.upSprite.visible;
+	}.bind(toggle);
+	toggle.restoreState = restoreButtonState;
+	toggle.interactingHand = hand2;
+	toggle.hoverHand = hand3;
+	interactiveObjects.push(toggle);
+
+	toggle = new PIXI.Container();
+	toggle.downSprite = new PIXI.Sprite(PIXI.loader.resources.light3_on.texture);
+	toggle.upSprite = new PIXI.Sprite(PIXI.loader.resources.light3_off.texture);
+	toggle.downSprite.visible = false;
+	toggle.addChild(toggle.downSprite);
+	toggle.addChild(toggle.upSprite);
+	toggle.position.x = 40;
+	toggle.position.y = 55;
 	toggle.onInteraction = function(){
 		this.downSprite.visible = !this.downSprite.visible;
 		this.upSprite.visible = !this.upSprite.visible;
