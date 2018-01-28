@@ -90,7 +90,7 @@ Game.prototype.displayPassage = function (__newPassage) {
 		this.error('History skipped because passage has no title:', this.currentPassage);
 	}
 
-	var textWidth = speech.width * 0.85;
+	var textWidth = size.x * 0.85;
 	this.currentPassage = this.passageToText(__newPassage, textWidth);
 	this.currentPassage.title = __newPassage.title;
 
