@@ -43,7 +43,7 @@ well they call me big chicken. and let me tell you what, it's not cause i got fe
 
 ::BE SUGGESTIVE-RESPONSE
 (this.setCallsign("MASTER HAM")){}
-well big chicken, im no little chicken myself, but you can call me master ham.
+well big chicken, i'm no little chicken myself, but you can call me master ham.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 1")){}
 
 ::BE HOMEY
@@ -54,12 +54,12 @@ oh well you can call me little turkey. throw in some mashed potatoes and a side 
 
 ::BE HOMEY-RESPONSE
 (this.setCallsign("MASTER HAM")){}
-pleasure to meet ya, gobble gobble, heh heh! I do like me some stuffed bird, but im more of ham-boy myself. You could even say i'm... a master of ham. that's me, master ham, nice to meet ya.
+pleasure to meet ya, gobble gobble, heh heh! I do like some stuffed bird, but i'm more of ham-boy myself. You could even say i'm... a master of ham. that's me, master ham, nice to meet ya.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 1")){}
 
 ::MASTER HAM SIGN-OFF 1
 (this.setCallsign("MASTER HAM")){}
-sounds like you're pretty new here. im sure you know by now that if you twist that knob over there, it changes the frequency of your radio. you can find all sorts of folks on the hamverse.
+sounds like you're pretty new here. i'm sure you know by now that if you twist that knob over there, it changes the frequency of your radio. you can find all sorts of folks on the hamverse.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 2")){}
 
 ::MASTER HAM SIGN-OFF 2
@@ -126,7 +126,7 @@ well hey there squirt. been far too long since i've heard-
 (this.waitAndGoto("BIG QUEEN SHOUT")){}
 
 ::BIG QUEEN SHOUT
-Johnathan you put that down! momma's talking to a real stud right now and if you dont shut your little yap im gonna shut it for ya!
+Johnathan you put that down! momma's talking to a real stud right now and if you dont shut your little yap i'm gonna shut it for ya!
 (this.waitAndGoto("BIG QUEEN SHOUT 2")){}
 
 ::BIG QUEEN SHOUT 2
@@ -146,7 +146,7 @@ ah you know, suck on a juice box, watch a little news. kick back, relax, take a 
 
 ::BE CAREFREE-RESPONSE
 (this.setCallsign("BIG QUEEN")){}
-oh im sucking on a juice box right now; always keep my van loaded up for the boys. you got any kids yerself?
+oh i'm sucking on a juice box right now; always keep my van loaded up for the boys. you got any kids yerself?
 
 [[BE EVASIVE]]
 [[BE DIRECT]]
@@ -161,7 +161,7 @@ well big queen, i like to get down in my gitch, flex in front of the mirror and 
 (this.waitAndGoto("BE PASSIONATE 3")){}
 
 ::BE PASSIONATE 3
-though really, im more of a foot man myself; tell me, how does big queen feel about foot rubs?
+though, i'm really more of a foot man myself; tell me, how does big queen feel about foot rubs?
 (this.waitAndGoto("BE PASSIONATE-RESPONSE")){}
 
 ::BE PASSIONATE-RESPONSE
@@ -182,7 +182,7 @@ tsk tsk tsk, no wonder you dont have any kids. cant even tell the sound of a rea
 
 ::BE DIRECT
 (this.setCallsign("YOU")){}
-nah im sure you've heard the story before, always on the road. aint go no time for the little tykes, just me myself and i, all grown, all alone.
+nah i'm sure you've heard the story before, always on the road. aint go no time for the little tykes, just me myself and i, all grown, all alone.
 (this.autoRespond()){}
 
 ::BE DIRECT-RESPONSE
