@@ -84,6 +84,12 @@ ready(function(){
 		loop:false,
 		volume:1
 	});
+	sounds["pull_cord"] = new Howl({
+		urls:["assets/audio/sfx_2.wav"],
+		autoplay:false,
+		loop:false,
+		volume:1
+	});
 
 	PIXI.loader
 		.add("spritesheet","asset source files/assets/textures.json")
@@ -106,6 +112,7 @@ ready(function(){
 		.add("light3_off", "assets/texture/light3-off.png")
 		.add("light3_on", "assets/texture/light3-on.png")
 		.add("dial", "assets/texture/dial.png")
+		.add("pull_cord", "assets/texture/pull_cord.png")
 		.add("arm", "assets/texture/arm.png")
 		.add("arm2", "assets/texture/arm2.png")
 		.add("hand2", "assets/texture/hand2.png")

@@ -187,6 +187,20 @@ function init(){
 	toggle.hoverHand = hand3;
 	interactiveObjects.push(toggle);
 
+	pull_cord = new PIXI.Sprite(PIXI.loader.resources.pull_cord.texture);
+	pull_cord.position.x = size.x*0.2;
+	pull_cord.position.y = -size.y*0.54;
+	pull_cord.anchor.x = 0.5;
+	pull_cord.anchor.y = 0;
+	pull_cord.onInteraction = function(){
+		sounds.pull_cord.play();
+		this.y = -size.y*0.52;
+	}.bind(pull_cord);
+	pull_cord.restoreState = restoreButtonState;
+	pull_cord.interactingHand = hand2;
+	pull_cord.hoverHand = hand3;
+	interactiveObjects.push(pull_cord);
+
 	dial = new PIXI.Container();
 	dial.sprite = new PIXI.Sprite(PIXI.loader.resources.dial.texture);
 	dial.sprite.anchor.x = dial.sprite.anchor.y = 0.5;
@@ -321,6 +335,8 @@ function update(){
 		sounds["sfx_select"].play();
 	}
 
+
+	pull_cord.y = lerp(pull_cord.y, -size.y*0.54, 0.1);
 
 	var input = getInput();
 
