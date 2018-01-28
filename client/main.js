@@ -327,7 +327,8 @@ function startGame(){
 		'BIG CHICKEN',
 		'LITTLE TURKEY',
 		'GENTLE JIM',
-		'CAPTAIN'
+		'CAPTAIN',
+		'PBWRITER'
 	];
 	for(var i = 0; i < callsigns.length; ++i){
 		var c = callsigns[i];
