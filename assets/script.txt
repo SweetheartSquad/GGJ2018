@@ -43,7 +43,7 @@ well they call me big chicken. and let me tell you what, it's not cause i got fe
 
 ::BE SUGGESTIVE-RESPONSE
 (this.setCallsign("MASTER HAM")){}
-well big chicken, i'm no little chicken myself, but you can call me master ham.
+well big chicken, im no little chicken myself, but you can call me master ham.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 1")){}
 
 ::BE HOMEY
@@ -54,12 +54,12 @@ oh well you can call me little turkey. throw in some mashed potatoes and a side 
 
 ::BE HOMEY-RESPONSE
 (this.setCallsign("MASTER HAM")){}
-pleasure to meet ya, gobble gobble, heh heh! I do like some stuffed bird, but i'm more of ham-boy myself. You could even say i'm... a master of ham. that's me, master ham, nice to meet ya.
+pleasure to meet ya, gobble gobble, heh heh! I do like me some stuffed bird, but im more of ham-boy myself. You could even say i'm... a master of ham. that's me, master ham, nice to meet ya.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 1")){}
 
 ::MASTER HAM SIGN-OFF 1
 (this.setCallsign("MASTER HAM")){}
-sounds like you're pretty new here. i'm sure you know by now that if you twist that knob over there, it changes the frequency of your radio. you can find all sorts of folks on the hamverse.
+sounds like you're pretty new here. im sure you know by now that if you twist that knob over there, it changes the frequency of your radio. you can find all sorts of folks on the hamverse.
 (this.waitAndGoto("MASTER HAM SIGN-OFF 2")){}
 
 ::MASTER HAM SIGN-OFF 2
@@ -126,7 +126,7 @@ well hey there squirt. been far too long since i've heard-
 (this.waitAndGoto("BIG QUEEN SHOUT")){}
 
 ::BIG QUEEN SHOUT
-Johnathan you put that down! momma's talking to a real stud right now and if you dont shut your little yap i'm gonna shut it for ya!
+Johnathan you put that down! momma's talking to a real stud right now and if you dont shut your little yap im gonna shut it for ya!
 (this.waitAndGoto("BIG QUEEN SHOUT 2")){}
 
 ::BIG QUEEN SHOUT 2
@@ -146,7 +146,7 @@ ah you know, suck on a juice box, watch a little news. kick back, relax, take a 
 
 ::BE CAREFREE-RESPONSE
 (this.setCallsign("BIG QUEEN")){}
-oh i'm sucking on a juice box right now; always keep my van loaded up for the boys. you got any kids yerself?
+oh im sucking on a juice box right now; always keep my van loaded up for the boys. you got any kids yerself?
 
 [[BE EVASIVE]]
 [[BE DIRECT]]
@@ -161,7 +161,7 @@ well big queen, i like to get down in my gitch, flex in front of the mirror and 
 (this.waitAndGoto("BE PASSIONATE 3")){}
 
 ::BE PASSIONATE 3
-though, i'm really more of a foot man myself; tell me, how does big queen feel about foot rubs?
+though really, im more of a foot man myself; tell me, how does big queen feel about foot rubs?
 (this.waitAndGoto("BE PASSIONATE-RESPONSE")){}
 
 ::BE PASSIONATE-RESPONSE
@@ -178,26 +178,93 @@ oh you know, never met a woman. least not a real one. funny how life works out.
 
 ::BE EVASIVE-RESPONSE
 (this.setCallsign("BIG QUEEN")){}
-tsk tsk tsk, no wonder you dont have any kids. cant even tell the sound of a real woman when its pounding right on those eardrums of yours. i pity you, you sad sad man. over and out.
+tsk tsk tsk, no wonder you dont have any kids. cant even tell the sound of a real woman when its pounding right on those 
+eardrums of yours. i pity you, you sad sad man. over and out.
 
 ::BE DIRECT
 (this.setCallsign("YOU")){}
-nah i'm sure you've heard the story before, always on the road. aint go no time for the little tykes, just me myself and i, all grown, all alone.
+nah im sure you've heard the story before, always on the road. aint go no time for the little tykes, just me myself and i, all grown, all alone.
 (this.autoRespond()){}
 
 ::BE DIRECT-RESPONSE
 (this.setCallsign("BIG QUEEN")){}
-well they aint worth it, these little arsewipes, they're just a pile of trouble. its too bad they're around, or maybe the two of us coulda spent a little more time together.
+well they aint worth it, these little arsewipes, they're just a pile of trouble. its too bad they're around, or maybe the two of us
+ coulda spent a little more time together.
 (this.waitAndGoto("BE DIRECT-RESPONSE 2")){}
 
 ::BE DIRECT-RESPONSE 2
 then again, aint no reason we cant chat some more. tell you what, you start feeling lonely, you just give your pal suzanne a call. over and out.
 
+::GENTLE JIM
+(this.setCallsign("GENTLE JIM")){}
+...as i sit here on my porch today, i see johnathan, and he's just out there with all his friends. eating his acorn. johnathan's one of my favourite squirrels, and - oh! there he goes off into his tree. Once again this is gentle jim, is anyone listening in today?
 
+[[BE MELLOW]]
+[[BE TREPIDACIOUS]]
 
+::BE MELLOW
+(this.setCallsign("YOU")){}
+oh yeah, just tuned in. new to this whole ham thing, just surfing the waves. feelin em out. how're you feeling jim?
+(this.autoRespond()){}
 
+::BE MELLOW-RESPONSE
+(this.setCallsign("GENTLE JIM")){}
+oh well im feeling might fine, mighty fine indeed.
+(this.waitAndGoto("GENTLE JIM 2")){}
 
+::BE TREPIDACIOUS
+(this.setCallsign("YOU")){}
+oh... yeah... im here.
+(this.autoRespond()){}
 
+::BE TREPIDACIOUS-RESPONSE
+(this.setCallsign("GENTLE JIM")){}
+well, seems we got ourselves a listener today. nice to meet you fella.
+(this.waitAndGoto("GENTLE JIM 2")){}
+
+::GENTLE JIM 2
+(this.setCallsign("GENTLE JIM")){}
+just the other day i was washing the dishes, and i broke my favourite mug. broke the handle clear off! not to worry though, not to worry,
+(this.waitAndGoto("GENTLE JIM 3")){}
+
+::GENTLE JIM 3
+(this.setCallsign("GENTLE JIM")){}
+just got out my trusty sandpaper, gave it a good rubbing, and got myself a brand new favourite cup. anyway, that's enough about ol jimmy, why don't you tell me a little story about yourself?
+
+[[BE PERSONAL]]
+[[BE PROFESSIONAL]]
+
+::BE PERSONAL
+(this.setCallsign("YOU")){}
+well...sure, so, just the other day I was cruising down 95 with a full load, had to get there by midnight ya know. 
+(this.waitAndGoto("BE PERSONAL 2")){}
+
+::BE PERSONAL 2
+(this.setCallsign("YOU")){}
+Well the ol' "water tank" was getting pretty full and I did't have time to pull over....so I grabbed my trusty bottle and lined er up and let loose. Didn't get it all in but 40% ain't bad.
+(this.autoRespond()){}
+
+::BE PERSONAL-RESPONSE
+(this.setCallsign("GENTLE JIM")){}
+No worries, no worries I've been there my self. A bottle ain't an easy target, especially when your nicknam is Gentle Giant.
+
+::BE PROFESSIONAL
+(this.setCallsign("YOU")){}
+well, this one time I was delivering this shipment of potatoes down to Albuquerque. The famine had been getting worse and I needed to get there ASAP.
+(this.waitAndGoto("BE PROFESSIONAL 2")){}
+
+::BE PROFESSIONAL 2
+(this.setCallsign("YOU")){}
+It was a raining mighty heavy but I needed to be there potatoe hereo, I got there just in time and opened up the back of my ol' girl but all them potatoes were sour. Those fumes put me in the hospital for three weeks.
+(this.autoRespond()){}
+
+::BE PROFESSIONAL-RESPONSE
+(this.setCallsign("GENTLE JIM")){}
+well, that was riveting, you had me glued to my seat. I think you might be my ew hero, and that's no easy feat
+
+::GENTLE JIM SIGN-OFF
+(this.setCallsign("GENTLE JIM")){}
+anyways, it was nice to hear from another hamhead. Gentle Jim signing off.
 
 ::ABOUT
 Made by Ian, Ryan, Sean & Michael for [[#GGJ2018|window.open('https://globalgamejam.org/')]] with [[Pixi.js|window.open('http://www.pixijs.com/')]].
