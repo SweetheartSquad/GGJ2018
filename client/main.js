@@ -44,9 +44,10 @@ function init(){
     // hand
 	hand=new PIXI.Container();
 
-	hand1=makeHand(PIXI.loader.resources.hand.texture);
-	hand2=makeHand(PIXI.loader.resources.hand2.texture);
-	hand3=makeHand(PIXI.loader.resources.hand3.texture);
+	hand1=makeHand(PIXI.loader.resources.hand.texture, 0.25, 0.1, 20, 80);
+	hand2=makeHand(PIXI.loader.resources.hand2.texture, 0.25, 0.1, 20, 80);
+	hand3=makeHand(PIXI.loader.resources.hand3.texture, 0.25, 0.1, 20, 80);
+	hand_knob=makeHand(PIXI.loader.resources.hand_knob.texture, 0.1, 0.4, 40, 40);
 
 	hand1.visible = true;
 	currentHand = hand1;
@@ -102,6 +103,7 @@ function init(){
 	toggle.onInteraction = function(){
 		this.downSprite.visible = !this.downSprite.visible;
 		this.upSprite.visible = !this.upSprite.visible;
+		sounds['click'+Math.ceil(Math.random()*3)].play();
 	}.bind(toggle);
 	toggle.restoreState = restoreButtonState;
 	toggle.interactingHand = hand2;
@@ -119,6 +121,8 @@ function init(){
 	toggle.onInteraction = function(){
 		this.downSprite.visible = !this.downSprite.visible;
 		this.upSprite.visible = !this.upSprite.visible;
+		sounds['click'+Math.ceil(Math.random()*3)].play();
+		hand.y += 10;
 	}.bind(toggle);
 	toggle.restoreState = restoreButtonState;
 	toggle.interactingHand = hand2;
@@ -136,6 +140,8 @@ function init(){
 	toggle.onInteraction = function(){
 		this.downSprite.visible = !this.downSprite.visible;
 		this.upSprite.visible = !this.upSprite.visible;
+		sounds['click'+Math.ceil(Math.random()*3)].play();
+		hand.y += 10;
 	}.bind(toggle);
 	toggle.restoreState = restoreButtonState;
 	toggle.interactingHand = hand2;
@@ -153,6 +159,8 @@ function init(){
 	toggle.onInteraction = function(){
 		this.downSprite.visible = !this.downSprite.visible;
 		this.upSprite.visible = !this.upSprite.visible;
+		sounds['click'+Math.ceil(Math.random()*3)].play();
+		hand.y += 10;
 	}.bind(toggle);
 	toggle.restoreState = restoreButtonState;
 	toggle.interactingHand = hand2;
@@ -170,6 +178,8 @@ function init(){
 	toggle.onInteraction = function(){
 		this.downSprite.visible = !this.downSprite.visible;
 		this.upSprite.visible = !this.upSprite.visible;
+		sounds['click'+Math.ceil(Math.random()*3)].play();
+		hand.y += 10;
 	}.bind(toggle);
 	toggle.restoreState = restoreButtonState;
 	toggle.interactingHand = hand2;
@@ -187,6 +197,8 @@ function init(){
 	toggle.onInteraction = function(){
 		this.downSprite.visible = !this.downSprite.visible;
 		this.upSprite.visible = !this.upSprite.visible;
+		sounds['click'+Math.ceil(Math.random()*3)].play();
+		hand.y += 10;
 	}.bind(toggle);
 	toggle.restoreState = restoreButtonState;
 	toggle.interactingHand = hand2;
@@ -214,6 +226,7 @@ function init(){
 	dial.position.x = 0;
 	dial.position.y = 90;
 	dial.onInteraction = function(){
+		hand_knob.rotation += 0.2;
 		if(g.activeSound && g.activeSound.done && g.nextConversation){
 			this.rotation += Math.PI/2;
 			startNextConversation();
@@ -222,8 +235,8 @@ function init(){
 		}
 	}.bind(dial);
 	dial.restoreState = restoreButtonState;
-	dial.interactingHand = hand2;
-	dial.hoverHand = hand3;
+	dial.interactingHand = hand_knob;
+	dial.hoverHand = hand_knob;
 	interactiveObjects.push(dial);
 
 
@@ -431,6 +444,8 @@ function update(){
 	speech.scale.x = lerp(speech.scale.x, 1.0, 0.1);
 	speech.scale.y = lerp(speech.scale.y, 1.0, 0.1);
 
+	hand_knob.rotation = lerp(hand_knob.rotation, 0, 0.1);
+
 	// update input managers
 	gamepads.update();
 	keys.update();
@@ -549,16 +564,16 @@ function updateCallsignDisplay(){
 	}
 }
 
-function makeHand(resource){
+function makeHand(resource, x, y, x2, y2){
 	newHand=new PIXI.Sprite(resource);
-	newHand.anchor.x=0.25;
-	newHand.anchor.y=0.1;
+	newHand.anchor.x=x;
+	newHand.anchor.y=y;
 	newHand.visible = false;
 	newHand.armPoint = new PIXI.Container();
 	newHand.armPoint.visible = false;
 	newHand.addChild(newHand.armPoint);
-	newHand.armPoint.x += 20;
-	newHand.armPoint.y += 80;
+	newHand.armPoint.x += x2;
+	newHand.armPoint.y += y2;
 	hand.addChild(newHand);
 	return newHand;
 }

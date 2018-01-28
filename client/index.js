@@ -78,6 +78,24 @@ ready(function(){
 		loop:false,
 		volume:1
 	});
+	sounds.click1 = new Howl({
+		urls:["assets/audio/click1.ogg"],
+		autoplay:false,
+		loop:false,
+		volume:1
+	});
+	sounds.click2 = new Howl({
+		urls:["assets/audio/click2.ogg"],
+		autoplay:false,
+		loop:false,
+		volume:1
+	});
+	sounds.click3 = new Howl({
+		urls:["assets/audio/click3.ogg"],
+		autoplay:false,
+		loop:false,
+		volume:1
+	});
 	sounds["temp"] = new Howl({
 		urls:["assets/audio/temp.wav"],
 		autoplay:false,
@@ -123,6 +141,7 @@ ready(function(){
 		.add("arm2", "assets/texture/arm2.png")
 		.add("hand2", "assets/texture/hand2.png")
 		.add("hand3", "assets/texture/hand3.png")
+		.add("hand_knob", "assets/texture/hand_knob.png")
 		.add("wheel", "assets/texture/wheel.png")
 		.add("callsignMASTER HAM", "assets/texture/MASTER HAM.png")
 		.add("callsignBIG QUEEN", "assets/texture/BIG QUEEN.png")
