@@ -83,10 +83,6 @@ i'll catch ya later little turkey, master ham signing off!
 (this.endCurrentConversation("BIG QUEEN")){}
 
 
-::??
-oh you're driving a truck? well that sure doesn't sounds safe.
-
-
 
 
 
@@ -196,7 +192,144 @@ then again, aint no reason we cant chat some more. tell you what, you start feel
 
 
 
+::CAPTAIN
+(this.setCallsign("???")){}
+testing, testing, one two three. alpha. bravo. charlie.
+(this.waitAndGoto("CAPTAIN 2")){}
 
+::CAPTAIN 2
+...
+(this.waitAndGoto("CAPTAIN 3")){}
+
+::CAPTAIN 3
+is it working? can anyone hear me?
+
+[[BE ENCOURAGING]]
+[[BE INQUISITIVE]]
+
+::BE ENCOURAGING
+(this.setCallsign("YOU")){}
+It sure is buddy! I can hear you loud and clear.
+(this.autoRespond()){}
+
+::BE ENCOURAGING-RESPONSE
+(this.setCallsign("???")){}
+Oh golly gee howdy mister! I can't believe it, it's actually working!
+(this.waitAndGoto("CAPTAIN CALLSIGN")){}
+
+::BE INQUISITIVE
+(this.setCallsign("YOU")){}
+That depends: who's asking?
+(this.autoRespond()){}
+
+::BE INQUISITIVE-RESPONSE
+(this.setCallsign("???")){}
+Aw shucks... I didn't even pick out a name yet! Um...
+(this.waitAndGoto("CAPTAIN CALLSIGN")){}
+
+::CAPTAIN CALLSIGN
+(this.setCallsign("CAPTAIN")){}
+You can call me THE CAPTAIN. Or even, "oh captain my captain"! Ha!
+(this.waitAndGoto("CAPTAIN CALLSIGN 2")){}
+
+::CAPTAIN CALLSIGN 2
+Get it?
+
+[[BE SAVVY]]
+[[BE IGNORANT]]
+
+
+::BE SAVVY
+(this.setCallsign("YOU")){}
+Oh, heh, I love Robin Williams.
+(this.autoRespond()){}
+
+::BE SAVVY-RESPONSE
+(this.setCallsign("CAPTAIN")){}
+Great to meet another connoisseur of his body of work! That movie was inspiring.
+(this.waitAndGoto("CAPTAIN CALLSIGN 3")){}
+
+::BE IGNORANT
+(this.setCallsign("YOU")){}
+...I don't get it.
+(this.autoRespond()){}
+
+::BE IGNORANT-RESPONSE
+(this.setCallsign("CAPTAIN")){}
+WHAT?! You've never seen "Dead Poets Society"!? O-M-G it changed my life!
+(this.waitAndGoto("CAPTAIN CALLSIGN 3")){}
+
+::CAPTAIN CALLSIGN 3
+In fact, I've been building this radio out of a kit as an experiment to show my students and let me tell you what, it's been giving me one heck of a time. Almost set fire to my credenza when I got the power supply hooked up!
+(this.waitAndGoto("CAPTAIN CALLSIGN 4")){}
+
+::CAPTAIN CALLSIGN 4
+You're actually the first person I've heard on the air, why don't you tell me a bit about yourself?
+
+[[BE SOCIABLE]]
+[[BE HUMBLE]]
+
+
+::BE SOCIABLE
+(this.setCallsign("YOU")){}
+Oh well I just got into this ham business myself! Lots of nice folk, and it sure makes the truckin' go by more quick-like.
+(this.autoRespond()){}
+
+::BE SOCIABLE-RESPONSE
+(this.setCallsign("CAPTAIN")){}
+Oh I bet you've got a dandy ol' life. Living large, living free, just you and the road, right? Gee whiz, that sounds so exciting...
+(this.waitAndGoto("SAFETY FIRST")){}
+
+::BE HUMBLE
+(this.setCallsign("YOU")){}
+Oh well I'm just a simple trucker. Dunno much about this ham business; gives me something to take my mind off the road I guess.
+(this.autoRespond()){}
+
+::BE HUMBLE-RESPONSE
+(this.setCallsign("CAPTAIN")){}
+Wait, are you driving right now? That sure don't sound safe mister. I hope you're at least taking the proper precautions.
+(this.waitAndGoto("SAFETY FIRST")){}
+
+::SAFETY FIRST
+Both eyes on the road and both hands on the wheel!
+
+[[BE DANGEROUS]]
+[[BE BASHFUL]]
+
+::BE DANGEROUS
+(this.setCallsign("YOU")){}
+Nah, I'm used to driving manual; can't help but keep one hand free. Feels wrong to be driving without that stick in my hand.
+(this.autoRespond()){}
+
+::BE DANGEROUS-RESPONSE
+(this.setCallsign("CAPTAIN")){}
+Oh- well- I can't say I know much about driving, but it sure sounds like you've got a lot of experience.
+(this.waitAndGoto("SAFETY FIRST")){}
+
+::BE DANGEROUS-RESPONSE 2
+Well hey, you ever end up tripping down to Eureka Springs, Arkansas, maybe the two of us can go for a ride.
+(this.waitAndGoto("BE DANGEROUS-RESPONSE 3")){}
+
+::BE DANGEROUS-RESPONSE 3
+You can teach me how to drive stick!
+
+::BE BASHFUL
+(this.setCallsign("YOU")){}
+Oh... yeah, that'd probably be safer. Never been one much for following the safety procedures.
+(this.autoRespond()){}
+
+::BE BASHFUL-RESPONSE
+(this.setCallsign("CAPTAIN")){}
+Well that sure don't sound responsible.
+(this.waitAndGoto("SAFETY FIRST")){}
+
+::BE BASHFUL-RESPONSE 2
+Well hey, you ever end up tripping down to Eureka Springs, Arkansas, maybe we can have ourselves a little hamfest.
+(this.waitAndGoto("BE BASHFUL-RESPONSE 3")){}
+
+::BE BASHFUL-RESPONSE 3
+Just so long as you're not driving.
+(this.waitAndGoto("BE BASHFUL-RESPONSE 3")){}
 
 
 ::ABOUT
