@@ -449,7 +449,7 @@ maybe turn down the bragging, pal. i'm looking for human interest stories, not a
 (this.waitAndGoto("PBWRITER 2")){}
 
 ::PBWRITER 2
-now, i've got to ask: is this chat on the record? i write a column on ham radio for my local newspaper, and i like to feature guests like you when i can.
+now, i've got to ask: is this chat on the record? i write a column on ham radio for my local newspaper, and i like to feature guests when i can.
 
 [[BE AMENABLE]]
 [[BE AVOIDANT]]
