@@ -4,7 +4,7 @@ hey here's some garbo that shouldn't get parsed
 This page shows up when a passage failed to parse, or doesn't even exist. Try checking the link for spelling errors or the console logs for more detail on the error.
 [[back|this.back();]]
 
-::START1
+::START
 CQ CQ anybody on the line?
 
 [[BE FRIENDLY]]
@@ -195,9 +195,13 @@ well they aint worth it, these little arsewipes, they're just a pile of trouble.
 ::BE DIRECT-RESPONSE 2
 then again, aint no reason we cant chat some more. tell you what, you start feeling lonely, you just give your pal suzanne a call. over and out.
 
-::START
+
+//////////////////////////////////////////////////////////////////////////
+
+::GENTLE JIM
 (this.setCallsign("GENTLE JIM")){}
-...as i sit here on my porch today, i see johnathan, and he's just out there with all his friends. eating his acorn. johnathan's one of my favourite squirrels, and - oh! there he goes off into his tree. Once again this is gentle jim, is anyone listening in today?
+...as i sit here on my porch today, i see johnathan, and he's just out there with all his friends. eating his acorn. johnathan's one of my favourite squirrels,
+ and - oh! there he goes off into his tree. Once again this is gentle jim, is anyone listening in today?
 
 [[BE MELLOW]]
 [[BE TREPIDACIOUS]]
@@ -229,7 +233,8 @@ just the other day i was washing the dishes, and i broke my favourite mug. broke
 
 ::GENTLE JIM 3
 (this.setCallsign("GENTLE JIM")){}
-just got out my trusty sandpaper, gave it a good rubbing, and got myself a brand new favourite cup. anyway, that's enough about ol jimmy, why don't you tell me a little story about yourself?
+just got out my trusty sandpaper, gave it a good rubbing, and got myself a brand new favourite cup. anyway, 
+that's enough about ol jimmy, why don't you tell me a little story about yourself?
 
 [[BE PERSONAL]]
 [[BE PROFESSIONAL]]
@@ -241,7 +246,8 @@ well...sure, so, just the other day I was cruising down 95 with a full load, had
 
 ::BE PERSONAL 2
 (this.setCallsign("YOU")){}
-Well the ol' "water tank" was getting pretty full and I did't have time to pull over....so I grabbed my trusty bottle and lined er up and let loose. Didn't get it all in but 40% ain't bad.
+Well the ol' "water tank" was getting pretty full and I did't have time to pull over....so I grabbed my trusty bottle and lined er 
+up and let loose. Didn't get it all in but 40% ain't bad.
 (this.waitAndGoto("BE PERSONAL-RESPONSE")){}
 
 ::BE PERSONAL-RESPONSE
@@ -256,7 +262,8 @@ well, this one time I was delivering this shipment of potatoes down to Albuquerq
 
 ::BE PROFESSIONAL 2
 (this.setCallsign("YOU")){}
-It was a raining mighty heavy but I needed to be there potatoe hereo, I got there just in time and opened up the back of my ol' girl but all them potatoes were sour. Those fumes put me in the hospital for three weeks.
+It was a raining mighty heavy but I needed to be there potatoe hereo, I got there just in time and opened up the back of my ol' girl but
+ all them potatoes were sour. Those fumes put me in the hospital for three weeks.
 (this.waitAndGoto("BE PROFESSIONAL-RESPONSE")){}
 
 ::BE PROFESSIONAL-RESPONSE
