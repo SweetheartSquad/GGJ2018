@@ -283,7 +283,8 @@ function init(){
 		'MASTER HAM',
 		'BIG QUEEN',
 		'BIG CHICKEN',
-		'LITTLE TURKEY'
+		'LITTLE TURKEY',
+		'GENTLE JIM'
 	];
 	for(var i = 0; i < callsigns.length; ++i){
 		var c = callsigns[i];
