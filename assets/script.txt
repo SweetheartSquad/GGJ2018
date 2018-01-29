@@ -510,7 +510,7 @@ well, if i'm bein honest, it was because of my last relationship. when my partne
 ::BE AFFLICTIVE 2
 (this.setCallsign("YOU")){}
 so i packed up my things, got my license, and hit the road.
-(this.autoRespond()){}
+(this.waitAndGoto("BE AFFLICTIVE-RESPONSE")){}
 
 ::BE AFFLICTIVE-RESPONSE
 (this.setCallsign("PBWRITER")){}
