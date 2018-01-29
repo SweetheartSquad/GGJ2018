@@ -71,6 +71,7 @@ ready(function(){
 
 	fontStyle={font: "8px font", align: "left"};
 
+	progress = 0;
 	sounds.count = 0;
 	sounds.loaded = 0;
 	// menu SFX
@@ -224,20 +225,27 @@ ready(function(){
 
 function sound_loaded(){
 	++sounds.loaded;
+	update_progress();
 	if(sounds.loaded === sounds.count && pixi_loaded === true){
 		init();
+		display.removeChild(display.children[0]);
 	}
 }
 
 function sound_error(){
 	++sounds.loaded;
+	update_progress();
 	if(sounds.loaded === sounds.count && pixi_loaded === true){
 		init();
+		display.removeChild(display.children[0]);
 	}
 }
 function pixi_loaded(){
 	pixi_loaded = true;
 	g = new Game();
+}
+function update_progress(){
+	display.children[0].innerHTML = Math.floor(progress/2 + (pixi_loaded===true? sounds.loaded/sounds.count*50 : 0))+"%";
 }
 
 
@@ -255,6 +263,8 @@ function loadProgressHandler(loader, resource){
 	// called during loading
 	console.log("loading: " + resource.url);
 	console.log("progress: " + loader.progress+"%");
+	progress = loader.progress;
+	update_progress();
 }
 
 
