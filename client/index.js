@@ -63,9 +63,6 @@ ready(function(){
 
 	PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
 
-	// add the canvas to the html document
-	display.appendChild(game.view);
-
 	CustomFilter.prototype = Object.create(PIXI.Filter.prototype);
 	CustomFilter.prototype.constructor = CustomFilter;
 
@@ -227,8 +224,9 @@ function sound_loaded(){
 	++sounds.loaded;
 	update_progress();
 	if(sounds.loaded === sounds.count && pixi_loaded === true){
-		init();
 		display.removeChild(display.children[0]);
+		display.appendChild(game.view);
+		init();
 	}
 }
 
@@ -236,8 +234,9 @@ function sound_error(){
 	++sounds.loaded;
 	update_progress();
 	if(sounds.loaded === sounds.count && pixi_loaded === true){
-		init();
 		display.removeChild(display.children[0]);
+		display.appendChild(game.view);
+		init();
 	}
 }
 function pixi_loaded(){
