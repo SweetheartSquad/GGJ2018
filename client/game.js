@@ -33,13 +33,10 @@ function Game() {
 				autoplay:false,
 				loop:false,
 				volume:1,
-				onload: function(i){
-					this.log('sound loaded:', i);
-				}.bind(this, i),
-				onloaderror: function(i){
-					this.error('sound failed to load:', i);
-				}.bind(this, i)
+				onload: sound_loaded,
+				onloaderror: sound_error
 			});
+			++sounds.count;
 		}
 	}
 

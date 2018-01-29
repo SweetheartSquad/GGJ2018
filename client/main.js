@@ -358,7 +358,6 @@ function startGame(){
 	textContainer.y = -speech.height*0.85;
 	speech.scale.x = speech.scale.y = 0;
 
-	g = new Game();
 	g.goto("START");
 
 	frequency = new PIXI.extras.BitmapText("", g.font);

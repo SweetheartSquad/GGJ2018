@@ -71,67 +71,109 @@ ready(function(){
 
 	fontStyle={font: "8px font", align: "left"};
 
+	sounds.count = 0;
+	sounds.loaded = 0;
 	// menu SFX
 	sounds["sfx_select"] = new Howl({
 		urls:["assets/audio/sfx_2.wav"],
 		autoplay:false,
 		loop:false,
-		volume:1
+		volume:1,
+		onload: sound_loaded,
+		onerror: sound_error
 	});
+	++sounds.count;
+
 	sounds.click1 = new Howl({
 		urls:["assets/audio/click1.ogg"],
 		autoplay:false,
 		loop:false,
-		volume:1
+		volume:1,
+		onload: sound_loaded,
+		onerror: sound_error
 	});
+	++sounds.count;
+	
 	sounds.click2 = new Howl({
 		urls:["assets/audio/click2.ogg"],
 		autoplay:false,
 		loop:false,
-		volume:1
+		volume:1,
+		onload: sound_loaded,
+		onerror: sound_error
 	});
+	++sounds.count;
+	
 	sounds.click3 = new Howl({
 		urls:["assets/audio/click3.ogg"],
 		autoplay:false,
 		loop:false,
-		volume:1
+		volume:1,
+		onload: sound_loaded,
+		onerror: sound_error
 	});
+	++sounds.count;
+	
 	sounds.dial = new Howl({
 		urls:["assets/audio/dial.ogg"],
 		autoplay:false,
 		loop:false,
-		volume:1
+		volume:1,
+		onload: sound_loaded,
+		onerror: sound_error
 	});
+	++sounds.count;
+	
 	sounds["temp"] = new Howl({
 		urls:["assets/audio/temp.wav"],
 		autoplay:false,
 		loop:false,
-		volume:1
+		volume:1,
+		onload: sound_loaded,
+		onerror: sound_error
 	});
+	++sounds.count;
+	
 	sounds["pull_cord"] = new Howl({
 		urls:["assets/audio/horn.ogg"],
 		autoplay:false,
 		loop:false,
-		volume:1
+		volume:1,
+		onload: sound_loaded,
+		onerror: sound_error
 	});
+	++sounds.count;
+	
 	sounds["not_yet"] = new Howl({
 		urls:["assets/audio/NOT YET.ogg", "assets/audio/NOT YET.mp3"],
 		autoplay:false,
 		loop:false,
-		volume:1
+		volume:1,
+		onload: sound_loaded,
+		onerror: sound_error
 	});
+	++sounds.count;
+	
 	sounds["portal"] = new Howl({
 		urls:["assets/audio/portal.ogg"],
 		autoplay:false,
 		loop:false,
-		volume:1
+		volume:1,
+		onload: sound_loaded,
+		onerror: sound_error
 	});
+	++sounds.count;
+	
 	sounds["bgm"] = new Howl({
 		urls:["assets/audio/Song2_RadioEffect.ogg"],
 		autoplay:false,
 		loop:true,
-		volume:0
+		volume:0,
+		onload: sound_loaded,
+		onerror: sound_error
 	});
+	++sounds.count;
+	
 
 	PIXI.loader
 		.add("spritesheet","asset source files/assets/textures.json")
@@ -176,8 +218,27 @@ ready(function(){
 
 	PIXI.loader
 		.on("progress", loadProgressHandler)
-		.load(init);
+		.load(pixi_loaded);
+
 });
+
+function sound_loaded(){
+	++sounds.loaded;
+	if(sounds.loaded === sounds.count && pixi_loaded === true){
+		init();
+	}
+}
+
+function sound_error(){
+	++sounds.loaded;
+	if(sounds.loaded === sounds.count && pixi_loaded === true){
+		init();
+	}
+}
+function pixi_loaded(){
+	pixi_loaded = true;
+	g = new Game();
+}
 
 
 function CustomFilter(fragmentSource){
