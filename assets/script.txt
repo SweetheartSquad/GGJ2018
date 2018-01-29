@@ -5,7 +5,7 @@ This page shows up when a passage failed to parse, or doesn't even exist. Try ch
 [[back|this.back();]]
 
 ::START
-CQ CQ anybody on the line?
+CQ CQ anyone on the line?
 
 [[BE FRIENDLY]]
 [[BE CURIOUS]]
