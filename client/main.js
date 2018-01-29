@@ -23,18 +23,6 @@ function init(){
 	main.timestep = 1000/60; // target ms/frame
 	game.ticker.add(main.bind(main));
 
-	// screen background
-	(function(){
-		g = new PIXI.Graphics();
-		g.beginFill(0x333333,1);
-		g.drawRect(0,0,size.x,size.y);
-		g.endFill();
-		t = g.generateTexture();
-		bg = new PIXI.Sprite(t);
-		g.destroy();
-		game.stage.addChild(bg);
-	}());
-
 	scene = new PIXI.Container();
 
 
