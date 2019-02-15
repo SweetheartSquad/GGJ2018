@@ -16,13 +16,6 @@ let screen_filter;
 let road_filter;
 const interactiveObjects = [];
 
-export function getInput() {
-	return {
-		justDown: mouse.isJustDown() || keys.isJustDown(keys.SPACE) || gamepads.isJustDown(gamepads.A),
-		justUp: mouse.isJustUp() || keys.isJustUp(keys.SPACE) || gamepads.isJustUp(gamepads.A),
-	};
-}
-
 let g;
 export function init() {
 	g = new GameEngine();
